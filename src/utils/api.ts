@@ -1,9 +1,41 @@
-import { graphql } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 
-// export const homeData = graphql`
-//   query pageQuery($id: String) {
-//     contentfulPage(id: { eq: $id }) {
-//       title
-//     }
-//   }
-// `
+export const useUrlsAndTitles = () => {
+  const {
+    allContentfulPage: { nodes: urlNodes },
+    allContentfulIntro: { nodes: titleNodes },
+    allContentfulImages: { nodes: imageNodes },
+  } = useStaticQuery(graphql`
+    query introAndPageQuery {
+      allContentfulPage {
+        nodes {
+          url
+        }
+      }
+
+      allContentfulIntro {
+        nodes {
+          title {
+            raw
+          }
+        }
+      }
+
+      allContentfulImages {
+        nodes {
+          banner {
+            file {
+              url
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  return {
+    urlNodes,
+    titleNodes,
+    imageNodes,
+  }
+}

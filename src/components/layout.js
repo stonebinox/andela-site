@@ -11,6 +11,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
+import { useUrlsAndTitles } from "../utils/api"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -23,6 +24,28 @@ const Layout = ({ children }) => {
     }
   `)
 
+  const urls = useUrlsAndTitles()
+
+  const parseData = data => {
+    const { urlNodes, imageNodes } = data
+    const {
+      banner: {
+        file: { url: imageUrl },
+      },
+    } = imageNodes[0]
+    const { url } = urlNodes[0]
+
+    return (
+      <div>
+        <img src={imageUrl} border="0" width="90%" />
+        <br />
+        <a href={url} target="_blank">
+          Link
+        </a>
+      </div>
+    )
+  }
+
   return (
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
@@ -34,6 +57,7 @@ const Layout = ({ children }) => {
         }}
       >
         <main>{children}</main>
+        {parseData(urls)}
       </div>
     </>
   )
