@@ -8,6 +8,7 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer"
 
 import Header from "./header"
 import "./layout.css"
@@ -27,7 +28,8 @@ const Layout = ({ children }) => {
   const urls = useUrlsAndTitles()
 
   const parseData = data => {
-    const { urlNodes, imageNodes } = data
+    console.log("data", data)
+    const { urlNodes, imageNodes, titleNodes } = data
     const {
       banner: {
         file: { url: imageUrl },
@@ -42,6 +44,19 @@ const Layout = ({ children }) => {
         <a href={url} target="_blank">
           Link
         </a>
+        {titleNodes.map(title => {
+          const {
+            title: { raw },
+          } = title
+
+          return (
+            <p
+              dangerouslySetInnerHTML={{
+                __html: documentToHtmlString(JSON.parse(raw)),
+              }}
+            />
+          )
+        })}
       </div>
     )
   }
