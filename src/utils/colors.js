@@ -1,0 +1,8 @@
+export const green = "#b6fc88"
+export const darkTeal = "#1b363f"
+export const teal = "#3d6469"
+export const turq = "#8cdfcb"
+export const orange = "#f7dfc1"
+export const white = "#fff"
+export const maroon = "#d6d7d9"
+export const plum = "#d6d7d9"
