@@ -2,25 +2,27 @@ import * as React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 
+import { darkTeal, white } from "../utils/colors"
+import { spacing } from "../utils/spacing"
+
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
+      background: darkTeal,
     }}
   >
     <div
       style={{
         margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
+        maxWidth: spacing.customSpacing(960),
+        padding: `${spacing.customSpacing(16)} 0`,
       }}
     >
       <h1 style={{ margin: 0 }}>
         <Link
           to="/"
           style={{
-            color: `white`,
+            color: white,
             textDecoration: `none`,
           }}
         >
