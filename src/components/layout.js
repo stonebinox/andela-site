@@ -8,10 +8,16 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import styled from "styled-components"
 
-import Header from "./header"
+import Header from "./header/header"
 import "./layout.css"
 import { spacing } from "../utils/spacing"
+
+const MainContent = styled.div`
+  margin: 0 auto;
+  max-width: ${spacing.customSpacing("960px")};
+`
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -27,14 +33,9 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: spacing.customSpacing(960),
-        }}
-      >
+      <MainContent>
         <main>{children}</main>
-      </div>
+      </MainContent>
     </>
   )
 }
