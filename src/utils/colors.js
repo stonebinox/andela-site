@@ -9,3 +9,4 @@ export const plum = "#d6d7d9"
 
 export const paleGrey = "#eaedfc"
 export const blue = "#3359df"
+export const grey = "#575b74"

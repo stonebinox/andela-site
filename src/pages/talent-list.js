@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 
-import { spacing } from "../utils/spacing"
 import { ProfileCard } from "../components/profile-card/profile-card"
 
 const TalentContainer = styled.div`
@@ -12,7 +11,7 @@ const TalentContainer = styled.div`
   justify-content: flex-start;
 `
 
-const talent = [
+export const talent = [
   {
     id: 1,
     name: "Raphael Ferreira",

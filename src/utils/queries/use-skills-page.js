@@ -31,7 +31,5 @@ export const useSkillsPage = () => {
 
   const mainNode = nodes[0]
 
-  console.log(mainNode)
-
   return mainNode
 }

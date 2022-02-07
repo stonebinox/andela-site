@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from "react"
+import { ProfileCard } from "../../components/profile-card/profile-card"
 
 import Seo from "../../components/seo"
 import { MainButton, PageContainer } from "../../utils/common.styles"
 import { useSkillsPage } from "../../utils/queries/use-skills-page"
+import { talent } from "../talent-list"
 import {
   Banner,
   BannerContent,
@@ -11,6 +13,12 @@ import {
   BannerImage,
   BannerText,
   BannerTitle,
+  Brand,
+  SkillSubtitle,
+  SkillSubtitleSmall,
+  TalentContainer,
+  TalentList,
+  TrustedContainer,
 } from "./skill.styles"
 
 const validSkills = {
@@ -32,13 +40,19 @@ const SkillPage = ({ params }) => {
     bannerImage: {
       file: { url: bannerImageUrl },
     },
+    trustedByBrands,
+    subtitle,
+    smallSubtitle,
   } = useSkillsPage()
+
+  console.log(trustedByBrands)
 
   const parsedPageTitle = pageTitle.replace(/{skill}/g, selectedSkill)
   const parsedTitleDescription = titleDescription.replace(
     /{skill}/g,
     selectedSkill
   )
+  const parsedSubtitle = subtitle.replace(/{skill}/g, selectedSkill)
 
   return (
     <PageContainer>
@@ -59,6 +73,20 @@ const SkillPage = ({ params }) => {
           <BannerImage src={bannerImageUrl} alt="Banner" width="85%" />
         </BannerContent>
       </Banner>
+      <TrustedContainer>
+        {trustedByBrands.map((brand, key) => (
+          <Brand src={brand.file.url} alt={brand.title} key={key} />
+        ))}
+      </TrustedContainer>
+      <TalentContainer>
+        <SkillSubtitle>{parsedSubtitle}</SkillSubtitle>
+        <SkillSubtitleSmall>{smallSubtitle}</SkillSubtitleSmall>
+        <TalentList>
+          {talent.map((person, key) => (
+            <ProfileCard profile={person} key={key} />
+          ))}
+        </TalentList>
+      </TalentContainer>
     </PageContainer>
   )
 }

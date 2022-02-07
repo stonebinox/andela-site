@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react"
 import styled from "styled-components"
 
@@ -6,7 +7,7 @@ import { white, darkTeal, teal, orange, green } from "../../utils/colors"
 
 const Card = styled.div`
   min-width: ${spacing.customSpacing("390px")};
-  height: ${spacing.customSpacing("685px")};
+  height: auto;
   border-radius: ${spacing.customSpacing("10px")};
   background-color: ${white};
   flex: 1;
