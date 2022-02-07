@@ -19,7 +19,7 @@ import {
   TalentContainer,
   TalentList,
   TrustedContainer,
-} from "./skill.styles"
+} from "../../components/skills/skill.styles"
 
 const validSkills = {
   golang: "Golang",
@@ -44,8 +44,6 @@ const SkillPage = ({ params }) => {
     subtitle,
     smallSubtitle,
   } = useSkillsPage()
-
-  console.log(trustedByBrands)
 
   const parsedPageTitle = pageTitle.replace(/{skill}/g, selectedSkill)
   const parsedTitleDescription = titleDescription.replace(
