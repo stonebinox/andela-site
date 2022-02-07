@@ -19,6 +19,7 @@ export const BannerContent = styled.div`
 export const BannerTitle = styled.h1`
   font-size: 40px;
   margin-top: ${spacing.DOUBLE_BASE_SPACING};
+  font-family: sans-serif;
 `
 
 export const BannerText = styled.div`
