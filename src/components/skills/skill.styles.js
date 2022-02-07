@@ -51,6 +51,7 @@ export const TrustedContainer = styled.div`
 
 export const Brand = styled.img`
   width: ${spacing.customSpacing("150px")};
+  margin-bottom: ${spacing.BASE_SPACING};
 `
 
 export const TalentContainer = styled.div`
