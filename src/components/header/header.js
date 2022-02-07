@@ -3,7 +3,6 @@ import PropTypes from "prop-types"
 import { Link } from "gatsby"
 
 import { white } from "../../utils/colors"
-import { spacing } from "../../utils/spacing"
 import { HeaderContainer, HeaderContent } from "./styles"
 
 const Header = ({ siteTitle }) => (

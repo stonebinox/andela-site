@@ -6,3 +6,6 @@ export const orange = "#f7dfc1"
 export const white = "#fff"
 export const maroon = "#d6d7d9"
 export const plum = "#d6d7d9"
+
+export const paleGrey = "#eaedfc"
+export const blue = "#3359df"

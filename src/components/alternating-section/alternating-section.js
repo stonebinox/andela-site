@@ -2,7 +2,6 @@ import React from "react"
 
 import { SectionsContainer, AlternatingSectionsContainer } from "./styles"
 import { Section } from "./section/section"
-import { spacing } from "../../utils/spacing"
 
 export const AlternatingSection = ({ sections }) => {
   return (
