@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-import { paleGrey, white, grey } from "../../utils/colors"
+import { paleGrey, white, grey, deepGrey } from "../../utils/colors"
 import { spacing } from "../../utils/spacing"
 
 export const Banner = styled.div`
@@ -20,6 +20,7 @@ export const BannerTitle = styled.h1`
   font-size: 40px;
   margin-top: ${spacing.DOUBLE_BASE_SPACING};
   font-family: sans-serif;
+  color: ${deepGrey};
 `
 
 export const BannerText = styled.div`
