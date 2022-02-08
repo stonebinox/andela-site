@@ -6,14 +6,12 @@ import { spacing } from "../../utils/spacing"
 import { white, darkTeal, teal, orange, green } from "../../utils/colors"
 
 const Card = styled.div`
-  max-width: ${spacing.customSpacing("386px")};
+  max-width: ${spacing.customSpacing("436px")};
   height: auto;
   border-radius: ${spacing.customSpacing("10px")};
   background-color: ${white};
   flex: 1;
   padding: ${spacing.BASE_SPACING};
-  margin-right: ${spacing.BASE_SPACING};
-  margin-left: ${spacing.BASE_SPACING};
   margin-bottom: ${spacing.BASE_SPACING};
   margin-top: ${spacing.BASE_SPACING};
   box-shadow: 0 1px 2px rgb(0 0 0 / 2%), 0 2px 4px rgb(0 0 0 / 2%),
@@ -23,6 +21,12 @@ const Card = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   color: ${darkTeal};
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `
 
 const NameText = styled.div`

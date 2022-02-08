@@ -14,6 +14,12 @@ export const BannerContent = styled.div`
   margin: 0 auto;
   display: grid;
   grid-template-columns: 50% 50%;
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 `
 
 export const BannerTitle = styled.h1`
@@ -25,6 +31,10 @@ export const BannerTitle = styled.h1`
 
 export const BannerText = styled.div`
   width: 100%;
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    padding: ${spacing.BASE_SPACING};
+  }
 `
 
 export const BannerDescription = styled.div`
@@ -66,6 +76,10 @@ export const SkillSubtitle = styled.div`
   font-size: 32px;
   font-family: sans-serif;
   font-weight: 200;
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    line-height: ${spacing.DOUBLE_BASE_SPACING};
+  }
 `
 
 export const SkillSubtitleSmall = styled(SkillSubtitle)`
@@ -79,8 +93,7 @@ export const TalentList = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
-  padding: ${spacing.DOUBLE_BASE_SPACING};
+  justify-content: space-between;
   width: 100%;
   margin: 0 auto;
   max-width: ${spacing.customSpacing("900px")};
