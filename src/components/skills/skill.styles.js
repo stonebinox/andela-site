@@ -104,6 +104,10 @@ export const CustomerSpeakContainer = styled.div`
   background-color: ${white};
   padding-top: ${spacing.customSpacing("64px")};
   padding-bottom: ${spacing.customSpacing("64px")};
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    padding: ${spacing.DOUBLE_BASE_SPACING};
+  }
 `
 
 export const CustomerSpeakLayout = styled.div`
@@ -114,6 +118,10 @@ export const CustomerSpeakLayout = styled.div`
   margin: 0 auto;
   justify-content: space-between;
   margin-bottom: ${spacing.DOUBLE_BASE_SPACING};
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    flex-direction: column;
+  }
 `
 
 export const CustomerSubtitle = styled.div`
