@@ -24,6 +24,20 @@ export const useSkillsPage = () => {
               url
             }
           }
+          customerSubtitle
+          customerSubtitleDescription
+          customerSpeakImage {
+            title
+            file {
+              url
+            }
+          }
+          customerSpeakTitle
+          customerSpeakLongDescription {
+            raw
+          }
+          customerSpeakName
+          customerSpeakDesignation
         }
       }
     }

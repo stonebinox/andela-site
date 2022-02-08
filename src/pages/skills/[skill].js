@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from "react"
-import { ProfileCard } from "../../components/profile-card/profile-card"
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer"
 
+import { ProfileCard } from "../../components/profile-card/profile-card"
 import Seo from "../../components/seo"
 import { MainButton, PageContainer } from "../../utils/common.styles"
 import { useSkillsPage } from "../../utils/queries/use-skills-page"
@@ -14,11 +15,20 @@ import {
   BannerText,
   BannerTitle,
   Brand,
+  CustomerSpeakContainer,
+  CustomerSpeakImage,
+  CustomerSpeakLayout,
+  CustomerSpeakTestimonialContent,
+  CustomerSpeakTestimonialLayout,
+  CustomerSubtitle,
   SkillSubtitle,
   SkillSubtitleSmall,
   TalentContainer,
   TalentList,
   TrustedContainer,
+  CustomerSpeakTestimonialTitle,
+  CustomerSpeakName,
+  CustomerSpeakDesignation,
 } from "../../components/skills/skill.styles"
 import "./style.css"
 
@@ -44,6 +54,16 @@ const SkillPage = ({ params }) => {
     trustedByBrands,
     subtitle,
     smallSubtitle,
+    customerSubtitle,
+    customerSubtitleDescription,
+    customerSpeakImage: {
+      title,
+      file: { url: customerSpeakImage },
+    },
+    customerSpeakTitle,
+    customerSpeakLongDescription: { raw: customerSpeakLongDescriptionText },
+    customerSpeakName,
+    customerSpeakDesignation,
   } = useSkillsPage()
 
   const parsedPageTitle = pageTitle.replace(/{skill}/g, selectedSkill)
@@ -86,6 +106,38 @@ const SkillPage = ({ params }) => {
           ))}
         </TalentList>
       </TalentContainer>
+      <CustomerSpeakContainer>
+        <CustomerSpeakLayout>
+          <div>
+            <CustomerSubtitle>{customerSubtitle}</CustomerSubtitle>
+            <BannerDescription>{customerSubtitleDescription}</BannerDescription>
+          </div>
+          <MainButton
+            onClick={() => (window.location = "https://andela.com/hire-talent")}
+          >
+            Hire Talent
+          </MainButton>
+        </CustomerSpeakLayout>
+        <CustomerSpeakTestimonialLayout>
+          <CustomerSpeakImage src={customerSpeakImage} alt={title} />
+          <CustomerSpeakTestimonialContent>
+            <CustomerSpeakTestimonialTitle>
+              {customerSpeakTitle}
+            </CustomerSpeakTestimonialTitle>
+            <BannerDescription
+              dangerouslySetInnerHTML={{
+                __html: documentToHtmlString(
+                  JSON.parse(customerSpeakLongDescriptionText)
+                ),
+              }}
+            />
+            <CustomerSpeakName>{customerSpeakName}</CustomerSpeakName>
+            <CustomerSpeakDesignation>
+              {customerSpeakDesignation}
+            </CustomerSpeakDesignation>
+          </CustomerSpeakTestimonialContent>
+        </CustomerSpeakTestimonialLayout>
+      </CustomerSpeakContainer>
     </PageContainer>
   )
 }

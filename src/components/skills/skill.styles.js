@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-import { paleGrey, white, grey, deepGrey } from "../../utils/colors"
+import { paleGrey, white, grey, deepGrey, deepOrange } from "../../utils/colors"
 import { spacing } from "../../utils/spacing"
 
 export const Banner = styled.div`
@@ -97,4 +97,63 @@ export const TalentList = styled.div`
   width: 100%;
   margin: 0 auto;
   max-width: ${spacing.customSpacing("900px")};
+`
+
+export const CustomerSpeakContainer = styled.div`
+  width: 100%;
+  background-color: ${white};
+  padding-top: ${spacing.customSpacing("64px")};
+  padding-bottom: ${spacing.customSpacing("64px")};
+`
+
+export const CustomerSpeakLayout = styled.div`
+  width: 100%;
+  max-width: ${spacing.customSpacing("900px")};
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  justify-content: space-between;
+  margin-bottom: ${spacing.DOUBLE_BASE_SPACING};
+`
+
+export const CustomerSubtitle = styled.div`
+  font-size: 22px;
+  color: ${deepOrange};
+  font-weight: bold;
+  font-family: sans-serif;
+  margin-bottom: ${spacing.BASE_SPACING};
+`
+
+export const CustomerSpeakTestimonialLayout = styled.div`
+  display: grid;
+  width: 100%;
+  max-width: ${spacing.customSpacing("900px")};
+  grid-template-columns: 30% 70%;
+  margin: 0 auto;
+`
+
+export const CustomerSpeakImage = styled(BannerImage)`
+  flex: 1;
+  margin: 0 auto;
+`
+
+export const CustomerSpeakTestimonialContent = styled.div`
+  flex: 1;
+`
+
+export const CustomerSpeakTestimonialTitle = styled(SkillSubtitle)`
+  text-align: left;
+  margin-bottom: ${spacing.BASE_SPACING};
+`
+
+export const CustomerSpeakName = styled.div`
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: ${spacing.BASE_SPACING};
+`
+
+export const CustomerSpeakDesignation = styled(CustomerSpeakName)`
+  color: ${grey};
+  font-weight: normal;
 `
