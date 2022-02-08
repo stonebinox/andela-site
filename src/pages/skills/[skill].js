@@ -20,6 +20,7 @@ import {
   TalentList,
   TrustedContainer,
 } from "../../components/skills/skill.styles"
+import "./style.css"
 
 const validSkills = {
   golang: "Golang",
