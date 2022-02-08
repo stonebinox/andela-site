@@ -79,8 +79,9 @@ export const TalentList = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   padding: ${spacing.DOUBLE_BASE_SPACING};
   width: 100%;
   margin: 0 auto;
+  max-width: ${spacing.customSpacing("900px")};
 `

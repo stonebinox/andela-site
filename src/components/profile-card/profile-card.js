@@ -6,13 +6,14 @@ import { spacing } from "../../utils/spacing"
 import { white, darkTeal, teal, orange, green } from "../../utils/colors"
 
 const Card = styled.div`
-  min-width: ${spacing.customSpacing("390px")};
+  max-width: ${spacing.customSpacing("386px")};
   height: auto;
   border-radius: ${spacing.customSpacing("10px")};
   background-color: ${white};
   flex: 1;
   padding: ${spacing.BASE_SPACING};
-  margin-right: ${spacing.DOUBLE_BASE_SPACING};
+  margin-right: ${spacing.BASE_SPACING};
+  margin-left: ${spacing.BASE_SPACING};
   margin-bottom: ${spacing.BASE_SPACING};
   margin-top: ${spacing.BASE_SPACING};
   box-shadow: 0 1px 2px rgb(0 0 0 / 2%), 0 2px 4px rgb(0 0 0 / 2%),
