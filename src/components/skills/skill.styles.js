@@ -1,6 +1,14 @@
 import styled from "styled-components"
 
-import { paleGrey, white, grey, deepGrey, deepOrange } from "../../utils/colors"
+import {
+  paleGrey,
+  white,
+  grey,
+  deepGrey,
+  deepOrange,
+  lightGrey,
+  blue,
+} from "../../utils/colors"
 import { spacing } from "../../utils/spacing"
 
 export const Banner = styled.div`
@@ -164,4 +172,66 @@ export const CustomerSpeakName = styled.div`
 export const CustomerSpeakDesignation = styled(CustomerSpeakName)`
   color: ${grey};
   font-weight: normal;
+`
+
+export const AndelaLogoContainer = styled.div`
+  width: 100%;
+  text-align: center;
+`
+
+export const AndelaLogo = styled.img`
+  width: ${spacing.customSpacing("100px")};
+  height: ${spacing.customSpacing("100px")};
+  margin: 0 auto;
+  margin-bottom: ${spacing.BASE_SPACING};
+`
+
+export const FeaturesContainer = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  max-width: ${spacing.customSpacing("900px")};
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: ${spacing.BASE_SPACING};
+  margin-top: ${spacing.DOUBLE_BASE_SPACING};
+`
+
+export const FeatureContainer = styled.div`
+  width: 30vw;
+  background-color: ${lightGrey};
+  padding: ${spacing.HALF_BASE_SPACING} ${spacing.DOUBLE_BASE_SPACING};
+  text-align: center;
+  margin-right: ${spacing.HALF_BASE_SPACING};
+  margin-left: ${spacing.HALF_BASE_SPACING};
+`
+
+export const FeaturePosition = styled.div`
+  width: ${spacing.customSpacing("50px")};
+  height: ${spacing.customSpacing("50px")};
+  border-radius: ${spacing.customSpacing("25px")};
+  border: ${spacing.customSpacing("2px")} solid ${blue};
+  margin: 0 auto;
+  margin-top: -${spacing.DOUBLE_BASE_SPACING};
+  background-color: ${white};
+  font-family: sans-serif;
+  font-weight: bold;
+  color: ${blue};
+  line-height: 50px;
+  font-size: 20px;
+  margin-bottom: ${spacing.DOUBLE_BASE_SPACING};
+`
+
+export const FeatureContainerTitle = styled.div`
+  font-size: 24px;
+  font-weight: 500;
+  font-family: sans-serif;
+  margin-bottom: ${spacing.BASE_SPACING};
+`
+
+export const FeatureContainerBody = styled.div`
+  font-family: sans-serif;
+  font-weight: 22px;
+  color: ${grey};
+  text-align: center;
 `

@@ -29,6 +29,13 @@ import {
   CustomerSpeakTestimonialTitle,
   CustomerSpeakName,
   CustomerSpeakDesignation,
+  AndelaLogo,
+  AndelaLogoContainer,
+  FeaturesContainer,
+  FeatureContainer,
+  FeatureContainerTitle,
+  FeaturePosition,
+  FeatureContainerBody,
 } from "../../components/skills/skill.styles"
 import "./style.css"
 
@@ -39,6 +46,20 @@ const validSkills = {
   react: "React",
   "react-native": "React Native",
   salesforce: "Salesforce",
+}
+
+const Feature = ({ feature, selectedSkill, position = 1 }) => {
+  const { featureTitle, featureBody } = feature
+  const parsedTitle = featureTitle.replace(/{skill}/g, selectedSkill)
+  const parsedBody = featureBody.replace(/{skill}/g, selectedSkill)
+
+  return (
+    <FeatureContainer>
+      <FeaturePosition>{position}</FeaturePosition>
+      <FeatureContainerTitle>{parsedTitle}</FeatureContainerTitle>
+      <FeatureContainerBody>{parsedBody}</FeatureContainerBody>
+    </FeatureContainer>
+  )
 }
 
 const SkillPage = ({ params }) => {
@@ -64,7 +85,15 @@ const SkillPage = ({ params }) => {
     customerSpeakLongDescription: { raw: customerSpeakLongDescriptionText },
     customerSpeakName,
     customerSpeakDesignation,
+    andelaLogo: {
+      title: andelaLogoTitle,
+      file: { url: andelaLogo },
+    },
+    howToText,
+    andelaFeatures: { features },
   } = useSkillsPage()
+
+  console.log("feature", features)
 
   const parsedPageTitle = pageTitle.replace(/{skill}/g, selectedSkill)
   const parsedTitleDescription = titleDescription.replace(
@@ -72,6 +101,7 @@ const SkillPage = ({ params }) => {
     selectedSkill
   )
   const parsedSubtitle = subtitle.replace(/{skill}/g, selectedSkill)
+  const parsedHowToText = howToText.replace(/{skill}/g, selectedSkill)
 
   return (
     <PageContainer>
@@ -138,6 +168,20 @@ const SkillPage = ({ params }) => {
           </CustomerSpeakTestimonialContent>
         </CustomerSpeakTestimonialLayout>
       </CustomerSpeakContainer>
+      <AndelaLogoContainer>
+        <AndelaLogo src={andelaLogo} title={andelaLogoTitle} />
+        <BannerDescription>{parsedHowToText}</BannerDescription>
+      </AndelaLogoContainer>
+      <FeaturesContainer>
+        {features.map((feature, index) => (
+          <Feature
+            key={index}
+            feature={feature}
+            selectedSkill={selectedSkill}
+            position={index + 1}
+          />
+        ))}
+      </FeaturesContainer>
     </PageContainer>
   )
 }
