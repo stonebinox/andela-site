@@ -8,6 +8,8 @@ import {
   deepOrange,
   lightGrey,
   blue,
+  paleBlue,
+  lightTeal,
 } from "../../utils/colors"
 import { spacing } from "../../utils/spacing"
 
@@ -245,4 +247,34 @@ export const DifferentImage = styled.div`
   background-size: 70%;
   margin: 0 auto;
   margin-bottom: ${spacing.BASE_SPACING};
+`
+
+export const PerksList = styled.div`
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: 100%;
+  max-width: ${spacing.customSpacing("900px")};
+  margin: 0 auto;
+  margin-top: ${spacing.BASE_SPACING};
+  column-gap: ${spacing.DOUBLE_BASE_SPACING};
+`
+
+export const PerkContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: ${spacing.DOUBLE_BASE_SPACING};
+`
+
+export const PerkImage = styled(DifferentImage)`
+  background: ${paleBlue} url(${({ url }) => url}) no-repeat center;
+  background-size: 60%;
+  margin-bottom: ${spacing.HALF_BASE_SPACING};
+`
+
+export const PerkTitle = styled(SkillSubtitle)`
+  font-size: 24px;
+  color: ${lightTeal};
+  margin-bottom: ${spacing.HALF_BASE_SPACING};
 `

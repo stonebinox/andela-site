@@ -37,6 +37,10 @@ import {
   FeaturePosition,
   FeatureContainerBody,
   DifferentImage,
+  PerksList,
+  PerkContainer,
+  PerkImage,
+  PerkTitle,
 } from "../../components/skills/skill.styles"
 import "./style.css"
 
@@ -60,6 +64,18 @@ const Feature = ({ feature, selectedSkill, position = 1 }) => {
       <FeatureContainerTitle>{parsedTitle}</FeatureContainerTitle>
       <FeatureContainerBody>{parsedBody}</FeatureContainerBody>
     </FeatureContainer>
+  )
+}
+
+const Perk = ({ perk }) => {
+  const { image, title, body } = perk
+
+  return (
+    <PerkContainer>
+      <PerkImage url={image} />
+      <PerkTitle>{title}</PerkTitle>
+      <FeatureContainerBody>{body}</FeatureContainerBody>
+    </PerkContainer>
   )
 }
 
@@ -190,6 +206,11 @@ const SkillPage = ({ params }) => {
       </FeaturesContainer>
       <DifferentImage url={differentSectionImage} />
       <SkillSubtitle>{differentTitle}</SkillSubtitle>
+      <PerksList>
+        {perks.map((perk, index) => (
+          <Perk perk={perk} key={index} />
+        ))}
+      </PerksList>
     </PageContainer>
   )
 }
