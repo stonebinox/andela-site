@@ -36,6 +36,7 @@ import {
   FeatureContainerTitle,
   FeaturePosition,
   FeatureContainerBody,
+  DifferentImage,
 } from "../../components/skills/skill.styles"
 import "./style.css"
 
@@ -91,6 +92,11 @@ const SkillPage = ({ params }) => {
     },
     howToText,
     andelaFeatures: { features },
+    differentTitle,
+    differentSectionImage: {
+      file: { url: differentSectionImage },
+    },
+    perks: { perks },
   } = useSkillsPage()
 
   console.log("feature", features)
@@ -182,6 +188,8 @@ const SkillPage = ({ params }) => {
           />
         ))}
       </FeaturesContainer>
+      <DifferentImage url={differentSectionImage} />
+      <SkillSubtitle>{differentTitle}</SkillSubtitle>
     </PageContainer>
   )
 }

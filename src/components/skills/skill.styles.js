@@ -204,6 +204,7 @@ export const FeatureContainer = styled.div`
   text-align: center;
   margin-right: ${spacing.HALF_BASE_SPACING};
   margin-left: ${spacing.HALF_BASE_SPACING};
+  margin-bottom: ${spacing.DOUBLE_BASE_SPACING};
 `
 
 export const FeaturePosition = styled.div`
@@ -234,4 +235,14 @@ export const FeatureContainerBody = styled.div`
   font-weight: 22px;
   color: ${grey};
   text-align: center;
+`
+
+export const DifferentImage = styled.div`
+  width: ${spacing.customSpacing("100px")};
+  height: ${spacing.customSpacing("100px")};
+  border-radius: ${spacing.customSpacing("50px")};
+  background: ${deepOrange} url(${({ url }) => url}) no-repeat center;
+  background-size: 70%;
+  margin: 0 auto;
+  margin-bottom: ${spacing.BASE_SPACING};
 `

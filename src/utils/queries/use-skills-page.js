@@ -52,6 +52,20 @@ export const useSkillsPage = () => {
                 featureBody
               }
             }
+            differentTitle
+            differentSectionImage {
+              title
+              file {
+                url
+              }
+            }
+            perks {
+              perks {
+                image
+                title
+                body
+              }
+            }
           }
         }
       }
