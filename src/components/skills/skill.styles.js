@@ -148,11 +148,21 @@ export const CustomerSpeakTestimonialLayout = styled.div`
   max-width: ${spacing.customSpacing("900px")};
   grid-template-columns: 30% 70%;
   margin: 0 auto;
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 `
 
 export const CustomerSpeakImage = styled(BannerImage)`
   flex: 1;
   margin: 0 auto;
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    margin-bottom: ${spacing.BASE_SPACING};
+  }
 `
 
 export const CustomerSpeakTestimonialContent = styled.div`
@@ -162,6 +172,10 @@ export const CustomerSpeakTestimonialContent = styled.div`
 export const CustomerSpeakTestimonialTitle = styled(SkillSubtitle)`
   text-align: left;
   margin-bottom: ${spacing.BASE_SPACING};
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    text-align: center;
+  }
 `
 
 export const CustomerSpeakName = styled.div`
@@ -197,6 +211,10 @@ export const FeaturesContainer = styled.div`
   justify-content: space-evenly;
   margin-bottom: ${spacing.BASE_SPACING};
   margin-top: ${spacing.DOUBLE_BASE_SPACING};
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    flex-direction: column;
+  }
 `
 
 export const FeatureContainer = styled.div`
@@ -207,6 +225,11 @@ export const FeatureContainer = styled.div`
   margin-right: ${spacing.HALF_BASE_SPACING};
   margin-left: ${spacing.HALF_BASE_SPACING};
   margin-bottom: ${spacing.DOUBLE_BASE_SPACING};
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    width: 100%;
+    margin-bottom: 0;
+  }
 `
 
 export const FeaturePosition = styled.div`
@@ -223,6 +246,11 @@ export const FeaturePosition = styled.div`
   line-height: 50px;
   font-size: 20px;
   margin-bottom: ${spacing.DOUBLE_BASE_SPACING};
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    margin-top: ${spacing.BASE_SPACING};
+    margin-bottom: ${spacing.BASE_SPACING};
+  }
 `
 
 export const FeatureContainerTitle = styled.div`
