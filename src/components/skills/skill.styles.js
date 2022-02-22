@@ -286,6 +286,11 @@ export const PerksList = styled.div`
   margin: 0 auto;
   margin-top: ${spacing.BASE_SPACING};
   column-gap: ${spacing.DOUBLE_BASE_SPACING};
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 
 export const PerkContainer = styled.div`
@@ -294,6 +299,11 @@ export const PerkContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   margin-bottom: ${spacing.DOUBLE_BASE_SPACING};
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    padding-left: ${spacing.BASE_SPACING};
+    padding-right: ${spacing.BASE_SPACING};
+  }
 `
 
 export const PerkImage = styled(DifferentImage)`
