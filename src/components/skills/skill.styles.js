@@ -10,6 +10,7 @@ import {
   blue,
   paleBlue,
   lightTeal,
+  lighterGrey,
 } from "../../utils/colors"
 import { spacing } from "../../utils/spacing"
 
@@ -305,4 +306,45 @@ export const PerkTitle = styled(SkillSubtitle)`
   font-size: 24px;
   color: ${lightTeal};
   margin-bottom: ${spacing.HALF_BASE_SPACING};
+`
+
+export const FaqSection = styled(Banner)`
+  padding-top: ${spacing.BASE_SPACING};
+`
+
+export const FAQImage = styled(DifferentImage)`
+  background: ${blue} url(${({ url }) => url}) no-repeat center;
+  background-size: 70%;
+  margin-bottom: ${spacing.DOUBLE_BASE_SPACING};
+`
+
+export const Questions = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  margin-top: ${spacing.DOUBLE_BASE_SPACING};
+  max-width: ${spacing.customSpacing("900px")};
+  padding: ${spacing.HALF_BASE_SPACING} ${spacing.DOUBLE_BASE_SPACING};
+`
+
+export const FAQItem = styled.div`
+  width: 100%;
+  border-bottom: ${spacing.customSpacing("1px")} solid ${lighterGrey};
+  padding-bottom: ${spacing.BASE_SPACING};
+  padding-top: ${spacing.BASE_SPACING};
+  cursor: pointer;
+`
+
+export const QuestionRow = styled.div`
+  color: ${blue};
+  font-size: 18px;
+  text-align: left;
+  font-family: sans-serif;
+`
+
+export const AnswerRow = styled(FeatureContainerBody)`
+  text-align: left;
+  height: 0;
+  overflow: hidden;
+
+  ${({ visible }) => visible && `height: auto`}
 `

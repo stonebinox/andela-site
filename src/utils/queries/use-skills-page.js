@@ -66,6 +66,19 @@ export const useSkillsPage = () => {
                 body
               }
             }
+            faq
+            faqImage {
+              title
+              file {
+                url
+              }
+            }
+            questions {
+              questions {
+                question
+                answer
+              }
+            }
           }
         }
       }

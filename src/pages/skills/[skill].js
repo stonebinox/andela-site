@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from "react"
+import React, { useState } from "react"
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer"
 
 import { ProfileCard } from "../../components/profile-card/profile-card"
@@ -41,6 +41,12 @@ import {
   PerkContainer,
   PerkImage,
   PerkTitle,
+  FaqSection,
+  FAQImage,
+  Questions,
+  FAQItem,
+  QuestionRow,
+  AnswerRow,
 } from "../../components/skills/skill.styles"
 import "./style.css"
 
@@ -79,6 +85,20 @@ const Perk = ({ perk }) => {
   )
 }
 
+const Question = ({ questionData, skill }) => {
+  const { question, answer } = questionData
+  const parsedQuestion = question.replace(/{skill}/g, skill)
+  const parsedAnswer = answer.replace(/{skill}/g, skill)
+  const [visible, setVisible] = useState(false)
+
+  return (
+    <FAQItem onClick={() => setVisible(!visible)}>
+      <QuestionRow>{parsedQuestion}</QuestionRow>
+      <AnswerRow visible={visible}>{parsedAnswer}</AnswerRow>
+    </FAQItem>
+  )
+}
+
 const SkillPage = ({ params }) => {
   const { skill } = params
   const selectedSkill = validSkills[skill] ?? validSkills.golang
@@ -113,9 +133,12 @@ const SkillPage = ({ params }) => {
       file: { url: differentSectionImage },
     },
     perks: { perks },
+    faq,
+    faqImage: {
+      file: { url: faqImage },
+    },
+    questions: { questions },
   } = useSkillsPage()
-
-  console.log("feature", features)
 
   const parsedPageTitle = pageTitle.replace(/{skill}/g, selectedSkill)
   const parsedTitleDescription = titleDescription.replace(
@@ -211,6 +234,19 @@ const SkillPage = ({ params }) => {
           <Perk perk={perk} key={index} />
         ))}
       </PerksList>
+      <FaqSection>
+        <FAQImage url={faqImage} />
+        <SkillSubtitle>{faq}</SkillSubtitle>
+        <Questions>
+          {questions.map((questionRow, index) => (
+            <Question
+              questionData={questionRow}
+              skill={selectedSkill}
+              key={index}
+            />
+          ))}
+        </Questions>
+      </FaqSection>
     </PageContainer>
   )
 }
