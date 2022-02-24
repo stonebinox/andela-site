@@ -41,7 +41,7 @@ const ScanPage = ({ params }) => {
       <img src={Logo} width="300" />
       <hr />
       {!patient ? (
-        <h3>Patient details not found</h3>
+        <h3>Loading patient details ...</h3>
       ) : (
         <div
           style={{ width: "100%", padding: "16px", fontFamily: "sans-serif" }}
