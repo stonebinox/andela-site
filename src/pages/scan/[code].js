@@ -3,6 +3,7 @@ import React from "react"
 
 import { PageContainer } from "../../utils/common.styles"
 import Logo from "../../images/logo.jpg"
+import ICMR from "../../images/icmr.jpeg"
 
 const validCodes = [
   {
@@ -45,6 +46,7 @@ const ScanPage = ({ params }) => {
         <div
           style={{ width: "100%", padding: "16px", fontFamily: "sans-serif" }}
         >
+          <h3 style={{ color: "blue" }}>Report Details</h3>
           <strong>Patient ID:</strong> {patient.code}
           <br />
           <strong>Patient name:</strong> {patient.name}
@@ -62,6 +64,15 @@ const ScanPage = ({ params }) => {
           <strong>Test type:</strong> {patient.result}
           <br />
           <strong>Method:</strong> {patient.method}
+          <br />
+          <br />
+          <u style={{ color: "blue" }}>
+            Thank you for choosing <strong>Care Reference Laboratories</strong>{" "}
+            as your health partner
+          </u>
+          <br />
+          <br />
+          <img src={ICMR} width="100" />
         </div>
       )}
     </PageContainer>
