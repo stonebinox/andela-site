@@ -69,7 +69,9 @@ function Seo({ description, lang, meta, title }) {
           content: metaDescription,
         },
       ].concat(meta)}
-    />
+    >
+      <script src="//hire.andela.com/js/forms2/js/forms2.min.js"></script>
+    </Helmet>
   )
 }
 

@@ -7,7 +7,6 @@ const IndexPage = () => {
   return (
     <Layout>
       <Seo title="Home" />
-      Test page
     </Layout>
   )
 }

@@ -1,0 +1,222 @@
+import styled from "styled-components"
+
+import { spacing } from "../../utils/spacing"
+import {
+  deepBlue,
+  mainOrange,
+  white,
+  paleOrange,
+  lightestGrey,
+  greyWhite,
+  black,
+  blackLight,
+  blue2,
+} from "../../utils/colors"
+import { ReactSVG } from "react-svg"
+
+export const FormContainer = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+`
+
+export const SignupHero = styled.div`
+  width: ${spacing.customSpacing("484px")};
+  background-color: ${deepBlue};
+  height: 100%;
+  padding-top: ${spacing.customSpacing("64px")};
+`
+
+export const HeroTitle = styled.div`
+  font-family: sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  color: ${({ color }) => color};
+  text-align: center;
+  margin-top: ${spacing.customSpacing("24px")};
+  margin-bottom: ${spacing.BASE_SPACING};
+`
+
+export const HeroDescription = styled.div`
+  text-align: center;
+  color: ${white};
+  font-weight: 400;
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 28px;
+  padding: ${spacing.DOUBLE_BASE_SPACING};
+  padding-top: 0;
+  padding-bottom: ${spacing.BASE_SPACING};
+`
+
+export const FocusDotContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: ${spacing.customSpacing("64px")};
+`
+
+export const FocusDot = styled.div`
+  width: ${({ selected }) =>
+    selected ? spacing.customSpacing("8px") : spacing.customSpacing("6px")};
+  height: ${({ selected }) =>
+    selected ? spacing.customSpacing("8px") : spacing.customSpacing("6px")};
+  border-radius: ${spacing.customSpacing("6px")};
+  background-color: ${({ selected }) => (selected ? mainOrange : paleOrange)};
+  margin-left: ${spacing.customSpacing("2px")};
+  margin-right: ${spacing.customSpacing("2px")};
+
+  ${({ selected }) =>
+    selected && `margin-top: -${spacing.customSpacing("1px")}`}
+`
+
+export const MainContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`
+
+export const StepProgressContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  margin-top: ${spacing.customSpacing("64px")};
+  max-width: ${spacing.customSpacing("648px")};
+`
+
+export const StepProgress = styled.div`
+  flex: 1;
+  height: ${spacing.customSpacing("5px")};
+  border-radius: ${spacing.customSpacing("6px")};
+  background-color: ${({ selected }) => (selected ? mainOrange : lightestGrey)};
+  margin-left: ${spacing.QUARTER_BASE_SPACING};
+  margin-right: ${spacing.QUARTER_BASE_SPACING};
+`
+
+export const StepContainer = styled.div`
+  width: 100%;
+  margin-top: ${spacing.customSpacing("130px")};
+`
+
+export const StepQuestion = styled.div`
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+`
+
+export const ProblemsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: ${spacing.customSpacing("536px")};
+  margin: 0 auto;
+  margin-top: ${spacing.customSpacing("64px")};
+`
+
+export const ProblemOption = styled.div`
+  width: 100%;
+  border: ${({ selected }) =>
+    !selected ? `1px solid ${greyWhite}` : `1px solid ${deepBlue}`};
+  border-radius: ${spacing.QUARTER_BASE_SPACING};
+  padding: ${spacing.customSpacing("12px")} ${spacing.BASE_SPACING};
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  margin-bottom: ${spacing.BASE_SPACING};
+  transition: all 0.2s ease;
+
+  &:hover {
+    border: 1px solid ${deepBlue};
+  }
+`
+
+export const ProblemAnswerContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: ${spacing.BASE_SPACING};
+`
+
+export const ProblemSVG = styled(ReactSVG)`
+  margin-top: ${spacing.customSpacing("12px")};
+`
+
+export const ProblemAnswerTitle = styled.div`
+  font-family: sans-serif;
+  font-size: 16px;
+  text-align: left;
+  color: ${black};
+`
+
+export const ProblemAnswerDescription = styled.div`
+  font-family: sans-serif;
+  font-size: 12px;
+  color: ${blackLight};
+`
+
+export const BaseButton = styled.button`
+  width: fit-content;
+  padding: ${spacing.HALF_BASE_SPACING} ${spacing.BASE_SPACING};
+  background-color: ${black};
+  color: ${white};
+  border-radius: ${spacing.QUARTER_BASE_SPACING};
+  margin: 0 auto;
+  border: 0;
+  font-family: sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  min-width: ${spacing.customSpacing("94px")};
+`
+
+export const PrimarySignupButton = styled(BaseButton)`
+  background-color: ${blue2};
+`
+
+export const LoadingText = styled.div`
+  font-size: 24px;
+  text-align: center;
+  width: 100%;
+  color: ${greyWhite};
+  font-family: sans-serif;
+  margin-top: ${spacing.DOUBLE_BASE_SPACING};
+`
+
+export const PeopleContainer = styled(ProblemsContainer)`
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: ${spacing.customSpacing("562px")};
+`
+
+export const PeopleChoice = styled.div`
+  width: ${spacing.customSpacing("128px")};
+  height: ${spacing.customSpacing("128px")};
+  border: ${({ selected }) =>
+    selected ? `1px solid ${deepBlue}` : `1px solid ${greyWhite}`};
+  border-radius: ${spacing.QUARTER_BASE_SPACING};
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  margin-left: ${spacing.customSpacing("28px")};
+  margin-right: ${spacing.customSpacing("28px")};
+  margin-bottom: ${spacing.customSpacing("36px")};
+
+  &:hover {
+    border: 1px solid ${deepBlue};
+  }
+`
+
+export const PeopleChoiceText = styled.div`
+  font-family: sans-serif;
+  font-size: 11px;
+  color: ${black};
+  text-align: center;
+`
