@@ -15,16 +15,16 @@ import {
   StepProgress,
   StepProgressContainer,
   LoadingText,
-} from "./signup.styles"
+} from "../../components/signup/signup.styles"
 import Lady1 from "../../images/onboarding/lady-1.svg"
 import Guy2 from "../../images/onboarding/guy-2.svg"
 import Guy3 from "../../images/onboarding/guy-3.svg"
 import Lady4 from "../../images/onboarding/lady-4.svg"
 import { aqua, deepBlue, lime, magenta, mainOrange } from "../../utils/colors"
-import Step1 from "./step-1"
-import Step2 from "./step-2"
-import Step3 from "./step-3"
-import Step4 from "./step-4"
+import Step1 from "../../components/signup/step-1"
+import Step2 from "../../components/signup/step-2"
+import Step3 from "../../components/signup/step-3"
+import Step4 from "../../components/signup/step-4"
 
 const SignupPage = () => {
   const [loading, setLoading] = useState(false)
