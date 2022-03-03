@@ -22,6 +22,8 @@ export const Step1 = ({ setFormStepAnswer }) => {
   const [selectedOption, setSelectedOption] = useState(null)
 
   const submitAnswer = () => {
+    if (!problemToSolve) return
+
     const answer = {
       useCase: problemToSolve,
     }

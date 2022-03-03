@@ -37,6 +37,8 @@ export const HeroTitle = styled.div`
   text-align: center;
   margin-top: ${spacing.customSpacing("24px")};
   margin-bottom: ${spacing.BASE_SPACING};
+  padding-left: ${spacing.HALF_BASE_SPACING};
+  padding-right: ${spacing.HALF_BASE_SPACING};
 `
 
 export const HeroDescription = styled.div`
@@ -95,6 +97,8 @@ export const StepProgress = styled.div`
   background-color: ${({ selected }) => (selected ? mainOrange : lightestGrey)};
   margin-left: ${spacing.QUARTER_BASE_SPACING};
   margin-right: ${spacing.QUARTER_BASE_SPACING};
+
+  ${({ selected }) => selected && `cursor: pointer;`}
 `
 
 export const StepContainer = styled.div`
@@ -128,6 +132,7 @@ export const ProblemOption = styled.div`
   flex-direction: row;
   cursor: pointer;
   margin-bottom: ${spacing.BASE_SPACING};
+  align-items: center;
   transition: all 0.2s ease;
 
   &:hover {

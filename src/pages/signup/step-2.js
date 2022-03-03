@@ -15,6 +15,7 @@ import Person2 from "../../images/person-2.svg"
 import Person3 from "../../images/person-3.svg"
 import Person4 from "../../images/person-4.svg"
 import Person5 from "../../images/person-5.svg"
+import { spacing } from "../../utils/spacing"
 
 export const Step2 = ({ setFormStepAnswer }) => {
   const [answer, setAnswer] = useState(null)
@@ -26,6 +27,8 @@ export const Step2 = ({ setFormStepAnswer }) => {
   }
 
   const submitAnswer = () => {
+    if (!answer) return
+
     const finalAnswer = {
       Employee_Range__c: answer,
     }
@@ -75,7 +78,12 @@ export const Step2 = ({ setFormStepAnswer }) => {
           </PeopleChoice>
         </PeopleContainer>
       </StepContainer>
-      <PrimarySignupButton onClick={submitAnswer}>Next</PrimarySignupButton>
+      <PrimarySignupButton
+        style={{ marginTop: spacing.customSpacing("64px") }}
+        onClick={submitAnswer}
+      >
+        Next
+      </PrimarySignupButton>
     </>
   )
 }
