@@ -17,7 +17,7 @@ import Bolt from "../../images/bolt.svg"
 import QuestionMark from "../../images/question-mark.svg"
 import { spacing } from "../../utils/spacing"
 
-export const Step1 = ({ setFormStepAnswer }) => {
+const Step1 = ({ setFormStepAnswer }) => {
   const [problemToSolve, setProblemToSolve] = useState(null)
   const [selectedOption, setSelectedOption] = useState(null)
 
@@ -89,3 +89,5 @@ export const Step1 = ({ setFormStepAnswer }) => {
     </>
   )
 }
+
+export default Step1

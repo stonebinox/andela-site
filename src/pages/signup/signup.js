@@ -21,10 +21,10 @@ import Guy2 from "../../images/onboarding/guy-2.svg"
 import Guy3 from "../../images/onboarding/guy-3.svg"
 import Lady4 from "../../images/onboarding/lady-4.svg"
 import { aqua, deepBlue, lime, magenta, mainOrange } from "../../utils/colors"
-import { Step1 } from "./step-1"
-import { Step2 } from "./step-2"
-import { Step3 } from "./step-3"
-import { Step4 } from "./step-4"
+import Step1 from "./step-1"
+import Step2 from "./step-2"
+import Step3 from "./step-3"
+import Step4 from "./step-4"
 
 const SignupPage = () => {
   const [loading, setLoading] = useState(false)

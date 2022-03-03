@@ -25,7 +25,7 @@ const SVGHolder = styled.div`
   text-align: center;
 `
 
-export const Step3 = ({ setFormStepAnswer }) => {
+const Step3 = ({ setFormStepAnswer }) => {
   const [selectedOption, setSelectedOption] = useState(null)
   const [answer, setAnswer] = useState(null)
 
@@ -104,3 +104,5 @@ export const Step3 = ({ setFormStepAnswer }) => {
     </>
   )
 }
+
+export default Step3

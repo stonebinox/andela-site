@@ -17,7 +17,7 @@ import Person4 from "../../images/person-4.svg"
 import Person5 from "../../images/person-5.svg"
 import { spacing } from "../../utils/spacing"
 
-export const Step2 = ({ setFormStepAnswer }) => {
+const Step2 = ({ setFormStepAnswer }) => {
   const [answer, setAnswer] = useState(null)
   const [selectedOption, setSelectedOption] = useState(null)
 
@@ -87,3 +87,5 @@ export const Step2 = ({ setFormStepAnswer }) => {
     </>
   )
 }
+
+export default Step2

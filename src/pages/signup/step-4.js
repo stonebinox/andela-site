@@ -7,7 +7,7 @@ import {
   StepQuestion,
 } from "./signup.styles"
 
-export const Step4 = ({ setFormStepAnswer }) => {
+const Step4 = ({ setFormStepAnswer }) => {
   return (
     <>
       <StepContainer>
@@ -21,3 +21,5 @@ export const Step4 = ({ setFormStepAnswer }) => {
     </>
   )
 }
+
+export default Step4
