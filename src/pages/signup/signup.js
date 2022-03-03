@@ -25,6 +25,7 @@ import Step1 from "../../components/signup/step-1"
 import Step2 from "../../components/signup/step-2"
 import Step3 from "../../components/signup/step-3"
 import Step4 from "../../components/signup/step-4"
+import "../skills/style.css"
 
 const SignupPage = () => {
   const [loading, setLoading] = useState(false)
