@@ -274,3 +274,23 @@ export const InputRow = styled.div`
 export const InputWrapper = styled.div`
   width: 100%;
 `
+
+export const SkillContainer = styled.div`
+  width: auto;
+  height: auto;
+  padding: ${spacing.QUARTER_BASE_SPACING} ${spacing.BASE_SPACING};
+  border: ${({ selected }) =>
+    selected ? `1px solid ${deepBlue}` : `1px solid ${greyWhite}`};
+  border-radius: ${spacing.QUARTER_BASE_SPACING};
+  font-family: sans-serif;
+  color: ${black};
+  font-size: 16px;
+  text-align: center;
+  margin: ${spacing.HALF_BASE_SPACING};
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid ${deepBlue};
+  }
+`
