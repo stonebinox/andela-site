@@ -41,6 +41,7 @@ const SignupPage = () => {
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState(null)
   const [step, setStep] = useState(1)
+  const [parentForm, setParentForm] = useState(null)
 
   const getForm = () => {
     setLoading(true)
@@ -53,6 +54,7 @@ const SignupPage = () => {
     form?.loadForm("//hire.andela.com", "449-UCH-555", 1699, finalForm => {
       setLoading(false)
       console.log(finalForm.vals())
+      setParentForm(finalForm)
     })
   }
 
@@ -86,6 +88,15 @@ const SignupPage = () => {
     if (step < 4) {
       setStep(step + 1)
     }
+
+    if (step === 5) {
+      submitAllData()
+    }
+  }
+
+  const submitAllData = () => {
+    parentForm.vals(formData)
+    parentForm.submit()
   }
 
   const jumpToStep = index => {
