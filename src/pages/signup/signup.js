@@ -15,17 +15,27 @@ import {
   StepProgress,
   StepProgressContainer,
   LoadingText,
+  SVGContainer,
 } from "../../components/signup/signup.styles"
 import Lady1 from "../../images/onboarding/lady-1.svg"
 import Guy2 from "../../images/onboarding/guy-2.svg"
 import Guy3 from "../../images/onboarding/guy-3.svg"
 import Lady4 from "../../images/onboarding/lady-4.svg"
-import { aqua, deepBlue, lime, magenta, mainOrange } from "../../utils/colors"
+import Github5 from "../../images/onboarding/github-5.svg"
+import {
+  aqua,
+  deepBlue,
+  lightAqua,
+  lime,
+  magenta,
+  mainOrange,
+} from "../../utils/colors"
 import Step1 from "../../components/signup/step-1"
 import Step2 from "../../components/signup/step-2"
 import Step3 from "../../components/signup/step-3"
 import Step4 from "../../components/signup/step-4"
 import "../skills/style.css"
+import Step3_2 from "../../components/signup/step-3-2"
 
 const SignupPage = () => {
   const [loading, setLoading] = useState(false)
@@ -57,6 +67,8 @@ const SignupPage = () => {
         return <Step3 setFormStepAnswer={setFormStepAnswer} />
       case 4:
         return <Step4 setFormStepAnswer={setFormStepAnswer} />
+      case 5:
+        return <Step3_2 setFormStepAnswer={setFormStepAnswer} />
     }
   }
 
@@ -65,6 +77,11 @@ const SignupPage = () => {
       ...formData,
       ...answer,
     })
+
+    if (step === 2 && answer.Employee_Range__c === "1000+") {
+      setStep(5)
+      return
+    }
 
     if (step < 4) {
       setStep(step + 1)
@@ -80,6 +97,8 @@ const SignupPage = () => {
   useEffect(() => {
     getForm()
   }, [])
+
+  console.log(formData)
 
   return (
     <PageContainer>
@@ -141,10 +160,25 @@ const SignupPage = () => {
               </HeroDescription>
             </div>
           )}
+          {step === 5 && (
+            <div>
+              <SVGContainer>
+                <ReactSVG src={Github5} width="100%" fill={deepBlue} />
+              </SVGContainer>
+              <HeroDescription>
+                “Andela is tapping into an emerging market that other people
+                have not paid attention to. The data is out there that there
+                will be 100 million developers globally by 2025, and we know
+                that they’re coming from Sub Saharan Africa, Southeast Asia, and
+                Latin America.”
+              </HeroDescription>
+              <HeroTitle color={lightAqua}>Dana Lawson</HeroTitle>
+            </div>
+          )}
           <FocusDotContainer>
             <FocusDot selected={step === 1} />
             <FocusDot selected={step === 2} />
-            <FocusDot selected={step === 3} />
+            <FocusDot selected={step === 3 || step === 5} />
             <FocusDot selected={step === 4} />
           </FocusDotContainer>
         </SignupHero>

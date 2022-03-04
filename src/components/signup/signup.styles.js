@@ -225,3 +225,52 @@ export const PeopleChoiceText = styled.div`
   color: ${black};
   text-align: center;
 `
+
+export const SVGContainer = styled.div`
+  text-align: center;
+  margin-bottom: ${spacing.BASE_SPACING};
+`
+
+export const InputLabel = styled.div`
+  font-family: sans-serif;
+  font-size: 16px;
+  color: ${blackLight};
+  text-align: left;
+  margin-left: ${spacing.customSpacing("12px")};
+`
+
+export const InputContainer = styled.div`
+  width: 100%;
+  border: 1px solid ${greyWhite};
+  border-radius: ${spacing.QUARTER_BASE_SPACING};
+  display: flex;
+  flex-direction: row;
+  align-center: center;
+  justify-content: flex-start;
+  padding: ${spacing.customSpacing("12px")} ${spacing.BASE_SPACING};
+  margin-top: ${spacing.customSpacing("12px")};
+`
+
+export const InputField = styled.input`
+  width: 100%;
+  margin-left: ${spacing.HALF_BASE_SPACING};
+  border: 0;
+  font-size: 16px;
+  color: ${black};
+  font-family: sans-serif;
+  text-align: left;
+  padding: 0;
+  outline: 0;
+`
+
+export const InputRow = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: ${spacing.BASE_SPACING};
+  justify-content: space-between;
+`
+
+export const InputWrapper = styled.div`
+  width: 100%;
+`
