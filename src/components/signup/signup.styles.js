@@ -20,6 +20,11 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: row;
   height: 100vh;
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    height: auto;
+    display: block;
+  }
 `
 
 export const SignupHero = styled.div`
@@ -27,6 +32,10 @@ export const SignupHero = styled.div`
   background-color: ${deepBlue};
   height: 100%;
   padding-top: ${spacing.customSpacing("64px")};
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    display: none;
+  }
 `
 
 export const HeroTitle = styled.div`
@@ -79,6 +88,10 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    padding: ${spacing.BASE_SPACING};
+  }
 `
 
 export const StepProgressContainer = styled.div`
@@ -88,6 +101,10 @@ export const StepProgressContainer = styled.div`
   margin: 0 auto;
   margin-top: ${spacing.customSpacing("64px")};
   max-width: ${spacing.customSpacing("648px")};
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    margin-top: ${spacing.BASE_SPACING};
+  }
 `
 
 export const StepProgress = styled.div`
@@ -269,10 +286,20 @@ export const InputRow = styled.div`
   flex-direction: row;
   margin-top: ${spacing.BASE_SPACING};
   justify-content: space-between;
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    flex-direction: column;
+  }
 `
 
 export const InputWrapper = styled.div`
   width: 100%;
+
+  @media (max-width: ${spacing.customSpacing("428px")}) {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    margin-bottom: ${spacing.BASE_SPACING};
+  }
 `
 
 export const SkillContainer = styled.div`
