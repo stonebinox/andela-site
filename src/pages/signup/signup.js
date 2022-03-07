@@ -85,11 +85,11 @@ const SignupPage = () => {
       return
     }
 
-    if (step < 4) {
+    if (step < 5) {
       setStep(step + 1)
     }
 
-    if (step === 5) {
+    if (step === 6) {
       submitAllData()
     }
   }
@@ -189,8 +189,9 @@ const SignupPage = () => {
           <FocusDotContainer>
             <FocusDot selected={step === 1} />
             <FocusDot selected={step === 2} />
-            <FocusDot selected={step === 3 || step === 5} />
+            <FocusDot selected={step === 3} />
             <FocusDot selected={step === 4} />
+            <FocusDot selected={step === 5} />
           </FocusDotContainer>
         </SignupHero>
         <MainContainer>
@@ -199,6 +200,7 @@ const SignupPage = () => {
             <StepProgress selected={step >= 2} onClick={() => jumpToStep(2)} />
             <StepProgress selected={step >= 3} onClick={() => jumpToStep(3)} />
             <StepProgress selected={step >= 4} onClick={() => jumpToStep(4)} />
+            <StepProgress selected={step >= 5} onClick={() => jumpToStep(5)} />
           </StepProgressContainer>
           {!loading ? getStep() : <LoadingText>Loading ...</LoadingText>}
           {/* <form

@@ -6,5 +6,5 @@ export const getMarketoForm = () => {
 
 export const getSkills = () =>
   fetch(
-    "https://https://dev.ejimford.com/andela/signup/api.php?route=get-skills-random&limit=50"
+    "https://dev.ejimford.com/andela/signup/api.php?route=get-skills-random&limit=20"
   )

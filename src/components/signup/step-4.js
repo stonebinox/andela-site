@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
+import { getSkills } from "../../utils/api"
 import { spacing } from "../../utils/spacing"
 import {
+  LoadingText,
   PeopleContainer,
   PrimarySignupButton,
   SkillContainer,
@@ -10,70 +12,26 @@ import {
   StepQuestion,
 } from "./signup.styles"
 
-const skills = [
-  {
-    skill_id: 2,
-    skill_name: "react",
-    skill_label: "React",
-    skill_group: "UI/UX Development",
-  },
-  {
-    skill_id: 2,
-    skill_name: "react1",
-    skill_label: "React",
-    skill_group: "UI/UX Development",
-  },
-  {
-    skill_id: 2,
-    skill_name: "react2",
-    skill_label: "React",
-    skill_group: "UI/UX Development",
-  },
-  {
-    skill_id: 2,
-    skill_name: "react3",
-    skill_label: "React",
-    skill_group: "UI/UX Development",
-  },
-  {
-    skill_id: 2,
-    skill_name: "react4",
-    skill_label: "React",
-    skill_group: "UI/UX Development",
-  },
-  {
-    skill_id: 2,
-    skill_name: "react5",
-    skill_label: "React",
-    skill_group: "UI/UX Development",
-  },
-  {
-    skill_id: 2,
-    skill_name: "react6",
-    skill_label: "React",
-    skill_group: "UI/UX Development",
-  },
-  {
-    skill_id: 2,
-    skill_name: "react7",
-    skill_label: "React",
-    skill_group: "UI/UX Development",
-  },
-  {
-    skill_id: 2,
-    skill_name: "react8",
-    skill_label: "React",
-    skill_group: "UI/UX Development",
-  },
-]
-
 const Skill = ({ skill, setSelected, selected }) => {
   const { skill_name, skill_label } = skill
 
+  const toggleSelected = skill => {
+    const selectedSkills = selected.slice()
+
+    if (!selectedSkills.includes(skill)) {
+      selectedSkills.push(skill)
+    } else {
+      const skillPosition = selectedSkills.indexOf(skill)
+      selectedSkills.splice(skillPosition, 1)
+    }
+
+    setSelected(selectedSkills)
+  }
+
   return (
     <SkillContainer
-      onClick={() => setSelected(skill_name)}
-      selected={selected === skill_name}
+      onClick={() => toggleSelected(skill_name)}
+      selected={selected.includes(skill_name)}
     >
       {skill_label}
     </SkillContainer>
@@ -81,7 +39,24 @@ const Skill = ({ skill, setSelected, selected }) => {
 }
 
 const Step4 = ({ setFormStepAnswer }) => {
-  const [selected, setSelected] = useState(null)
+  const [selected, setSelected] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [skills, setSkills] = useState([])
+
+  const getSkillsData = () => {
+    try {
+      setLoading(true)
+      getSkills()
+        .then(response => response.json())
+        .then(data => {
+          setSkills(data)
+        })
+    } catch (e) {
+      console.log(e)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const renderSkills = () => {
     return skills.map((skill, index) => (
@@ -94,15 +69,33 @@ const Step4 = ({ setFormStepAnswer }) => {
     ))
   }
 
+  const submitAnswer = () => {
+    const finalAnswer = selected.join("|")
+
+    setFormStepAnswer({
+      interestedSkillSets: finalAnswer,
+    })
+  }
+
+  useEffect(() => {
+    getSkillsData()
+  }, [])
+
   return (
     <>
       <StepContainer>
         <StepQuestion>
           What type of skills do you need in your talent?
         </StepQuestion>
-        <PeopleContainer>{renderSkills()}</PeopleContainer>
+        <PeopleContainer>
+          {renderSkills()}
+          {loading && <LoadingText>Loading skills ...</LoadingText>}
+        </PeopleContainer>
       </StepContainer>
-      <PrimarySignupButton style={{ marginTop: spacing.customSpacing("64px") }}>
+      <PrimarySignupButton
+        onClick={submitAnswer}
+        style={{ marginTop: spacing.customSpacing("64px") }}
+      >
         Next
       </PrimarySignupButton>
     </>

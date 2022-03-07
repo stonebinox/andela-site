@@ -316,8 +316,4 @@ export const SkillContainer = styled.div`
   margin: ${spacing.HALF_BASE_SPACING};
   transition: all 0.2s ease;
   cursor: pointer;
-
-  &:hover {
-    border: 1px solid ${deepBlue};
-  }
 `
