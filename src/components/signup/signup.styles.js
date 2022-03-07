@@ -88,6 +88,9 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  max-height: 100vh;
+  overflow: auto;
+  padding-bottom: ${spacing.BASE_SPACING};
 
   @media (max-width: ${spacing.customSpacing("428px")}) {
     padding: ${spacing.BASE_SPACING};
@@ -316,4 +319,22 @@ export const SkillContainer = styled.div`
   margin: ${spacing.HALF_BASE_SPACING};
   transition: all 0.2s ease;
   cursor: pointer;
+`
+
+export const SkillSearchTitle = styled.div`
+  text-align: center;
+  font-size: 17px;
+  margin-top: ${spacing.customSpacing("36px")};
+  font-family: sans-serif;
+  color: ${black};
+  margin-bottom: ${spacing.customSpacing("36px")};
+`
+
+export const SearchBar = styled(InputWrapper)`
+  max-width: ${spacing.customSpacing("520px")};
+  margin: 0 auto;
+`
+
+export const SearchResultsContainer = styled(PeopleContainer)`
+  margin-top: ${spacing.HALF_BASE_SPACING};
 `
