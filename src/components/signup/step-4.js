@@ -14,6 +14,7 @@ import {
   PrimarySignupButton,
   SearchBar,
   SearchResultsContainer,
+  SelectedSearchSkillsContainer,
   SkillContainer,
   SkillSearchTitle,
   StepContainer,
@@ -21,7 +22,14 @@ import {
 } from "./signup.styles"
 import Magnify from "../../images/magnify.svg"
 
-const Skill = ({ skill, setSelected, selected }) => {
+const Skill = ({
+  skill,
+  setSelected,
+  selected,
+  fromSearch = false,
+  setSelectedSearchSkills,
+  selectedSearchSkills,
+}) => {
   const { skill_name, skill_label } = skill
 
   const toggleSelected = skill => {
@@ -37,9 +45,31 @@ const Skill = ({ skill, setSelected, selected }) => {
     setSelected(selectedSkills)
   }
 
+  const toggleSearchSelected = skill => {
+    let selectedSearchSkillsCopy = selectedSearchSkills.slice()
+
+    if (
+      !selectedSearchSkillsCopy.some(
+        skillCopy => skill.skill_name === skillCopy.skill_name
+      )
+    ) {
+      selectedSearchSkillsCopy.push(skill)
+    } else {
+      selectedSearchSkillsCopy = selectedSearchSkillsCopy.filter(
+        skillCopy => skillCopy.skill_name !== skill.skill_name
+      )
+    }
+
+    setSelectedSearchSkills(selectedSearchSkillsCopy)
+  }
+
   return (
     <SkillContainer
-      onClick={() => toggleSelected(skill_name)}
+      onClick={() => {
+        toggleSelected(skill_name)
+
+        if (fromSearch) toggleSearchSelected(skill)
+      }}
       selected={selected.includes(skill_name)}
     >
       {skill_label}
@@ -52,6 +82,7 @@ const Step4 = ({ setFormStepAnswer }) => {
   const [loading, setLoading] = useState(false)
   const [skills, setSkills] = useState([])
   const [searchList, setSearchList] = useState([])
+  const [selectedSearchSkills, setSelectedSearchSkills] = useState([])
 
   const getSkillsData = () => {
     try {
@@ -68,13 +99,16 @@ const Step4 = ({ setFormStepAnswer }) => {
     }
   }
 
-  const renderSkills = skillList => {
+  const renderSkills = (skillList, fromSearch = false) => {
     return skillList.map((skill, index) => (
       <Skill
         key={index}
         skill={skill}
         setSelected={setSelected}
         selected={selected}
+        fromSearch={fromSearch}
+        setSelectedSearchSkills={setSelectedSearchSkills}
+        selectedSearchSkills={selectedSearchSkills}
       />
     ))
   }
@@ -88,7 +122,10 @@ const Step4 = ({ setFormStepAnswer }) => {
   }
 
   const getResults = text => {
-    if (text.trim().length === 0) return
+    if (text.trim().length === 0) {
+      setSearchList([])
+      return
+    }
 
     const selectedSkills = selected.slice()
 
@@ -135,8 +172,11 @@ const Step4 = ({ setFormStepAnswer }) => {
               onChange={e => getResults(e.target.value)}
             />
           </InputContainer>
+          <SelectedSearchSkillsContainer>
+            {renderSkills(selectedSearchSkills, true)}
+          </SelectedSearchSkillsContainer>
           <SearchResultsContainer>
-            {renderSkills(searchList)}
+            {renderSkills(searchList, true)}
           </SearchResultsContainer>
         </SearchBar>
       </StepContainer>
