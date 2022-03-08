@@ -59,6 +59,10 @@ function Seo({ description, lang, meta, title }) {
       ].concat(meta)}
     >
       <script src="//hire.andela.com/js/forms2/js/forms2.min.js"></script>
+      <script
+        src="//js.chilipiper.com/marketing.js"
+        type="text/javascript"
+      ></script>
     </Helmet>
   )
 }

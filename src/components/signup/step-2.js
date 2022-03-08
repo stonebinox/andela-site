@@ -49,28 +49,28 @@ const Step2 = ({ setFormStepAnswer }) => {
         <PeopleContainer>
           <PeopleChoice
             selected={selectedOption === 1}
-            onClick={() => selectAnswer("Less than 50", 1)}
+            onClick={() => selectAnswer("0 - 50", 1)}
           >
             <ReactSVG src={Person1} width={35} height={35} />
             <PeopleChoiceText>Less than 50</PeopleChoiceText>
           </PeopleChoice>
           <PeopleChoice
             selected={selectedOption === 2}
-            onClick={() => selectAnswer("51 to 200", 2)}
+            onClick={() => selectAnswer("51 - 200", 2)}
           >
             <ReactSVG src={Person2} width={67} height={53} />
             <PeopleChoiceText>51 to 200</PeopleChoiceText>
           </PeopleChoice>
           <PeopleChoice
             selected={selectedOption === 3}
-            onClick={() => selectAnswer("201 to 500", 3)}
+            onClick={() => selectAnswer("201 - 500", 3)}
           >
             <ReactSVG src={Person3} width={67} height={55} />
             <PeopleChoiceText>201 to 500</PeopleChoiceText>
           </PeopleChoice>
           <PeopleChoice
             selected={selectedOption === 4}
-            onClick={() => selectAnswer("501 to 1000", 4)}
+            onClick={() => selectAnswer("501 - 1000", 4)}
           >
             <ReactSVG src={Person4} width={67} height={63} />
             <PeopleChoiceText>501 to 1000</PeopleChoiceText>

@@ -53,7 +53,7 @@ const SignupPage = () => {
 
     form?.loadForm("//hire.andela.com", "449-UCH-555", 1699, finalForm => {
       setLoading(false)
-      console.log(finalForm.vals())
+
       setParentForm(finalForm)
     })
   }
@@ -75,6 +75,8 @@ const SignupPage = () => {
   }
 
   const setFormStepAnswer = answer => {
+    console.log(answer)
+
     setFormData({
       ...formData,
       ...answer,
@@ -89,13 +91,27 @@ const SignupPage = () => {
       setStep(step + 1)
     }
 
-    if (step === 6) {
-      submitAllData()
+    if (step >= 5) {
+      submitAllData({
+        ...formData,
+        ...answer,
+      })
     }
   }
 
-  const submitAllData = () => {
-    parentForm.vals(formData)
+  const submitAllData = formattedForm => {
+    const finalForm = {
+      ...formattedForm,
+      FirstName: "Dude",
+      LastName: "Dude",
+      Title: "Dude",
+      Role_Details__c: "Other",
+    }
+
+    parentForm.vals(finalForm)
+    console.log(finalForm, parentForm.vals())
+
+    console.log(parentForm.validate())
     parentForm.submit()
   }
 
@@ -108,8 +124,6 @@ const SignupPage = () => {
   useEffect(() => {
     getForm()
   }, [])
-
-  console.log(formData)
 
   return (
     <PageContainer>
