@@ -113,7 +113,55 @@ const SignupPage = () => {
 
   return (
     <PageContainer>
-      <Seo title="Andela Signup" />
+      <Seo
+        title="Hire Global Talent"
+        description="Andela is a global talent network that connects companies with vetted, remote engineers in emerging markets. Hundreds of leading companies like Cloudflare and ViacomCBS leverage Andela to scale their engineering teams quickly and cost effectively."
+        meta={[
+          {
+            property: "og:url",
+            content: "https://andela.com/hire-talent/",
+          },
+          {
+            property: "og:site_name",
+            content: "Andela",
+          },
+          {
+            property: "og:image",
+            content:
+              "https://andela.com/wp-content/uploads/2021/08/Unroll-Image-1200x630-Final.png",
+          },
+          {
+            property: "og:image:secure_url",
+            content:
+              "https://andela.com/wp-content/uploads/2021/08/Unroll-Image-1200x630-Final.png",
+          },
+          {
+            property: "og:image:width",
+            content: "1200",
+          },
+          {
+            property: "og:image:height",
+            content: "630",
+          },
+          {
+            name: "twitter:card",
+            content: "summary_large_image",
+          },
+          {
+            name: "twitter:site",
+            content: "@andela",
+          },
+          {
+            name: "twitter:image",
+            content:
+              "https://andela.com/wp-content/uploads/2021/08/Unroll-Image-1200x630-Final.png",
+          },
+          {
+            name: "twitter:creator",
+            content: "@andela",
+          },
+        ]}
+      />
       <FormContainer>
         <SignupHero>
           {step === 1 && (
