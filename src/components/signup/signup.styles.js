@@ -123,7 +123,7 @@ export const StepProgress = styled.div`
 
 export const StepContainer = styled.div`
   width: 100%;
-  margin-top: ${spacing.customSpacing("130px")};
+  margin-top: ${spacing.customSpacing("80px")};
 `
 
 export const StepQuestion = styled.div`

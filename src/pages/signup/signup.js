@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { ReactSVG } from "react-svg"
 import Seo from "../../components/seo"
-import { getMarketoForm } from "../../utils/api"
+import { getChiliPiper, getMarketoForm } from "../../utils/api"
 
 import { PageContainer } from "../../utils/common.styles"
 import {
@@ -35,7 +35,7 @@ import Step2 from "../../components/signup/step-2"
 import Step3 from "../../components/signup/step-3"
 import Step4 from "../../components/signup/step-4"
 import "../skills/style.css"
-import Step3_2 from "../../components/signup/step-3-2"
+import Step5 from "../../components/signup/step-5"
 
 const SignupPage = () => {
   const [loading, setLoading] = useState(false)
@@ -54,6 +54,23 @@ const SignupPage = () => {
     form?.loadForm("//hire.andela.com", "449-UCH-555", 1699, finalForm => {
       setLoading(false)
 
+      finalForm.onSuccess(values => {
+        const cpData = {
+          map: true,
+          values,
+        }
+
+        if (values["Employee_Range__c"] === "0 - 50") {
+          window.location = "https://andela.app/"
+          return false
+        }
+
+        const ChiliPiper = getChiliPiper()
+        ChiliPiper?.submit("andela", "inbound-router", cpData)
+
+        return false
+      })
+
       setParentForm(finalForm)
     })
   }
@@ -70,13 +87,11 @@ const SignupPage = () => {
       case 4:
         return <Step4 setFormStepAnswer={setFormStepAnswer} />
       case 5:
-        return <Step3_2 setFormStepAnswer={setFormStepAnswer} />
+        return <Step5 setFormStepAnswer={setFormStepAnswer} />
     }
   }
 
   const setFormStepAnswer = answer => {
-    console.log(answer)
-
     setFormData({
       ...formData,
       ...answer,
@@ -102,17 +117,16 @@ const SignupPage = () => {
   const submitAllData = formattedForm => {
     const finalForm = {
       ...formattedForm,
-      FirstName: "Dude",
-      LastName: "Dude",
-      Title: "Dude",
       Role_Details__c: "Other",
     }
 
     parentForm.vals(finalForm)
-    console.log(finalForm, parentForm.vals())
 
-    console.log(parentForm.validate())
-    parentForm.submit()
+    if (parentForm.validate()) {
+      parentForm.submit()
+    } else {
+      alert("Invalid/incomplete data provided. Please verify and retry.")
+    }
   }
 
   const jumpToStep = index => {
@@ -265,10 +279,6 @@ const SignupPage = () => {
             <StepProgress selected={step >= 5} onClick={() => jumpToStep(5)} />
           </StepProgressContainer>
           {!loading ? getStep() : <LoadingText>Loading ...</LoadingText>}
-          {/* <form
-            id="mktoForm_1699"
-            data-last-conversion-value="Hire Talent"
-          ></form> */}
         </MainContainer>
       </FormContainer>
     </PageContainer>

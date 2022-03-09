@@ -4,6 +4,12 @@ export const getMarketoForm = () => {
   return window.MktoForms2
 }
 
+export const getChiliPiper = () => {
+  if (typeof window === "undefined" || !window.ChiliPiper) return null
+
+  return window.ChiliPiper
+}
+
 export const getSkills = () =>
   fetch(
     "//dev.ejimford.com/andela/signup/api.php?route=get-skills-random&limit=20"

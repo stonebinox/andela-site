@@ -19,16 +19,25 @@ import Envelope from "../../images/envelope.svg"
 import Phone from "../../images/phone.svg"
 import Globe from "../../images/globe.svg"
 import Marker from "../../images/marker.svg"
+import Person1 from "../../images/person-1.svg"
+import Code from "../../images/code.svg"
 
-const Step3_2 = ({ setFormStepAnswer }) => {
+const Step5 = ({ setFormStepAnswer }) => {
   const [company, setCompany] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
   const [companyURL, setCompanyURL] = useState("")
   const [country, setCountry] = useState("")
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [title, setTitle] = useState("")
 
   const submitAnswer = () => {
     let valid = true
+
+    if (firstName.trim() === "") valid = false
+    if (lastName.trim() === "") valid = false
+    if (title.trim() === "") valid = false
     if (company.trim() === "") valid = false
     if (
       email.trim() === "" ||
@@ -47,8 +56,11 @@ const Step3_2 = ({ setFormStepAnswer }) => {
       Company: company,
       Email: email,
       Phone: phone,
-      CompanyURL: companyURL,
       Country: country,
+      FirstName: firstName,
+      LastName: lastName,
+      Title: title,
+      Company_Website__c: companyURL,
     }
 
     setFormStepAnswer(finalAnswer)
@@ -59,7 +71,44 @@ const Step3_2 = ({ setFormStepAnswer }) => {
       <StepContainer>
         <StepQuestion>Get in touch with Andela today</StepQuestion>
         <ProblemsContainer>
-          <InputLabel>Company name</InputLabel>
+          <InputRow style={{ marginBottom: spacing.BASE_SPACING }}>
+            <InputWrapper
+              style={{ marginRight: spacing.customSpacing("12px") }}
+            >
+              <InputLabel>First name</InputLabel>
+              <InputContainer>
+                <ReactSVG src={Person1} width="20" />
+                <InputField
+                  type="text"
+                  name="firstName"
+                  onChange={e => setFirstName(e.target.value)}
+                />
+              </InputContainer>
+            </InputWrapper>
+            <InputWrapper style={{ marginLeft: spacing.customSpacing("12px") }}>
+              <InputLabel>Last name</InputLabel>
+              <InputContainer>
+                <ReactSVG src={Person1} width={18} height={18} />
+                <InputField
+                  type="text"
+                  name="lastName"
+                  onChange={e => setLastName(e.target.value)}
+                />
+              </InputContainer>
+            </InputWrapper>
+          </InputRow>
+          <InputLabel>Your job title</InputLabel>
+          <InputContainer>
+            <ReactSVG src={Code} width={18} height={18} />
+            <InputField
+              type="text"
+              name="title"
+              onChange={e => setTitle(e.target.value)}
+            />
+          </InputContainer>
+          <InputLabel style={{ marginTop: spacing.BASE_SPACING }}>
+            Company name
+          </InputLabel>
           <InputContainer>
             <ReactSVG src={Company} width={18} height={18} />
             <InputField
@@ -103,7 +152,7 @@ const Step3_2 = ({ setFormStepAnswer }) => {
               <InputContainer>
                 <ReactSVG src={Globe} width={20} height={20} />
                 <InputField
-                  type="text"
+                  type="url"
                   name="company_url"
                   onChange={e => setCompanyURL(e.target.value)}
                 />
@@ -133,4 +182,4 @@ const Step3_2 = ({ setFormStepAnswer }) => {
   )
 }
 
-export default Step3_2
+export default Step5
