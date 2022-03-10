@@ -277,14 +277,31 @@ const SignupPage = () => {
           </FocusDotContainer>
         </SignupHero>
         <MainContainer>
-          <StepProgressContainer>
-            <StepProgress selected={step >= 1} onClick={() => jumpToStep(1)} />
-            <StepProgress selected={step >= 2} onClick={() => jumpToStep(2)} />
-            <StepProgress selected={step >= 3} onClick={() => jumpToStep(3)} />
-            <StepProgress selected={step >= 4} onClick={() => jumpToStep(4)} />
-            <StepProgress selected={step >= 5} onClick={() => jumpToStep(5)} />
-          </StepProgressContainer>
-          {!loading ? getStep() : <LoadingText>Loading ...</LoadingText>}
+          <form id="mktoForm_1053">
+            <StepProgressContainer>
+              <StepProgress
+                selected={step >= 1}
+                onClick={() => jumpToStep(1)}
+              />
+              <StepProgress
+                selected={step >= 2}
+                onClick={() => jumpToStep(2)}
+              />
+              <StepProgress
+                selected={step >= 3}
+                onClick={() => jumpToStep(3)}
+              />
+              <StepProgress
+                selected={step >= 4}
+                onClick={() => jumpToStep(4)}
+              />
+              <StepProgress
+                selected={step >= 5}
+                onClick={() => jumpToStep(5)}
+              />
+            </StepProgressContainer>
+            {!loading ? getStep() : <LoadingText>Loading ...</LoadingText>}
+          </form>
         </MainContainer>
       </FormContainer>
     </PageContainer>
