@@ -285,7 +285,9 @@ const SignupPage = () => {
             <StepProgress selected={step >= 5} onClick={() => jumpToStep(5)} />
           </StepProgressContainer>
           {!loading ? getStep() : <LoadingText>Loading ...</LoadingText>}
-          <form id="mktoForm_1053"></form>
+          <form id="mktoForm_1053">
+            <input type="email" style={{ display: "none" }} />
+          </form>
         </MainContainer>
       </FormContainer>
     </PageContainer>
