@@ -33,12 +33,6 @@ const Step2 = ({ setFormStepAnswer }) => {
       Employee_Range__c: answer,
     }
 
-    if (selectedOption === 1) {
-      window.location = "https://andela.app/"
-
-      return
-    }
-
     setFormStepAnswer(finalAnswer)
   }
 

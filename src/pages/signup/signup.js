@@ -97,7 +97,11 @@ const SignupPage = () => {
       ...answer,
     })
 
-    if (step === 2 && answer.Employee_Range__c === "1000+") {
+    if (
+      step === 2 &&
+      (answer.Employee_Range__c === "1000+" ||
+        answer.Employee_Range__c === "0 - 50")
+    ) {
       setStep(5)
       return
     }
