@@ -66,7 +66,7 @@ const SignupPage = () => {
         }
 
         const ChiliPiper = getChiliPiper()
-        ChiliPiper?.submit("andela", "inbound-router", cpData)
+        ChiliPiper?.submit("andela", "Inbound-Router-wizard", cpData)
 
         return false
       })
