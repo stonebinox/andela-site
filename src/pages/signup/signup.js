@@ -17,10 +17,10 @@ import {
   LoadingText,
   SVGContainer,
 } from "../../components/signup/signup.styles"
-import Lady1 from "../../images/onboarding/lady-1.svg"
-import Guy2 from "../../images/onboarding/guy-2.svg"
-import Guy3 from "../../images/onboarding/guy-3.svg"
-import Lady4 from "../../images/onboarding/lady-4.svg"
+import Lady1 from "../../images/onboarding/lady-1.png"
+import Guy2 from "../../images/onboarding/guy-2.png"
+import Guy3 from "../../images/onboarding/guy-3.png"
+import Lady4 from "../../images/onboarding/lady-4.png"
 import Github5 from "../../images/onboarding/github-5.svg"
 import {
   aqua,
@@ -199,7 +199,11 @@ const SignupPage = () => {
         <SignupHero>
           {step === 1 && (
             <div>
-              <ReactSVG src={Lady1} width="100%" fill={deepBlue} />
+              <img
+                src={Lady1}
+                width="100%"
+                style={{ backgroundColor: deepBlue }}
+              />
               <HeroTitle color={mainOrange}>
                 &gt; 40% faster time to hire than internal recruiting
               </HeroTitle>
@@ -215,7 +219,7 @@ const SignupPage = () => {
           )}
           {step === 2 && (
             <div>
-              <ReactSVG src={Guy2} width="100%" fill={deepBlue} />
+              <img src={Guy2} width="100%" />
               <HeroTitle color={aqua}>
                 18-month average client relationship
               </HeroTitle>
@@ -229,7 +233,7 @@ const SignupPage = () => {
           )}
           {step === 3 && (
             <div>
-              <ReactSVG src={Guy3} width="100%" fill={deepBlue} />
+              <img src={Guy3} width="100%" />
               <HeroTitle color={lime}>
                 Andela is the premier Talent Marketplace to connect companies to
                 vetted, remote-ready technologists from around the world.
@@ -242,7 +246,7 @@ const SignupPage = () => {
           )}
           {step === 4 && (
             <div>
-              <ReactSVG src={Lady4} width="100%" fill={deepBlue} />
+              <img src={Lady4} width="100%" />
               <HeroTitle color={magenta}>95% match rate success</HeroTitle>
               <HeroDescription>
                 Every stack is different, and every digital organization
