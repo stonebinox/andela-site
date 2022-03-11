@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react"
 import { ReactSVG } from "react-svg"
+import styled from "styled-components"
 
 import { spacing } from "../../utils/spacing"
 import {
@@ -21,6 +22,13 @@ import Globe from "../../images/globe.svg"
 import Marker from "../../images/marker.svg"
 import Person1 from "../../images/person-1.svg"
 import Code from "../../images/code.svg"
+
+const PersonSVG = styled(ReactSVG)`
+  width: ${spacing.customSpacing("20px")};
+  height: ${spacing.customSpacing("20px")};
+  margin-top: -${spacing.customSpacing("6px")};
+  margin-left: -${spacing.customSpacing("10px")};
+`
 
 const Step5 = ({ setFormStepAnswer }) => {
   const [company, setCompany] = useState("")
@@ -77,7 +85,7 @@ const Step5 = ({ setFormStepAnswer }) => {
             >
               <InputLabel>First name</InputLabel>
               <InputContainer>
-                <ReactSVG src={Person1} width="20" />
+                <PersonSVG src={Person1} />
                 <InputField
                   type="text"
                   name="firstName"
@@ -88,7 +96,7 @@ const Step5 = ({ setFormStepAnswer }) => {
             <InputWrapper style={{ marginLeft: spacing.customSpacing("12px") }}>
               <InputLabel>Last name</InputLabel>
               <InputContainer>
-                <ReactSVG src={Person1} width={18} height={18} />
+                <PersonSVG src={Person1} />
                 <InputField
                   type="text"
                   name="lastName"
@@ -99,7 +107,7 @@ const Step5 = ({ setFormStepAnswer }) => {
           </InputRow>
           <InputLabel>Your job title</InputLabel>
           <InputContainer>
-            <ReactSVG src={Code} width={18} height={18} />
+            <ReactSVG src={Code} />
             <InputField
               type="text"
               name="title"
@@ -110,7 +118,7 @@ const Step5 = ({ setFormStepAnswer }) => {
             Company name
           </InputLabel>
           <InputContainer>
-            <ReactSVG src={Company} width={18} height={18} />
+            <ReactSVG src={Company} />
             <InputField
               type="text"
               name="company"
@@ -123,7 +131,7 @@ const Step5 = ({ setFormStepAnswer }) => {
             >
               <InputLabel>Email Address</InputLabel>
               <InputContainer>
-                <ReactSVG src={Envelope} width={20} height={16} />
+                <ReactSVG src={Envelope} />
                 <InputField
                   type="email"
                   name="email"
@@ -134,7 +142,7 @@ const Step5 = ({ setFormStepAnswer }) => {
             <InputWrapper style={{ marginLeft: spacing.customSpacing("12px") }}>
               <InputLabel>Phone</InputLabel>
               <InputContainer>
-                <ReactSVG src={Phone} width={18} height={18} />
+                <ReactSVG src={Phone} />
                 <InputField
                   type="tel"
                   name="phone"
@@ -150,7 +158,7 @@ const Step5 = ({ setFormStepAnswer }) => {
             >
               <InputLabel>Company URL (Optional)</InputLabel>
               <InputContainer>
-                <ReactSVG src={Globe} width={20} height={20} />
+                <ReactSVG src={Globe} />
                 <InputField
                   type="url"
                   name="company_url"
@@ -161,7 +169,7 @@ const Step5 = ({ setFormStepAnswer }) => {
             <InputWrapper style={{ marginLeft: spacing.customSpacing("12px") }}>
               <InputLabel>Country</InputLabel>
               <InputContainer>
-                <ReactSVG src={Marker} width={16} height={20} />
+                <ReactSVG src={Marker} />
                 <InputField
                   type="text"
                   name="country"
