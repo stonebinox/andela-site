@@ -7,6 +7,28 @@ export const getMarketoForm = () => {
 export const getChiliPiper = () => {
   if (typeof window === "undefined" || !window.ChiliPiper) return null
 
+  function q(a) {
+    return function () {
+      window.ChiliPiper[a].q = (window.ChiliPiper[a].q || []).concat([
+        arguments,
+      ])
+    }
+  }
+
+  window.ChiliPiper =
+    window.ChiliPiper ||
+    "submit scheduling showCalendar submit widget bookMeeting"
+      .split(" ")
+      .reduce((a, b) => {
+        a[b] = q(b)
+
+        return a
+      }, {})
+
+  window.ChiliPiper.scheduling("andela", "Inbound-Router-wizard", {
+    map: true,
+  })
+
   return window.ChiliPiper
 }
 

@@ -60,13 +60,13 @@ const SignupPage = () => {
           values,
         }
 
-        if (values["Employee_Range__c"] === "0 - 50") {
+        if (values.Employee_Range__c === "0 - 50") {
           window.location = "https://andela.app/"
           return false
         }
 
         const ChiliPiper = getChiliPiper()
-        ChiliPiper?.submit("andela", "Inbound-Router-wizard", cpData)
+        ChiliPiper?.submit("andela", "inbound-router", cpData)
 
         return false
       })
