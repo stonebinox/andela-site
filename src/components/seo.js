@@ -62,6 +62,7 @@ function Seo({ description, lang, meta, title }) {
       <script
         src="//js.chilipiper.com/marketing.js"
         type="text/javascript"
+        async
       ></script>
     </Helmet>
   )
