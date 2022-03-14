@@ -65,6 +65,10 @@ const SignupPage = () => {
           return false
         }
 
+        cpData.values.employee_range__c = values.Employee_Range__c
+
+        delete cpData.values.Employee_Range__c
+
         const ChiliPiper = getChiliPiper()
         ChiliPiper?.submit("andela", "inbound-router", cpData)
 
