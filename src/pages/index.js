@@ -58,7 +58,7 @@ const SignupPage = () => {
       finalForm.onSuccess(values => {
         const cpData = {
           map: true,
-          values,
+          lead: values,
         }
 
         if (values.Employee_Range__c === "0 - 50") {
@@ -66,9 +66,9 @@ const SignupPage = () => {
           return false
         }
 
-        cpData.values.employee_range__c = values.Employee_Range__c
+        cpData.lead.employee_range__c = values.Employee_Range__c
 
-        delete cpData.values.Employee_Range__c
+        delete cpData.lead.Employee_Range__c
 
         const ChiliPiper = getChiliPiper()
         ChiliPiper?.submit("andela", "inbound_router_gatsby", cpData)
