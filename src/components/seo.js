@@ -64,6 +64,10 @@ function Seo({ description, lang, meta, title }) {
         type="text/javascript"
         async
       ></script>
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=UA-54977360-1"
+      ></script>
     </Helmet>
   )
 }

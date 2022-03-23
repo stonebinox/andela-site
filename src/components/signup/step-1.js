@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import {
   StepContainer,
@@ -16,6 +16,7 @@ import Magnify from "../../images/magnify.svg"
 import Bolt from "../../images/bolt.svg"
 import QuestionMark from "../../images/question-mark.svg"
 import { spacing } from "../../utils/spacing"
+import { getGtag } from "../../utils/api"
 
 const Step1 = ({ setFormStepAnswer }) => {
   const [problemToSolve, setProblemToSolve] = useState(null)
@@ -35,6 +36,18 @@ const Step1 = ({ setFormStepAnswer }) => {
     setProblemToSolve(answerText)
     setSelectedOption(index)
   }
+
+  useEffect(() => {
+    const gtag = getGtag()
+
+    if (gtag) {
+      gtag("event", "sign_up", {
+        event_category: "Sign Up Wizard",
+        event_label: "Demand: Hire Talent",
+        value: "Step 1",
+      })
+    }
+  }, [])
 
   return (
     <>

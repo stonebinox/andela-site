@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { ReactSVG } from "react-svg"
 import styled from "styled-components"
 
@@ -18,6 +18,7 @@ import PersonGear from "../../images/person-gear.svg"
 import People from "../../images/people.svg"
 import QuestionMark from "../../images/question-mark.svg"
 import { spacing } from "../../utils/spacing"
+import { getGtag } from "../../utils/api"
 
 const SVGHolder = styled.div`
   width: ${spacing.customSpacing("31px")};
@@ -43,6 +44,18 @@ const Step3 = ({ setFormStepAnswer }) => {
     setAnswer(answerText)
     setSelectedOption(index)
   }
+
+  useEffect(() => {
+    const gtag = getGtag()
+
+    if (gtag) {
+      gtag("event", "sign_up", {
+        event_category: "Sign Up Wizard",
+        event_label: "Demand: Hire Talent",
+        value: "Step 3",
+      })
+    }
+  }, [])
 
   return (
     <>

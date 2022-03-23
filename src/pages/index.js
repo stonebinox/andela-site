@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { ReactSVG } from "react-svg"
+
 import Seo from "../components/seo"
 import { getChiliPiper, getMarketoForm } from "../utils/api"
-
 import { PageContainer } from "../utils/common.styles"
 import {
   FocusDot,

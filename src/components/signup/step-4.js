@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from "react"
 import { ReactSVG } from "react-svg"
 
-import { getSkills, searchSkills } from "../../utils/api"
+import { getGtag, getSkills, searchSkills } from "../../utils/api"
 import { spacing } from "../../utils/spacing"
 import {
   InputContainer,
@@ -148,6 +148,16 @@ const Step4 = ({ setFormStepAnswer }) => {
 
   useEffect(() => {
     getSkillsData()
+
+    const gtag = getGtag()
+
+    if (gtag) {
+      gtag("event", "sign_up", {
+        event_category: "Sign Up Wizard",
+        event_label: "Demand: Hire Talent",
+        value: "Step 4",
+      })
+    }
   }, [])
 
   return (

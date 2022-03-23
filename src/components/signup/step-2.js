@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { ReactSVG } from "react-svg"
 import {
   PeopleChoice,
@@ -16,6 +16,7 @@ import Person3 from "../../images/person-3.svg"
 import Person4 from "../../images/person-4.svg"
 import Person5 from "../../images/person-5.svg"
 import { spacing } from "../../utils/spacing"
+import { getGtag } from "../../utils/api"
 
 const Step2 = ({ setFormStepAnswer }) => {
   const [answer, setAnswer] = useState(null)
@@ -35,6 +36,18 @@ const Step2 = ({ setFormStepAnswer }) => {
 
     setFormStepAnswer(finalAnswer)
   }
+
+  useEffect(() => {
+    const gtag = getGtag()
+
+    if (gtag) {
+      gtag("event", "sign_up", {
+        event_category: "Sign Up Wizard",
+        event_label: "Demand: Hire Talent",
+        value: "Step 2",
+      })
+    }
+  }, [])
 
   return (
     <>
