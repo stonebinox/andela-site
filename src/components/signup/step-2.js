@@ -43,8 +43,7 @@ const Step2 = ({ setFormStepAnswer }) => {
     if (gtag) {
       gtag("event", "sign_up", {
         event_category: "Sign Up Wizard",
-        event_label: "Demand: Hire Talent",
-        value: "Step 2",
+        event_label: "Step 2",
       })
     }
   }, [])

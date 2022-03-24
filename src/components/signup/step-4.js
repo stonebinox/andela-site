@@ -154,8 +154,7 @@ const Step4 = ({ setFormStepAnswer }) => {
     if (gtag) {
       gtag("event", "sign_up", {
         event_category: "Sign Up Wizard",
-        event_label: "Demand: Hire Talent",
-        value: "Step 4",
+        event_label: "Step 4",
       })
     }
   }, [])
