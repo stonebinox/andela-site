@@ -293,6 +293,7 @@ export const DropdownField = styled.select`
   text-align: left;
   padding: 0;
   outline: 0;
+  appearance: none;
 `
 
 export const InputRow = styled.div`
