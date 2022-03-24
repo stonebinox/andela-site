@@ -283,6 +283,18 @@ export const InputField = styled.input`
   outline: 0;
 `
 
+export const DropdownField = styled.select`
+  width: 100%;
+  margin-left: ${spacing.HALF_BASE_SPACING};
+  border: 0;
+  font-size: 16px;
+  color: ${black};
+  font-family: sans-serif;
+  text-align: left;
+  padding: 0;
+  outline: 0;
+`
+
 export const InputRow = styled.div`
   width: 100%;
   display: flex;
