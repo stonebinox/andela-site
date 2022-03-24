@@ -29,7 +29,7 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `https://andela.com/wp-content/uploads/2021/03/cropped-favicon-192x192.png`, // This path is relative to the root of the site.
       },
     },
     {
@@ -40,7 +40,6 @@ module.exports = {
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    // To learn more, visit: https://gatsby.dev/offline    // `gatsby-plugin-offline`,
   ],
 }
