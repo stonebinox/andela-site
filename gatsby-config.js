@@ -29,7 +29,7 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `https://andela.com/wp-content/uploads/2021/03/cropped-favicon-192x192.png`, // This path is relative to the root of the site.
+        icon: `public/icons/cropped-favicon-192x192.png`,
       },
     },
     {
