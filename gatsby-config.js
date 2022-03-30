@@ -29,7 +29,7 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `public/icons/cropped-favicon-192x192.png`,
+        icon: `src/images/cropped-favicon-192x192.png`,
       },
     },
     {
