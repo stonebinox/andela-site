@@ -197,8 +197,8 @@ const SignupPage = () => {
       <FormContainer>
         <SignupHero>
           {step === 1 && (
-            <div>
-              <img src={Lady1} width="100%" />
+            <div style={{ textAlign: "center" }}>
+              <img src={Lady1} width="70%" style={{ margin: "0 auto" }} />
               <HeroTitle color={opal}>
                 &gt; 40% faster time to hire than internal recruiting
               </HeroTitle>
