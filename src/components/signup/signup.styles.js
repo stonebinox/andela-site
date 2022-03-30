@@ -2,15 +2,15 @@ import styled from "styled-components"
 
 import { spacing } from "../../utils/spacing"
 import {
-  deepBlue,
-  mainOrange,
   white,
-  paleOrange,
   lightestGrey,
   greyWhite,
   black,
   blackLight,
-  blue2,
+  kale,
+  sunset,
+  sand,
+  emarald,
 } from "../../utils/colors"
 import { ReactSVG } from "react-svg"
 
@@ -29,7 +29,7 @@ export const FormContainer = styled.div`
 
 export const SignupHero = styled.div`
   width: ${spacing.customSpacing("484px")};
-  background-color: ${deepBlue};
+  background-color: ${kale};
   height: 100%;
   padding-top: ${spacing.customSpacing("64px")};
 
@@ -75,7 +75,7 @@ export const FocusDot = styled.div`
   height: ${({ selected }) =>
     selected ? spacing.customSpacing("8px") : spacing.customSpacing("6px")};
   border-radius: ${spacing.customSpacing("6px")};
-  background-color: ${({ selected }) => (selected ? mainOrange : paleOrange)};
+  background-color: ${({ selected }) => (selected ? sunset : sand)};
   margin-left: ${spacing.customSpacing("2px")};
   margin-right: ${spacing.customSpacing("2px")};
 
@@ -114,7 +114,7 @@ export const StepProgress = styled.div`
   flex: 1;
   height: ${spacing.customSpacing("5px")};
   border-radius: ${spacing.customSpacing("6px")};
-  background-color: ${({ selected }) => (selected ? mainOrange : lightestGrey)};
+  background-color: ${({ selected }) => (selected ? emarald : lightestGrey)};
   margin-left: ${spacing.QUARTER_BASE_SPACING};
   margin-right: ${spacing.QUARTER_BASE_SPACING};
 
@@ -145,7 +145,7 @@ export const ProblemsContainer = styled.div`
 export const ProblemOption = styled.div`
   width: 100%;
   border: ${({ selected }) =>
-    !selected ? `1px solid ${greyWhite}` : `1px solid ${deepBlue}`};
+    !selected ? `1px solid ${greyWhite}` : `1px solid ${kale}`};
   border-radius: ${spacing.QUARTER_BASE_SPACING};
   padding: ${spacing.customSpacing("12px")} ${spacing.BASE_SPACING};
   display: flex;
@@ -156,7 +156,7 @@ export const ProblemOption = styled.div`
   transition: all 0.2s ease;
 
   &:hover {
-    border: 1px solid ${deepBlue};
+    border: 1px solid ${kale};
   }
 `
 
@@ -189,7 +189,7 @@ export const BaseButton = styled.button`
   padding: ${spacing.HALF_BASE_SPACING} ${spacing.BASE_SPACING};
   background-color: ${black};
   color: ${white};
-  border-radius: ${spacing.QUARTER_BASE_SPACING};
+  border-radius: ${spacing.customSpacing("40px")};
   margin: 0 auto;
   border: 0;
   font-family: sans-serif;
@@ -199,7 +199,7 @@ export const BaseButton = styled.button`
 `
 
 export const PrimarySignupButton = styled(BaseButton)`
-  background-color: ${blue2};
+  background-color: ${emarald};
 `
 
 export const LoadingText = styled.div`
@@ -222,7 +222,7 @@ export const PeopleChoice = styled.div`
   width: ${spacing.customSpacing("128px")};
   height: ${spacing.customSpacing("128px")};
   border: ${({ selected }) =>
-    selected ? `1px solid ${deepBlue}` : `1px solid ${greyWhite}`};
+    selected ? `1px solid ${kale}` : `1px solid ${greyWhite}`};
   border-radius: ${spacing.QUARTER_BASE_SPACING};
   display: flex;
   flex-direction: column;
@@ -235,7 +235,7 @@ export const PeopleChoice = styled.div`
   margin-bottom: ${spacing.customSpacing("36px")};
 
   &:hover {
-    border: 1px solid ${deepBlue};
+    border: 1px solid ${kale};
   }
 `
 
@@ -323,7 +323,7 @@ export const SkillContainer = styled.div`
   height: auto;
   padding: ${spacing.QUARTER_BASE_SPACING} ${spacing.BASE_SPACING};
   border: ${({ selected }) =>
-    selected ? `1px solid ${deepBlue}` : `1px solid ${greyWhite}`};
+    selected ? `1px solid ${kale}` : `1px solid ${greyWhite}`};
   border-radius: ${spacing.QUARTER_BASE_SPACING};
   font-family: sans-serif;
   color: ${black};
