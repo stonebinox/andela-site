@@ -55,7 +55,7 @@ const SignupPage = () => {
         }
 
         if (values.Employee_Range__c === "0 - 50") {
-          window.location = "https://andela.app/"
+          window.location = "https://andela.com/ssp-redirect/"
           return false
         }
 
