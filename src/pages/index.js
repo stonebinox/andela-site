@@ -54,11 +54,6 @@ const SignupPage = () => {
           lead: values,
         }
 
-        if (values.Employee_Range__c === "0 - 50") {
-          window.location = "https://andela.com/ssp-redirect/"
-          return false
-        }
-
         cpData.lead.employee_range__c = values.Employee_Range__c
 
         delete cpData.lead.Employee_Range__c
