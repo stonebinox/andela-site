@@ -31,6 +31,11 @@ import Step5 from "../components/signup/step-5"
 
 import "./skills/style.css"
 
+const tests = [0, 1]
+const selectedTest = tests[Math.floor(Math.random() * tests.length)]
+
+console.log(selectedTest)
+
 const SignupPage = () => {
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState(null)
@@ -72,15 +77,35 @@ const SignupPage = () => {
     switch (step) {
       default:
       case 1:
-        return <Step1 setFormStepAnswer={setFormStepAnswer} />
+        return selectedTest === 0 ? (
+          <Step1 setFormStepAnswer={setFormStepAnswer} />
+        ) : (
+          <Step5 setFormStepAnswer={setFormStepAnswer} />
+        )
       case 2:
-        return <Step2 setFormStepAnswer={setFormStepAnswer} />
+        return selectedTest === 0 ? (
+          <Step2 setFormStepAnswer={setFormStepAnswer} />
+        ) : (
+          <Step1 setFormStepAnswer={setFormStepAnswer} />
+        )
       case 3:
-        return <Step3 setFormStepAnswer={setFormStepAnswer} />
+        return selectedTest === 0 ? (
+          <Step3 setFormStepAnswer={setFormStepAnswer} />
+        ) : (
+          <Step2 setFormStepAnswer={setFormStepAnswer} />
+        )
       case 4:
-        return <Step4 setFormStepAnswer={setFormStepAnswer} />
+        return selectedTest === 0 ? (
+          <Step4 setFormStepAnswer={setFormStepAnswer} />
+        ) : (
+          <Step3 setFormStepAnswer={setFormStepAnswer} />
+        )
       case 5:
-        return <Step5 setFormStepAnswer={setFormStepAnswer} />
+        return selectedTest === 0 ? (
+          <Step5 setFormStepAnswer={setFormStepAnswer} />
+        ) : (
+          <Step4 setFormStepAnswer={setFormStepAnswer} />
+        )
     }
   }
 
