@@ -290,6 +290,7 @@ const Step5 = ({ setFormStepAnswer }) => {
                   type="text"
                   name="firstName"
                   onChange={e => setFirstName(e.target.value)}
+                  label="First name"
                 />
               </InputContainer>
             </InputWrapper>
@@ -301,6 +302,7 @@ const Step5 = ({ setFormStepAnswer }) => {
                   type="text"
                   name="lastName"
                   onChange={e => setLastName(e.target.value)}
+                  label="Last name"
                 />
               </InputContainer>
             </InputWrapper>
@@ -323,6 +325,7 @@ const Step5 = ({ setFormStepAnswer }) => {
               type="text"
               name="company"
               onChange={e => setCompany(e.target.value)}
+              label="Company"
             />
           </InputContainer>
           <InputRow>
@@ -336,6 +339,7 @@ const Step5 = ({ setFormStepAnswer }) => {
                   type="email"
                   name="email"
                   onChange={e => setEmail(e.target.value)}
+                  label="Email"
                 />
               </InputContainer>
             </InputWrapper>
@@ -347,6 +351,7 @@ const Step5 = ({ setFormStepAnswer }) => {
                   type="tel"
                   name="phone"
                   onChange={e => setPhone(e.target.value)}
+                  label="Phone"
                 />
               </InputContainer>
             </InputWrapper>
@@ -363,6 +368,7 @@ const Step5 = ({ setFormStepAnswer }) => {
                   type="url"
                   name="company_url"
                   onChange={e => setCompanyURL(e.target.value)}
+                  label="Company URL"
                 />
               </InputContainer>
             </InputWrapper>
