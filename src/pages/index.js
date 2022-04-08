@@ -22,6 +22,7 @@ import Guy2 from "../images/onboarding/guy-2.png"
 import Guy3 from "../images/onboarding/guy-3.png"
 import Lady4 from "../images/onboarding/lady-4.png"
 import Github5 from "../images/onboarding/github-5.svg"
+import PermalinkImage from "../images/andela-social-share-default.png"
 import { opal } from "../utils/colors"
 import Step1 from "../components/signup/step-1"
 import Step2 from "../components/signup/step-2"
@@ -178,13 +179,11 @@ const SignupPage = () => {
           },
           {
             property: "og:image",
-            content:
-              "https://andela.com/wp-content/uploads/2021/08/Unroll-Image-1200x630-Final.png",
+            content: PermalinkImage,
           },
           {
             property: "og:image:secure_url",
-            content:
-              "https://andela.com/wp-content/uploads/2021/08/Unroll-Image-1200x630-Final.png",
+            content: PermalinkImage,
           },
           {
             property: "og:image:width",
@@ -204,8 +203,7 @@ const SignupPage = () => {
           },
           {
             name: "twitter:image",
-            content:
-              "https://andela.com/wp-content/uploads/2021/08/Unroll-Image-1200x630-Final.png",
+            content: PermalinkImage,
           },
           {
             name: "twitter:creator",
