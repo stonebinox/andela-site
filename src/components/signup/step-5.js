@@ -373,9 +373,10 @@ const Step5 = ({ setFormStepAnswer }) => {
                 <DropdownField
                   name="country"
                   onChange={e => setCountry(e.target.value)}
+                  defaultValue={countries[0]}
                 >
                   {countries.map((country, index) => (
-                    <option key={index} value={country} selected={index === 0}>
+                    <option key={index} value={country}>
                       {country}
                     </option>
                   ))}

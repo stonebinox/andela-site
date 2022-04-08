@@ -22,6 +22,7 @@ import Guy2 from "../images/onboarding/guy-2.png"
 import Guy3 from "../images/onboarding/guy-3.png"
 import Lady4 from "../images/onboarding/lady-4.png"
 import Github5 from "../images/onboarding/github-5.svg"
+import PermalinkImage from "../images/andela-social-share-default.png"
 import { opal } from "../utils/colors"
 import Step1 from "../components/signup/step-1"
 import Step2 from "../components/signup/step-2"
@@ -30,6 +31,9 @@ import Step4 from "../components/signup/step-4"
 import Step5 from "../components/signup/step-5"
 
 import "./skills/style.css"
+
+const tests = [0, 1]
+const selectedTest = tests[Math.floor(Math.random() * tests.length)]
 
 const SignupPage = () => {
   const [loading, setLoading] = useState(false)
@@ -49,6 +53,12 @@ const SignupPage = () => {
       setLoading(false)
 
       finalForm.onSuccess(values => {
+        if (values.Employee_Range__c === "0 - 50") {
+          window.location = "https://andela.com/ssp-redirect/"
+
+          return false
+        }
+
         const cpData = {
           map: true,
           lead: values,
@@ -72,15 +82,35 @@ const SignupPage = () => {
     switch (step) {
       default:
       case 1:
-        return <Step1 setFormStepAnswer={setFormStepAnswer} />
+        return selectedTest === 0 ? (
+          <Step1 setFormStepAnswer={setFormStepAnswer} />
+        ) : (
+          <Step5 setFormStepAnswer={setFormStepAnswer} />
+        )
       case 2:
-        return <Step2 setFormStepAnswer={setFormStepAnswer} />
+        return selectedTest === 0 ? (
+          <Step2 setFormStepAnswer={setFormStepAnswer} />
+        ) : (
+          <Step1 setFormStepAnswer={setFormStepAnswer} />
+        )
       case 3:
-        return <Step3 setFormStepAnswer={setFormStepAnswer} />
+        return selectedTest === 0 ? (
+          <Step3 setFormStepAnswer={setFormStepAnswer} />
+        ) : (
+          <Step2 setFormStepAnswer={setFormStepAnswer} />
+        )
       case 4:
-        return <Step4 setFormStepAnswer={setFormStepAnswer} />
+        return selectedTest === 0 ? (
+          <Step4 setFormStepAnswer={setFormStepAnswer} />
+        ) : (
+          <Step3 setFormStepAnswer={setFormStepAnswer} />
+        )
       case 5:
-        return <Step5 setFormStepAnswer={setFormStepAnswer} />
+        return selectedTest === 0 ? (
+          <Step5 setFormStepAnswer={setFormStepAnswer} />
+        ) : (
+          <Step4 setFormStepAnswer={setFormStepAnswer} />
+        )
     }
   }
 
@@ -91,13 +121,22 @@ const SignupPage = () => {
     })
 
     if (
-      step === 2 &&
-      (answer.Employee_Range__c === "5,000+" ||
-        answer.Employee_Range__c === "0 - 50" ||
-        answer.Employee_Range__c === "1000 - 4999")
+      answer.Employee_Range__c === "5,000+" ||
+      answer.Employee_Range__c === "0 - 50" ||
+      answer.Employee_Range__c === "1000 - 4999"
     ) {
-      setStep(5)
-      return
+      if (selectedTest === 0 && step === 2) {
+        setStep(5)
+        return
+      }
+
+      if (selectedTest === 1 && step === 3) {
+        submitAllData({
+          ...formData,
+          ...answer,
+        })
+        return
+      }
     }
 
     if (step < 5) {
@@ -153,13 +192,11 @@ const SignupPage = () => {
           },
           {
             property: "og:image",
-            content:
-              "https://andela.com/wp-content/uploads/2021/08/Unroll-Image-1200x630-Final.png",
+            content: PermalinkImage,
           },
           {
             property: "og:image:secure_url",
-            content:
-              "https://andela.com/wp-content/uploads/2021/08/Unroll-Image-1200x630-Final.png",
+            content: PermalinkImage,
           },
           {
             property: "og:image:width",
@@ -179,8 +216,7 @@ const SignupPage = () => {
           },
           {
             name: "twitter:image",
-            content:
-              "https://andela.com/wp-content/uploads/2021/08/Unroll-Image-1200x630-Final.png",
+            content: PermalinkImage,
           },
           {
             name: "twitter:creator",
