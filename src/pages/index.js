@@ -35,8 +35,6 @@ import "./skills/style.css"
 const tests = [0, 1]
 const selectedTest = tests[Math.floor(Math.random() * tests.length)]
 
-console.log(selectedTest)
-
 const SignupPage = () => {
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState(null)
@@ -55,6 +53,12 @@ const SignupPage = () => {
       setLoading(false)
 
       finalForm.onSuccess(values => {
+        if (values.Employee_Range__c === "0 - 50") {
+          window.location = "https://andela.com/ssp-redirect/"
+
+          return false
+        }
+
         const cpData = {
           map: true,
           lead: values,
@@ -117,13 +121,22 @@ const SignupPage = () => {
     })
 
     if (
-      step === 2 &&
-      (answer.Employee_Range__c === "5,000+" ||
-        answer.Employee_Range__c === "0 - 50" ||
-        answer.Employee_Range__c === "1000 - 4999")
+      answer.Employee_Range__c === "5,000+" ||
+      answer.Employee_Range__c === "0 - 50" ||
+      answer.Employee_Range__c === "1000 - 4999"
     ) {
-      setStep(5)
-      return
+      if (selectedTest === 0 && step === 2) {
+        setStep(5)
+        return
+      }
+
+      if (selectedTest === 1 && step === 3) {
+        submitAllData({
+          ...formData,
+          ...answer,
+        })
+        return
+      }
     }
 
     if (step < 5) {
