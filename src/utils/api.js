@@ -32,23 +32,6 @@ export const getChiliPiper = () => {
   return window.ChiliPiper
 }
 
-export const getGtag = () => {
-  if (typeof window === "undefined" || !window.dataLayer) return null
-
-  window.dataLayer = window.dataLayer || []
-
-  function gtag() {
-    window.dataLayer.push(arguments)
-  }
-
-  window.gtag = gtag
-
-  gtag("js", new Date())
-  gtag("config", "UA-54977360-1")
-
-  return window.gtag
-}
-
 export const getDataLayer = () => {
   if (typeof window === "undefined" || !window.dataLayer) return null
 
