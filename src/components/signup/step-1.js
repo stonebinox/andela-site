@@ -16,7 +16,7 @@ import Magnify from "../../images/magnify.svg"
 import Bolt from "../../images/bolt.svg"
 import QuestionMark from "../../images/question-mark.svg"
 import { spacing } from "../../utils/spacing"
-import { getGtag } from "../../utils/api"
+import { getDataLayer } from "../../utils/api"
 
 const Step1 = ({ setFormStepAnswer }) => {
   const [problemToSolve, setProblemToSolve] = useState(null)
@@ -38,14 +38,14 @@ const Step1 = ({ setFormStepAnswer }) => {
   }
 
   useEffect(() => {
-    const gtag = getGtag()
+    const dataLayer = getDataLayer()
 
-    if (gtag) {
-      gtag("event", "sign_up", {
-        event_category: "Sign Up Wizard",
-        event_label: "Step 1",
-      })
-    }
+    dataLayer.push({
+      event: "dataLayerEvent",
+      event_category: "Sign Up Wizard",
+      event_action: "sign_up",
+      event_label: "Step 1",
+    })
   }, [])
 
   return (

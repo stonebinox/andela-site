@@ -16,7 +16,7 @@ import Person3 from "../../images/person-3.svg"
 import Person4 from "../../images/person-4.svg"
 import Person5 from "../../images/person-5.svg"
 import { spacing } from "../../utils/spacing"
-import { getGtag } from "../../utils/api"
+import { getDataLayer } from "../../utils/api"
 
 const Step2 = ({ setFormStepAnswer }) => {
   const [answer, setAnswer] = useState(null)
@@ -38,14 +38,14 @@ const Step2 = ({ setFormStepAnswer }) => {
   }
 
   useEffect(() => {
-    const gtag = getGtag()
+    const dataLayer = getDataLayer()
 
-    if (gtag) {
-      gtag("event", "sign_up", {
-        event_category: "Sign Up Wizard",
-        event_label: "Step 2",
-      })
-    }
+    dataLayer.push({
+      event: "dataLayerEvent",
+      event_category: "Sign Up Wizard",
+      event_action: "sign_up",
+      event_label: "Step 2",
+    })
   }, [])
 
   return (

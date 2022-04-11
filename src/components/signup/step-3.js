@@ -18,7 +18,7 @@ import PersonGear from "../../images/person-gear.svg"
 import People from "../../images/people.svg"
 import QuestionMark from "../../images/question-mark.svg"
 import { spacing } from "../../utils/spacing"
-import { getGtag } from "../../utils/api"
+import { getDataLayer } from "../../utils/api"
 
 const SVGHolder = styled.div`
   width: ${spacing.customSpacing("31px")};
@@ -46,14 +46,14 @@ const Step3 = ({ setFormStepAnswer }) => {
   }
 
   useEffect(() => {
-    const gtag = getGtag()
+    const dataLayer = getDataLayer()
 
-    if (gtag) {
-      gtag("event", "sign_up", {
-        event_category: "Sign Up Wizard",
-        event_label: "Step 3",
-      })
-    }
+    dataLayer.push({
+      event: "dataLayerEvent",
+      event_category: "Sign Up Wizard",
+      event_action: "sign_up",
+      event_label: "Step 3",
+    })
   }, [])
 
   return (

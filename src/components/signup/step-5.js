@@ -23,7 +23,7 @@ import Globe from "../../images/globe.svg"
 import Marker from "../../images/marker.svg"
 import Person1 from "../../images/person-1.svg"
 import Code from "../../images/code.svg"
-import { getGtag } from "../../utils/api"
+import { getDataLayer } from "../../utils/api"
 
 const PersonSVG = styled(ReactSVG)`
   width: ${spacing.customSpacing("20px")};
@@ -264,14 +264,14 @@ const Step5 = ({ setFormStepAnswer }) => {
   }
 
   useEffect(() => {
-    const gtag = getGtag()
+    const dataLayer = getDataLayer()
 
-    if (gtag) {
-      gtag("event", "sign_up", {
-        event_category: "Sign Up Wizard",
-        event_label: "Step FINAL",
-      })
-    }
+    dataLayer.push({
+      event: "dataLayerEvent",
+      event_category: "Sign Up Wizard",
+      event_action: "sign_up",
+      event_label: "Step FINAL",
+    })
   }, [])
 
   return (

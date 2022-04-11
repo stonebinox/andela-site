@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { ReactSVG } from "react-svg"
 
 import Seo from "../components/seo"
-import { getChiliPiper, getMarketoForm } from "../utils/api"
+import { getChiliPiper, getDataLayer, getMarketoForm } from "../utils/api"
 import { PageContainer } from "../utils/common.styles"
 import {
   FocusDot,
@@ -53,6 +53,14 @@ const SignupPage = () => {
       setLoading(false)
 
       finalForm.onSuccess(values => {
+        const dataLayer = getDataLayer()
+        dataLayer.push({
+          event: "dataLayerEvent",
+          event_category: "Sign Up Wizard",
+          event_action: "sign_up",
+          event_label: "Success",
+        })
+
         if (values.Employee_Range__c === "0 - 50") {
           window.location = "https://andela.app/"
 
