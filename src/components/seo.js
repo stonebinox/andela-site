@@ -64,10 +64,6 @@ function Seo({ description, lang, meta, title }) {
         type="text/javascript"
         async
       ></script>
-      <script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=UA-54977360-1"
-      ></script>
       <script>{`window.dataLayer = window.dataLayer || [];`}</script>
       <script>{`
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

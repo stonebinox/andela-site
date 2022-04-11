@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from "react"
 import { ReactSVG } from "react-svg"
 
-import { getGtag, getSkills, searchSkills } from "../../utils/api"
+import { getDataLayer, getSkills, searchSkills } from "../../utils/api"
 import { spacing } from "../../utils/spacing"
 import {
   InputContainer,
@@ -149,14 +149,14 @@ const Step4 = ({ setFormStepAnswer }) => {
   useEffect(() => {
     getSkillsData()
 
-    const gtag = getGtag()
+    const dataLayer = getDataLayer()
 
-    if (gtag) {
-      gtag("event", "sign_up", {
-        event_category: "Sign Up Wizard",
-        event_label: "Step 4",
-      })
-    }
+    dataLayer.push({
+      event: "dataLayerEvent",
+      event_category: "Sign Up Wizard",
+      event_action: "sign_up",
+      event_label: "Step 4",
+    })
   }, [])
 
   return (

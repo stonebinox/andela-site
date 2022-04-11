@@ -49,6 +49,14 @@ export const getGtag = () => {
   return window.gtag
 }
 
+export const getDataLayer = () => {
+  if (typeof window === "undefined" || !window.dataLayer) return null
+
+  window.dataLayer = window.dataLayer || []
+
+  return window.dataLayer
+}
+
 export const getSkills = () =>
   fetch(
     "//dev.ejimford.com/andela/signup/api.php?route=get-skills-random&limit=20"
