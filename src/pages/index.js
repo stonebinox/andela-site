@@ -290,7 +290,7 @@ const SignupPage = () => {
               </HeroTitle>
               <HeroDescription>
                 Roadmaps, goals, and plans often change, and many times,
-                full-time hiring, outsourcing don’t offer the flexibility to
+                full-time hiring, outsourcing {"don't"} offer the flexibility to
                 shift teams around. Andela builds embedded teams to support
                 projects, new initiatives, or ongoing non-core functions
               </HeroDescription>
@@ -327,11 +327,11 @@ const SignupPage = () => {
                 <ReactSVG src={Github5} width="100%" />
               </SVGContainer>
               <HeroDescription>
-                “Andela is tapping into an emerging market that other people
+                {`"Andela is tapping into an emerging market that other people
                 have not paid attention to. The data is out there that there
                 will be 100 million developers globally by 2025, and we know
-                that they’re coming from Sub Saharan Africa, Southeast Asia, and
-                Latin America.”
+                that they're coming from Sub Saharan Africa, Southeast Asia, and
+                Latin America."`}
               </HeroDescription>
               <HeroTitle color={opal}>Dana Lawson</HeroTitle>
             </div>
