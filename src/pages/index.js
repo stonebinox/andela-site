@@ -40,6 +40,7 @@ const SignupPage = () => {
   const [formData, setFormData] = useState(null)
   const [step, setStep] = useState(1)
   const [parentForm, setParentForm] = useState(null)
+  const [savedSkills, setSavedSkills] = useState([])
 
   const getForm = () => {
     setLoading(true)
@@ -135,7 +136,12 @@ const SignupPage = () => {
         )
       case 4:
         return selectedTest === 0 ? (
-          <Step4 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
+          <Step4
+            setFormStepAnswer={setFormStepAnswer}
+            goBack={goBack}
+            savedValue={savedSkills}
+            setSavedSkills={setSavedSkills}
+          />
         ) : (
           <Step3
             setFormStepAnswer={setFormStepAnswer}
@@ -151,12 +157,17 @@ const SignupPage = () => {
             goBack={goBack}
           />
         ) : (
-          <Step4 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
+          <Step4
+            setFormStepAnswer={setFormStepAnswer}
+            goBack={goBack}
+            savedValue={savedSkills}
+            setSavedSkills={setSavedSkills}
+          />
         )
     }
   }
 
-  const setFormStepAnswer = answer => {
+  const setFormStepAnswer = (answer, callback = () => null) => {
     setFormData({
       ...formData,
       ...answer,
@@ -191,6 +202,8 @@ const SignupPage = () => {
         ...answer,
       })
     }
+
+    callback()
   }
 
   const submitAllData = formattedForm => {
