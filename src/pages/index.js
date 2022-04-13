@@ -197,6 +197,18 @@ const SignupPage = () => {
   }
 
   const goBack = () => {
+    if (selectedTest === 0) {
+      if (
+        step == 5 &&
+        (formData.Employee_Range__c === "5,000+" ||
+          formData.Employee_Range__c === "0 - 50" ||
+          formData.Employee_Range__c === "1000 - 4999")
+      ) {
+        jumpToStep(2)
+        return
+      }
+    }
+
     jumpToStep(step - 1)
   }
 
