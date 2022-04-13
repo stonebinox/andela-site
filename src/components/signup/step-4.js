@@ -7,6 +7,7 @@ import { ReactSVG } from "react-svg"
 import { getDataLayer, getSkills, searchSkills } from "../../utils/api"
 import { spacing } from "../../utils/spacing"
 import {
+  ButtonContainer,
   InputContainer,
   InputField,
   LoadingText,
@@ -14,6 +15,7 @@ import {
   PrimarySignupButton,
   SearchBar,
   SearchResultsContainer,
+  SecondaryButton,
   SelectedSearchSkillsContainer,
   SkillContainer,
   SkillSearchTitle,
@@ -77,7 +79,7 @@ const Skill = ({
   )
 }
 
-const Step4 = ({ setFormStepAnswer }) => {
+const Step4 = ({ setFormStepAnswer, goBack }) => {
   const [selected, setSelected] = useState([])
   const [loading, setLoading] = useState(false)
   const [skills, setSkills] = useState([])
@@ -189,12 +191,10 @@ const Step4 = ({ setFormStepAnswer }) => {
           </SearchResultsContainer>
         </SearchBar>
       </StepContainer>
-      <PrimarySignupButton
-        onClick={submitAnswer}
-        style={{ marginTop: spacing.customSpacing("64px") }}
-      >
-        Next
-      </PrimarySignupButton>
+      <ButtonContainer>
+        <SecondaryButton onClick={goBack}>Back</SecondaryButton>
+        <PrimarySignupButton onClick={submitAnswer}>Next</PrimarySignupButton>
+      </ButtonContainer>
     </>
   )
 }

@@ -2,10 +2,11 @@
 import React, { useState, useEffect } from "react"
 import { ReactSVG } from "react-svg"
 import {
+  SecondaryButton,
+  ButtonContainer,
   PeopleChoice,
   PeopleChoiceText,
   PeopleContainer,
-  PrimarySignupButton,
   StepContainer,
   StepQuestion,
 } from "./signup.styles"
@@ -15,10 +16,9 @@ import Person2 from "../../images/person-2.svg"
 import Person3 from "../../images/person-3.svg"
 import Person4 from "../../images/person-4.svg"
 import Person5 from "../../images/person-5.svg"
-import { spacing } from "../../utils/spacing"
 import { getDataLayer } from "../../utils/api"
 
-const Step2 = ({ setFormStepAnswer }) => {
+const Step2 = ({ setFormStepAnswer, goBack }) => {
   const [answer, setAnswer] = useState(null)
   const [selectedOption, setSelectedOption] = useState(null)
 
@@ -47,6 +47,10 @@ const Step2 = ({ setFormStepAnswer }) => {
       event_label: "Step 2",
     })
   }, [])
+
+  useEffect(() => {
+    submitAnswer()
+  }, [answer])
 
   return (
     <>
@@ -90,12 +94,9 @@ const Step2 = ({ setFormStepAnswer }) => {
           </PeopleChoice>
         </PeopleContainer>
       </StepContainer>
-      <PrimarySignupButton
-        style={{ marginTop: spacing.customSpacing("64px") }}
-        onClick={submitAnswer}
-      >
-        Next
-      </PrimarySignupButton>
+      <ButtonContainer>
+        <SecondaryButton onClick={goBack}>Back</SecondaryButton>
+      </ButtonContainer>
     </>
   )
 }

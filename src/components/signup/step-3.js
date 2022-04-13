@@ -11,7 +11,8 @@ import {
   ProblemOption,
   ProblemAnswerContainer,
   ProblemAnswerTitle,
-  PrimarySignupButton,
+  ButtonContainer,
+  SecondaryButton,
 } from "./signup.styles"
 import Code from "../../images/code.svg"
 import PersonGear from "../../images/person-gear.svg"
@@ -26,7 +27,7 @@ const SVGHolder = styled.div`
   text-align: center;
 `
 
-const Step3 = ({ setFormStepAnswer }) => {
+const Step3 = ({ setFormStepAnswer, goBack }) => {
   const [selectedOption, setSelectedOption] = useState(null)
   const [answer, setAnswer] = useState(null)
 
@@ -55,6 +56,10 @@ const Step3 = ({ setFormStepAnswer }) => {
       event_label: "Step 3",
     })
   }, [])
+
+  useEffect(() => {
+    submitAnswer()
+  }, [answer])
 
   return (
     <>
@@ -107,12 +112,9 @@ const Step3 = ({ setFormStepAnswer }) => {
           </ProblemOption>
         </ProblemsContainer>
       </StepContainer>
-      <PrimarySignupButton
-        style={{ marginTop: spacing.customSpacing("64px") }}
-        onClick={submitAnswer}
-      >
-        Next
-      </PrimarySignupButton>
+      <ButtonContainer>
+        <SecondaryButton onClick={goBack}>Back</SecondaryButton>
+      </ButtonContainer>
     </>
   )
 }

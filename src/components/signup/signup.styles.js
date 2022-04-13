@@ -190,8 +190,9 @@ export const BaseButton = styled.button`
   background-color: ${black};
   color: ${white};
   border-radius: ${spacing.customSpacing("40px")};
-  margin: 0 auto;
-  border: 0;
+  margin-left: ${spacing.HALF_BASE_SPACING};
+  margin-right: ${spacing.HALF_BASE_SPACING};
+  border: 1px solid rgba(255, 255, 255, 0);
   font-family: sans-serif;
   font-size: 16px;
   cursor: pointer;
@@ -358,4 +359,17 @@ export const SelectedSearchSkillsContainer = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
+`
+
+export const ButtonContainer = styled.div`
+  margin-top: ${spacing.customSpacing("64px")};
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`
+
+export const SecondaryButton = styled(BaseButton)`
+  background-color: rgba(255, 255, 255, 0);
+  color: ${black};
+  border: 1px solid ${black};
 `

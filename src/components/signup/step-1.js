@@ -10,15 +10,15 @@ import {
   ProblemAnswerContainer,
   ProblemAnswerTitle,
   ProblemAnswerDescription,
-  PrimarySignupButton,
+  ButtonContainer,
+  SecondaryButton,
 } from "./signup.styles"
 import Magnify from "../../images/magnify.svg"
 import Bolt from "../../images/bolt.svg"
 import QuestionMark from "../../images/question-mark.svg"
-import { spacing } from "../../utils/spacing"
 import { getDataLayer } from "../../utils/api"
 
-const Step1 = ({ setFormStepAnswer }) => {
+const Step1 = ({ setFormStepAnswer, selectedTest, goBack = null }) => {
   const [problemToSolve, setProblemToSolve] = useState(null)
   const [selectedOption, setSelectedOption] = useState(null)
 
@@ -47,6 +47,10 @@ const Step1 = ({ setFormStepAnswer }) => {
       event_label: "Step 1",
     })
   }, [])
+
+  useEffect(() => {
+    submitAnswer()
+  }, [problemToSolve])
 
   return (
     <>
@@ -92,12 +96,11 @@ const Step1 = ({ setFormStepAnswer }) => {
           </ProblemOption>
         </ProblemsContainer>
       </StepContainer>
-      <PrimarySignupButton
-        onClick={submitAnswer}
-        style={{ marginTop: spacing.customSpacing("64px") }}
-      >
-        Get Started
-      </PrimarySignupButton>
+      {selectedTest === 1 && (
+        <ButtonContainer>
+          <SecondaryButton onClick={goBack}>Back</SecondaryButton>
+        </ButtonContainer>
+      )}
     </>
   )
 }

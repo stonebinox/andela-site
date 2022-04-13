@@ -5,6 +5,7 @@ import styled from "styled-components"
 
 import { spacing } from "../../utils/spacing"
 import {
+  SecondaryButton,
   DropdownField,
   InputContainer,
   InputField,
@@ -15,6 +16,7 @@ import {
   ProblemsContainer,
   StepContainer,
   StepQuestion,
+  ButtonContainer,
 } from "./signup.styles"
 import Company from "../../images/company.svg"
 import Envelope from "../../images/envelope.svg"
@@ -219,7 +221,7 @@ const countries = [
   "Zambia",
 ]
 
-const Step5 = ({ setFormStepAnswer }) => {
+const Step5 = ({ setFormStepAnswer, selectedTest, goBack }) => {
   const [company, setCompany] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
@@ -392,12 +394,12 @@ const Step5 = ({ setFormStepAnswer }) => {
           </InputRow>
         </ProblemsContainer>
       </StepContainer>
-      <PrimarySignupButton
-        onClick={submitAnswer}
-        style={{ marginTop: spacing.customSpacing("64px") }}
-      >
-        Next
-      </PrimarySignupButton>
+      <ButtonContainer>
+        {selectedTest === 0 && (
+          <SecondaryButton onClick={goBack}>Back</SecondaryButton>
+        )}
+        <PrimarySignupButton onClick={submitAnswer}>Next</PrimarySignupButton>
+      </ButtonContainer>
     </>
   )
 }

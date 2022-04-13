@@ -91,33 +91,49 @@ const SignupPage = () => {
       default:
       case 1:
         return selectedTest === 0 ? (
-          <Step1 setFormStepAnswer={setFormStepAnswer} />
+          <Step1
+            setFormStepAnswer={setFormStepAnswer}
+            selectedTest={selectedTest}
+            goBack={goBack}
+          />
         ) : (
-          <Step5 setFormStepAnswer={setFormStepAnswer} />
+          <Step5
+            setFormStepAnswer={setFormStepAnswer}
+            selectedTest={selectedTest}
+            goBack={goBack}
+          />
         )
       case 2:
         return selectedTest === 0 ? (
-          <Step2 setFormStepAnswer={setFormStepAnswer} />
+          <Step2 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
         ) : (
-          <Step1 setFormStepAnswer={setFormStepAnswer} />
+          <Step1
+            setFormStepAnswer={setFormStepAnswer}
+            selectedTest={selectedTest}
+            goBack={goBack}
+          />
         )
       case 3:
         return selectedTest === 0 ? (
-          <Step3 setFormStepAnswer={setFormStepAnswer} />
+          <Step3 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
         ) : (
-          <Step2 setFormStepAnswer={setFormStepAnswer} />
+          <Step2 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
         )
       case 4:
         return selectedTest === 0 ? (
-          <Step4 setFormStepAnswer={setFormStepAnswer} />
+          <Step4 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
         ) : (
-          <Step3 setFormStepAnswer={setFormStepAnswer} />
+          <Step3 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
         )
       case 5:
         return selectedTest === 0 ? (
-          <Step5 setFormStepAnswer={setFormStepAnswer} />
+          <Step5
+            setFormStepAnswer={setFormStepAnswer}
+            selectedTest={selectedTest}
+            goBack={goBack}
+          />
         ) : (
-          <Step4 setFormStepAnswer={setFormStepAnswer} />
+          <Step4 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
         )
     }
   }
@@ -178,6 +194,10 @@ const SignupPage = () => {
     if (step >= index) {
       setStep(index)
     }
+  }
+
+  const goBack = () => {
+    jumpToStep(step - 1)
   }
 
   useEffect(() => {
