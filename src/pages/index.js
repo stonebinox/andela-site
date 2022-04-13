@@ -103,6 +103,16 @@ const SignupPage = () => {
             setFormStepAnswer={setFormStepAnswer}
             selectedTest={selectedTest}
             goBack={goBack}
+            savedValue={{
+              company: formData?.Company,
+              email: formData?.Email,
+              phone: formData?.Phone,
+              country: formData?.Country,
+              firstName: formData?.FirstName,
+              lastName: formData?.LastName,
+              title: formData?.Title,
+              companyURL: formData?.Company_Website__c,
+            }}
           />
         )
       case 2:
@@ -155,6 +165,16 @@ const SignupPage = () => {
             setFormStepAnswer={setFormStepAnswer}
             selectedTest={selectedTest}
             goBack={goBack}
+            savedValue={{
+              company: formData?.Company,
+              email: formData?.Email,
+              phone: formData?.Phone,
+              country: formData?.Country,
+              firstName: formData?.FirstName,
+              lastName: formData?.LastName,
+              title: formData?.Title,
+              companyURL: formData?.Company_Website__c,
+            }}
           />
         ) : (
           <Step4

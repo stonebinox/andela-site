@@ -221,7 +221,7 @@ const countries = [
   "Zambia",
 ]
 
-const Step5 = ({ setFormStepAnswer, selectedTest, goBack }) => {
+const Step5 = ({ setFormStepAnswer, selectedTest, goBack, savedValue }) => {
   const [company, setCompany] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
@@ -244,7 +244,8 @@ const Step5 = ({ setFormStepAnswer, selectedTest, goBack }) => {
     )
       valid = false
     if (phone.trim() === "") valid = false
-    if (country.trim() === "") valid = false
+    if (country.trim() === "" || country.trim() === "Select country ...")
+      valid = false
 
     if (!valid) {
       alert("Please enter valid content in the form.")
@@ -274,6 +275,15 @@ const Step5 = ({ setFormStepAnswer, selectedTest, goBack }) => {
       event_action: "sign_up",
       event_label: "Step FINAL",
     })
+
+    setCompany(savedValue?.company ?? "")
+    setEmail(savedValue?.email ?? "")
+    setPhone(savedValue?.phone ?? "")
+    setCountry(savedValue?.country ?? "Select country ...")
+    setFirstName(savedValue?.firstName ?? "")
+    setLastName(savedValue?.lastName ?? "")
+    setTitle(savedValue?.title ?? "")
+    setCompanyURL(savedValue?.companyURL ?? "")
   }, [])
 
   return (
@@ -293,6 +303,7 @@ const Step5 = ({ setFormStepAnswer, selectedTest, goBack }) => {
                   name="firstName"
                   onChange={e => setFirstName(e.target.value)}
                   label="First name"
+                  value={firstName}
                 />
               </InputContainer>
             </InputWrapper>
@@ -305,6 +316,7 @@ const Step5 = ({ setFormStepAnswer, selectedTest, goBack }) => {
                   name="lastName"
                   onChange={e => setLastName(e.target.value)}
                   label="Last name"
+                  value={lastName}
                 />
               </InputContainer>
             </InputWrapper>
@@ -316,6 +328,7 @@ const Step5 = ({ setFormStepAnswer, selectedTest, goBack }) => {
               type="text"
               name="title"
               onChange={e => setTitle(e.target.value)}
+              value={title}
             />
           </InputContainer>
           <InputLabel style={{ marginTop: spacing.BASE_SPACING }}>
@@ -328,6 +341,7 @@ const Step5 = ({ setFormStepAnswer, selectedTest, goBack }) => {
               name="company"
               onChange={e => setCompany(e.target.value)}
               label="Company"
+              value={company}
             />
           </InputContainer>
           <InputRow>
@@ -342,6 +356,7 @@ const Step5 = ({ setFormStepAnswer, selectedTest, goBack }) => {
                   name="email"
                   onChange={e => setEmail(e.target.value)}
                   label="Email"
+                  value={email}
                 />
               </InputContainer>
             </InputWrapper>
@@ -354,6 +369,7 @@ const Step5 = ({ setFormStepAnswer, selectedTest, goBack }) => {
                   name="phone"
                   onChange={e => setPhone(e.target.value)}
                   label="Phone"
+                  value={phone}
                 />
               </InputContainer>
             </InputWrapper>
@@ -371,6 +387,7 @@ const Step5 = ({ setFormStepAnswer, selectedTest, goBack }) => {
                   name="company_url"
                   onChange={e => setCompanyURL(e.target.value)}
                   label="Company URL"
+                  value={companyURL}
                 />
               </InputContainer>
             </InputWrapper>
@@ -381,11 +398,11 @@ const Step5 = ({ setFormStepAnswer, selectedTest, goBack }) => {
                 <DropdownField
                   name="country"
                   onChange={e => setCountry(e.target.value)}
-                  defaultValue={countries[0]}
+                  value={country !== "" ? country : countries[0]}
                 >
-                  {countries.map((country, index) => (
-                    <option key={index} value={country}>
-                      {country}
+                  {countries.map((countryName, index) => (
+                    <option key={index} value={countryName}>
+                      {countryName}
                     </option>
                   ))}
                 </DropdownField>
