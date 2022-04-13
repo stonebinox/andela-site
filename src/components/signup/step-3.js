@@ -27,9 +27,35 @@ const SVGHolder = styled.div`
   text-align: center;
 `
 
-const Step3 = ({ setFormStepAnswer, goBack }) => {
+const options = [
+  {
+    key: 1,
+    value: "Engineer",
+    svg: <ReactSVG src={Code} width={20} height={10} />,
+  },
+  {
+    key: 2,
+    value: "Product Manager",
+    svg: <ReactSVG src={PersonGear} width={20} height={17} />,
+  },
+  {
+    key: 3,
+    value: "Project Manager",
+    svg: <ReactSVG src={People} width={31} height={16} />,
+  },
+  {
+    key: 4,
+    value: "I'm not sure, I need help",
+    svg: <ReactSVG src={QuestionMark} width={11} height={17} />,
+  },
+]
+
+const Step3 = ({ setFormStepAnswer, goBack, savedValue }) => {
   const [selectedOption, setSelectedOption] = useState(null)
   const [answer, setAnswer] = useState(null)
+
+  const savedKey =
+    options.find(option => option.value === savedValue)?.key ?? null
 
   const submitAnswer = () => {
     if (!answer) return
@@ -55,6 +81,10 @@ const Step3 = ({ setFormStepAnswer, goBack }) => {
       event_action: "sign_up",
       event_label: "Step 3",
     })
+
+    if (savedKey) {
+      setSelectedOption(savedKey)
+    }
   }, [])
 
   useEffect(() => {
@@ -66,50 +96,18 @@ const Step3 = ({ setFormStepAnswer, goBack }) => {
       <StepContainer>
         <StepQuestion>What type of role are you looking to fill?</StepQuestion>
         <ProblemsContainer>
-          <ProblemOption
-            selected={selectedOption === 1}
-            onClick={() => selectAnswer("Engineer", 1)}
-          >
-            <SVGHolder>
-              <ReactSVG src={Code} width={20} height={10} />
-            </SVGHolder>
-            <ProblemAnswerContainer>
-              <ProblemAnswerTitle>Engineer</ProblemAnswerTitle>
-            </ProblemAnswerContainer>
-          </ProblemOption>
-          <ProblemOption
-            selected={selectedOption === 2}
-            onClick={() => selectAnswer("Product Manager", 2)}
-          >
-            <SVGHolder>
-              <ReactSVG src={PersonGear} width={20} height={17} />
-            </SVGHolder>
-            <ProblemAnswerContainer>
-              <ProblemAnswerTitle>Product Manager</ProblemAnswerTitle>
-            </ProblemAnswerContainer>
-          </ProblemOption>
-          <ProblemOption
-            selected={selectedOption === 3}
-            onClick={() => selectAnswer("Project Manager", 3)}
-          >
-            <SVGHolder>
-              <ReactSVG src={People} width={31} height={16} />
-            </SVGHolder>
-            <ProblemAnswerContainer>
-              <ProblemAnswerTitle>Project Manager</ProblemAnswerTitle>
-            </ProblemAnswerContainer>
-          </ProblemOption>
-          <ProblemOption
-            selected={selectedOption === 4}
-            onClick={() => selectAnswer("I'm not sure, I need help", 4)}
-          >
-            <SVGHolder>
-              <ReactSVG src={QuestionMark} width={11} height={17} />
-            </SVGHolder>
-            <ProblemAnswerContainer>
-              <ProblemAnswerTitle>I'm not sure, I need help</ProblemAnswerTitle>
-            </ProblemAnswerContainer>
-          </ProblemOption>
+          {options.map(option => (
+            <ProblemOption
+              selected={selectedOption === option.key}
+              onClick={() => selectAnswer(option.value, option.key)}
+              key={option.key}
+            >
+              <SVGHolder>{option.svg}</SVGHolder>
+              <ProblemAnswerContainer>
+                <ProblemAnswerTitle>{option.value}</ProblemAnswerTitle>
+              </ProblemAnswerContainer>
+            </ProblemOption>
+          ))}
         </ProblemsContainer>
       </StepContainer>
       <ButtonContainer>
