@@ -7,6 +7,7 @@ import { ReactSVG } from "react-svg"
 import { getDataLayer, getSkills, searchSkills } from "../../utils/api"
 import { spacing } from "../../utils/spacing"
 import {
+  ButtonContainer,
   InputContainer,
   InputField,
   LoadingText,
@@ -14,6 +15,7 @@ import {
   PrimarySignupButton,
   SearchBar,
   SearchResultsContainer,
+  SecondaryButton,
   SelectedSearchSkillsContainer,
   SkillContainer,
   SkillSearchTitle,
@@ -34,12 +36,14 @@ const Skill = ({
 
   const toggleSelected = skill => {
     const selectedSkills = selected.slice()
+    const position = selectedSkills.findIndex(
+      selectedSkill => selectedSkill.skill_name === skill.skill_name
+    )
 
-    if (!selectedSkills.includes(skill)) {
+    if (position === -1) {
       selectedSkills.push(skill)
     } else {
-      const skillPosition = selectedSkills.indexOf(skill)
-      selectedSkills.splice(skillPosition, 1)
+      selectedSkills.splice(position, 1)
     }
 
     setSelected(selectedSkills)
@@ -66,23 +70,24 @@ const Skill = ({
   return (
     <SkillContainer
       onClick={() => {
-        toggleSelected(skill_name)
+        toggleSelected(skill)
 
         if (fromSearch) toggleSearchSelected(skill)
       }}
-      selected={selected.includes(skill_name)}
+      selected={selected.some(s => s.skill_name === skill_name)}
     >
       {skill_label}
     </SkillContainer>
   )
 }
 
-const Step4 = ({ setFormStepAnswer }) => {
+const Step4 = ({ setFormStepAnswer, goBack, savedValue, setSavedSkills }) => {
   const [selected, setSelected] = useState([])
   const [loading, setLoading] = useState(false)
   const [skills, setSkills] = useState([])
   const [searchList, setSearchList] = useState([])
   const [selectedSearchSkills, setSelectedSearchSkills] = useState([])
+  const [selectedSkillObjects, setSelectedSkillObjects] = useState([])
 
   const getSkillsData = () => {
     try {
@@ -114,11 +119,17 @@ const Step4 = ({ setFormStepAnswer }) => {
   }
 
   const submitAnswer = () => {
-    const finalAnswer = selected.join("|")
+    const skillNames = selected.map(skill => skill.skill_name)
+    const finalAnswer = skillNames.join("|")
 
-    setFormStepAnswer({
-      interestedSkillSets: finalAnswer,
-    })
+    setFormStepAnswer(
+      {
+        interestedSkillSets: finalAnswer,
+      },
+      () => {
+        setSavedSkills(selected)
+      }
+    )
   }
 
   const getResults = text => {
@@ -137,7 +148,7 @@ const Step4 = ({ setFormStepAnswer }) => {
         data.forEach(skill => {
           const { skill_name } = skill
 
-          if (!selectedSkills.includes(skill_name)) {
+          if (!selectedSkills.some(s => s.skill_name === skill_name)) {
             results.push(skill)
           }
         })
@@ -157,6 +168,11 @@ const Step4 = ({ setFormStepAnswer }) => {
       event_action: "sign_up",
       event_label: "Step 4",
     })
+
+    if (savedValue) {
+      setSelected(savedValue)
+      setSelectedSearchSkills(savedValue)
+    }
   }, [])
 
   return (
@@ -189,12 +205,10 @@ const Step4 = ({ setFormStepAnswer }) => {
           </SearchResultsContainer>
         </SearchBar>
       </StepContainer>
-      <PrimarySignupButton
-        onClick={submitAnswer}
-        style={{ marginTop: spacing.customSpacing("64px") }}
-      >
-        Next
-      </PrimarySignupButton>
+      <ButtonContainer>
+        <SecondaryButton onClick={goBack}>Back</SecondaryButton>
+        <PrimarySignupButton onClick={submitAnswer}>Next</PrimarySignupButton>
+      </ButtonContainer>
     </>
   )
 }

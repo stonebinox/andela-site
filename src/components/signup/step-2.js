@@ -2,10 +2,11 @@
 import React, { useState, useEffect } from "react"
 import { ReactSVG } from "react-svg"
 import {
+  SecondaryButton,
+  ButtonContainer,
   PeopleChoice,
   PeopleChoiceText,
   PeopleContainer,
-  PrimarySignupButton,
   StepContainer,
   StepQuestion,
 } from "./signup.styles"
@@ -15,12 +16,47 @@ import Person2 from "../../images/person-2.svg"
 import Person3 from "../../images/person-3.svg"
 import Person4 from "../../images/person-4.svg"
 import Person5 from "../../images/person-5.svg"
-import { spacing } from "../../utils/spacing"
 import { getDataLayer } from "../../utils/api"
 
-const Step2 = ({ setFormStepAnswer }) => {
+const options = [
+  {
+    key: 1,
+    value: "0 - 50",
+    description: "Less than 50",
+    svg: <ReactSVG src={Person1} width={35} height={35} />,
+  },
+  {
+    key: 2,
+    value: "51 - 499",
+    description: "51 - 499",
+    svg: <ReactSVG src={Person2} width={67} height={53} />,
+  },
+  {
+    key: 3,
+    value: "500 - 999",
+    description: "500 - 999",
+    svg: <ReactSVG src={Person3} width={67} height={55} />,
+  },
+  {
+    key: 4,
+    value: "1000 - 4999",
+    description: "1000 - 4999",
+    svg: <ReactSVG src={Person4} width={67} height={63} />,
+  },
+  {
+    key: 5,
+    value: "5,000+",
+    description: "5,000+",
+    svg: <ReactSVG src={Person5} width={84} height={48} />,
+  },
+]
+
+const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
   const [answer, setAnswer] = useState(null)
   const [selectedOption, setSelectedOption] = useState(null)
+
+  const savedKey =
+    options.find(option => option.value === savedValue)?.key ?? null
 
   const selectAnswer = (answerText, index) => {
     setAnswer(answerText)
@@ -46,56 +82,36 @@ const Step2 = ({ setFormStepAnswer }) => {
       event_action: "sign_up",
       event_label: "Step 2",
     })
+
+    if (savedKey) {
+      setSelectedOption(savedKey)
+    }
   }, [])
+
+  useEffect(() => {
+    submitAnswer()
+  }, [answer])
 
   return (
     <>
       <StepContainer>
         <StepQuestion>How big is your company?</StepQuestion>
         <PeopleContainer>
-          <PeopleChoice
-            selected={selectedOption === 1}
-            onClick={() => selectAnswer("0 - 50", 1)}
-          >
-            <ReactSVG src={Person1} width={35} height={35} />
-            <PeopleChoiceText>Less than 50</PeopleChoiceText>
-          </PeopleChoice>
-          <PeopleChoice
-            selected={selectedOption === 2}
-            onClick={() => selectAnswer("51 - 499", 2)}
-          >
-            <ReactSVG src={Person2} width={67} height={53} />
-            <PeopleChoiceText>51 to 499</PeopleChoiceText>
-          </PeopleChoice>
-          <PeopleChoice
-            selected={selectedOption === 3}
-            onClick={() => selectAnswer("500 - 999", 3)}
-          >
-            <ReactSVG src={Person3} width={67} height={55} />
-            <PeopleChoiceText>500 to 999</PeopleChoiceText>
-          </PeopleChoice>
-          <PeopleChoice
-            selected={selectedOption === 4}
-            onClick={() => selectAnswer("1000 - 4999", 4)}
-          >
-            <ReactSVG src={Person4} width={67} height={63} />
-            <PeopleChoiceText>1000 to 5000</PeopleChoiceText>
-          </PeopleChoice>
-          <PeopleChoice
-            selected={selectedOption === 5}
-            onClick={() => selectAnswer("5,000+", 5)}
-          >
-            <ReactSVG src={Person5} width={84} height={48} />
-            <PeopleChoiceText>5,000+</PeopleChoiceText>
-          </PeopleChoice>
+          {options.map(option => (
+            <PeopleChoice
+              selected={selectedOption === option.key}
+              onClick={() => selectAnswer(option.value, option.key)}
+              key={option.key}
+            >
+              {option.svg}
+              <PeopleChoiceText>{option.description}</PeopleChoiceText>
+            </PeopleChoice>
+          ))}
         </PeopleContainer>
       </StepContainer>
-      <PrimarySignupButton
-        style={{ marginTop: spacing.customSpacing("64px") }}
-        onClick={submitAnswer}
-      >
-        Next
-      </PrimarySignupButton>
+      <ButtonContainer>
+        <SecondaryButton onClick={goBack}>Back</SecondaryButton>
+      </ButtonContainer>
     </>
   )
 }

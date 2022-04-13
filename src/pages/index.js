@@ -40,6 +40,7 @@ const SignupPage = () => {
   const [formData, setFormData] = useState(null)
   const [step, setStep] = useState(1)
   const [parentForm, setParentForm] = useState(null)
+  const [savedSkills, setSavedSkills] = useState([])
 
   const getForm = () => {
     setLoading(true)
@@ -91,38 +92,102 @@ const SignupPage = () => {
       default:
       case 1:
         return selectedTest === 0 ? (
-          <Step1 setFormStepAnswer={setFormStepAnswer} />
+          <Step1
+            setFormStepAnswer={setFormStepAnswer}
+            selectedTest={selectedTest}
+            goBack={goBack}
+            savedValue={formData?.useCase}
+          />
         ) : (
-          <Step5 setFormStepAnswer={setFormStepAnswer} />
+          <Step5
+            setFormStepAnswer={setFormStepAnswer}
+            selectedTest={selectedTest}
+            goBack={goBack}
+            savedValue={{
+              company: formData?.Company,
+              email: formData?.Email,
+              phone: formData?.Phone,
+              country: formData?.Country,
+              firstName: formData?.FirstName,
+              lastName: formData?.LastName,
+              title: formData?.Title,
+              companyURL: formData?.Company_Website__c,
+            }}
+          />
         )
       case 2:
         return selectedTest === 0 ? (
-          <Step2 setFormStepAnswer={setFormStepAnswer} />
+          <Step2
+            setFormStepAnswer={setFormStepAnswer}
+            goBack={goBack}
+            savedValue={formData?.Employee_Range__c}
+          />
         ) : (
-          <Step1 setFormStepAnswer={setFormStepAnswer} />
+          <Step1
+            setFormStepAnswer={setFormStepAnswer}
+            selectedTest={selectedTest}
+            goBack={goBack}
+            savedValue={formData?.useCase}
+          />
         )
       case 3:
         return selectedTest === 0 ? (
-          <Step3 setFormStepAnswer={setFormStepAnswer} />
+          <Step3
+            setFormStepAnswer={setFormStepAnswer}
+            goBack={goBack}
+            savedValue={formData?.interestedJobRoles}
+          />
         ) : (
-          <Step2 setFormStepAnswer={setFormStepAnswer} />
+          <Step2
+            setFormStepAnswer={setFormStepAnswer}
+            goBack={goBack}
+            savedValue={formData?.Employee_Range__c}
+          />
         )
       case 4:
         return selectedTest === 0 ? (
-          <Step4 setFormStepAnswer={setFormStepAnswer} />
+          <Step4
+            setFormStepAnswer={setFormStepAnswer}
+            goBack={goBack}
+            savedValue={savedSkills}
+            setSavedSkills={setSavedSkills}
+          />
         ) : (
-          <Step3 setFormStepAnswer={setFormStepAnswer} />
+          <Step3
+            setFormStepAnswer={setFormStepAnswer}
+            goBack={goBack}
+            savedValue={formData?.interestedJobRoles}
+          />
         )
       case 5:
         return selectedTest === 0 ? (
-          <Step5 setFormStepAnswer={setFormStepAnswer} />
+          <Step5
+            setFormStepAnswer={setFormStepAnswer}
+            selectedTest={selectedTest}
+            goBack={goBack}
+            savedValue={{
+              company: formData?.Company,
+              email: formData?.Email,
+              phone: formData?.Phone,
+              country: formData?.Country,
+              firstName: formData?.FirstName,
+              lastName: formData?.LastName,
+              title: formData?.Title,
+              companyURL: formData?.Company_Website__c,
+            }}
+          />
         ) : (
-          <Step4 setFormStepAnswer={setFormStepAnswer} />
+          <Step4
+            setFormStepAnswer={setFormStepAnswer}
+            goBack={goBack}
+            savedValue={savedSkills}
+            setSavedSkills={setSavedSkills}
+          />
         )
     }
   }
 
-  const setFormStepAnswer = answer => {
+  const setFormStepAnswer = (answer, callback = () => null) => {
     setFormData({
       ...formData,
       ...answer,
@@ -157,6 +222,8 @@ const SignupPage = () => {
         ...answer,
       })
     }
+
+    callback()
   }
 
   const submitAllData = formattedForm => {
@@ -178,6 +245,22 @@ const SignupPage = () => {
     if (step >= index) {
       setStep(index)
     }
+  }
+
+  const goBack = () => {
+    if (selectedTest === 0) {
+      if (
+        step == 5 &&
+        (formData.Employee_Range__c === "5,000+" ||
+          formData.Employee_Range__c === "0 - 50" ||
+          formData.Employee_Range__c === "1000 - 4999")
+      ) {
+        jumpToStep(2)
+        return
+      }
+    }
+
+    jumpToStep(step - 1)
   }
 
   useEffect(() => {
@@ -258,7 +341,7 @@ const SignupPage = () => {
               </HeroTitle>
               <HeroDescription>
                 Roadmaps, goals, and plans often change, and many times,
-                full-time hiring, outsourcing don’t offer the flexibility to
+                full-time hiring, outsourcing {"don't"} offer the flexibility to
                 shift teams around. Andela builds embedded teams to support
                 projects, new initiatives, or ongoing non-core functions
               </HeroDescription>
@@ -295,11 +378,11 @@ const SignupPage = () => {
                 <ReactSVG src={Github5} width="100%" />
               </SVGContainer>
               <HeroDescription>
-                “Andela is tapping into an emerging market that other people
+                {`"Andela is tapping into an emerging market that other people
                 have not paid attention to. The data is out there that there
                 will be 100 million developers globally by 2025, and we know
-                that they’re coming from Sub Saharan Africa, Southeast Asia, and
-                Latin America.”
+                that they're coming from Sub Saharan Africa, Southeast Asia, and
+                Latin America."`}
               </HeroDescription>
               <HeroTitle color={opal}>Dana Lawson</HeroTitle>
             </div>
