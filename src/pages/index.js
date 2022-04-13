@@ -106,7 +106,11 @@ const SignupPage = () => {
         )
       case 2:
         return selectedTest === 0 ? (
-          <Step2 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
+          <Step2
+            setFormStepAnswer={setFormStepAnswer}
+            goBack={goBack}
+            savedValue={formData?.Employee_Range__c}
+          />
         ) : (
           <Step1
             setFormStepAnswer={setFormStepAnswer}
@@ -119,7 +123,11 @@ const SignupPage = () => {
         return selectedTest === 0 ? (
           <Step3 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
         ) : (
-          <Step2 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
+          <Step2
+            setFormStepAnswer={setFormStepAnswer}
+            goBack={goBack}
+            savedValue={formData?.Employee_Range__c}
+          />
         )
       case 4:
         return selectedTest === 0 ? (

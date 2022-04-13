@@ -44,7 +44,7 @@ const options = [
 const Step1 = ({
   setFormStepAnswer,
   selectedTest,
-  goBack = null,
+  goBack,
   savedValue = null,
 }) => {
   const [problemToSolve, setProblemToSolve] = useState(null)
