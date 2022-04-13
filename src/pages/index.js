@@ -112,7 +112,7 @@ const SignupPage = () => {
             setFormStepAnswer={setFormStepAnswer}
             selectedTest={selectedTest}
             goBack={goBack}
-            savedValue={formData?.problemToSolve}
+            savedValue={formData?.useCase}
           />
         )
       case 3:
