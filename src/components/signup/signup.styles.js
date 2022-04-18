@@ -117,8 +117,6 @@ export const StepProgress = styled.div`
   background-color: ${({ selected }) => (selected ? emarald : lightestGrey)};
   margin-left: ${spacing.QUARTER_BASE_SPACING};
   margin-right: ${spacing.QUARTER_BASE_SPACING};
-
-  ${({ selected }) => selected && `cursor: pointer;`}
 `
 
 export const StepContainer = styled.div`
