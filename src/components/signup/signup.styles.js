@@ -371,3 +371,10 @@ export const SecondaryButton = styled(BaseButton)`
   color: ${black};
   border: 1px solid ${black};
 `
+
+export const HeroLogo = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  width: 50%;
+`

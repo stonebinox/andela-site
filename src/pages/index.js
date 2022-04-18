@@ -16,6 +16,7 @@ import {
   StepProgressContainer,
   LoadingText,
   SVGContainer,
+  HeroLogo,
 } from "../components/signup/signup.styles"
 import Lady1 from "../images/onboarding/lady-1.png"
 import Guy2 from "../images/onboarding/guy-2.png"
@@ -23,6 +24,7 @@ import Guy3 from "../images/onboarding/guy-3.png"
 import Lady4 from "../images/onboarding/lady-4.png"
 import Github5 from "../images/onboarding/github-5.svg"
 import PermalinkImage from "../images/andela-social-share-default.png"
+import AndelaWhite from "../images/andela-logo-white.png"
 import { opal } from "../utils/colors"
 import Step1 from "../components/signup/step-1"
 import Step2 from "../components/signup/step-2"
@@ -317,6 +319,9 @@ const SignupPage = () => {
       />
       <FormContainer>
         <SignupHero>
+          <HeroLogo>
+            <img src={AndelaWhite} />
+          </HeroLogo>
           {step === 1 && (
             <div style={{ textAlign: "center" }}>
               <img src={Lady1} width="70%" style={{ margin: "0 auto" }} />
