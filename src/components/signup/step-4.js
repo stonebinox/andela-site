@@ -81,7 +81,13 @@ const Skill = ({
   )
 }
 
-const Step4 = ({ setFormStepAnswer, goBack, savedValue, setSavedSkills }) => {
+const Step4 = ({
+  setFormStepAnswer,
+  goBack,
+  savedValue,
+  setSavedSkills,
+  eventVariant,
+}) => {
   const [selected, setSelected] = useState([])
   const [loading, setLoading] = useState(false)
   const [skills, setSkills] = useState([])
@@ -166,7 +172,7 @@ const Step4 = ({ setFormStepAnswer, goBack, savedValue, setSavedSkills }) => {
       event: "dataLayerEvent",
       event_category: "Sign Up Wizard",
       event_action: "sign_up",
-      event_label: "Step 4",
+      event_label: `${eventVariant}: Step 4`,
     })
 
     if (savedValue) {

@@ -50,7 +50,7 @@ const options = [
   },
 ]
 
-const Step3 = ({ setFormStepAnswer, goBack, savedValue }) => {
+const Step3 = ({ setFormStepAnswer, goBack, savedValue, eventVariant }) => {
   const [selectedOption, setSelectedOption] = useState(null)
   const [answer, setAnswer] = useState(null)
 
@@ -63,6 +63,14 @@ const Step3 = ({ setFormStepAnswer, goBack, savedValue }) => {
     const finalAnswer = {
       interestedJobRoles: answer,
     }
+
+    const dataLayer = getDataLayer()
+    dataLayer?.push({
+      event: "dataLayerEvent",
+      event_category: "Sign Up Wizard",
+      event_action: "sign_up",
+      event_label: `${eventVariant}: Step 3 - ${answer}`,
+    })
 
     setFormStepAnswer(finalAnswer)
   }
@@ -79,7 +87,7 @@ const Step3 = ({ setFormStepAnswer, goBack, savedValue }) => {
       event: "dataLayerEvent",
       event_category: "Sign Up Wizard",
       event_action: "sign_up",
-      event_label: "Step 3",
+      event_label: `${eventVariant}: Step 3`,
     })
 
     if (savedKey) {

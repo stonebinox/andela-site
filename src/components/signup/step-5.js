@@ -221,7 +221,13 @@ const countries = [
   "Zambia",
 ]
 
-const Step5 = ({ setFormStepAnswer, selectedTest, goBack, savedValue }) => {
+const Step5 = ({
+  setFormStepAnswer,
+  selectedTest,
+  goBack,
+  savedValue,
+  eventVariant,
+}) => {
   const [company, setCompany] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
@@ -273,7 +279,7 @@ const Step5 = ({ setFormStepAnswer, selectedTest, goBack, savedValue }) => {
       event: "dataLayerEvent",
       event_category: "Sign Up Wizard",
       event_action: "sign_up",
-      event_label: "Step FINAL",
+      event_label: `${eventVariant}: Step FINAL`,
     })
 
     setCompany(savedValue?.company ?? "")

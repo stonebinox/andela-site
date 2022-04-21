@@ -46,6 +46,7 @@ const Step1 = ({
   selectedTest,
   goBack,
   savedValue = null,
+  eventVariant,
 }) => {
   const [problemToSolve, setProblemToSolve] = useState(null)
   const [selectedOption, setSelectedOption] = useState(null)
@@ -60,6 +61,14 @@ const Step1 = ({
       useCase: problemToSolve,
     }
 
+    const dataLayer = getDataLayer()
+    dataLayer?.push({
+      event: "dataLayerEvent",
+      event_category: "Sign Up Wizard",
+      event_action: "sign_up",
+      event_label: `${eventVariant}: Step 1 - ${problemToSolve}`,
+    })
+
     setFormStepAnswer(answer)
   }
 
@@ -70,12 +79,11 @@ const Step1 = ({
 
   useEffect(() => {
     const dataLayer = getDataLayer()
-
-    dataLayer.push({
+    dataLayer?.push({
       event: "dataLayerEvent",
       event_category: "Sign Up Wizard",
       event_action: "sign_up",
-      event_label: "Step 1",
+      event_label: `${eventVariant}: Step 1`,
     })
 
     if (savedKey) {
