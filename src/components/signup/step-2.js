@@ -51,7 +51,12 @@ const options = [
   },
 ]
 
-const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
+const Step2 = ({
+  setFormStepAnswer,
+  goBack,
+  savedValue = null,
+  eventVariant,
+}) => {
   const [answer, setAnswer] = useState(null)
   const [selectedOption, setSelectedOption] = useState(null)
 
@@ -70,6 +75,14 @@ const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
       Employee_Range__c: answer,
     }
 
+    const dataLayer = getDataLayer()
+    dataLayer?.push({
+      event: "dataLayerEvent",
+      event_category: "Sign Up Wizard",
+      event_action: "sign_up",
+      event_label: `${eventVariant}: Step 2 - ${answer}`,
+    })
+
     setFormStepAnswer(finalAnswer)
   }
 
@@ -80,7 +93,7 @@ const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
       event: "dataLayerEvent",
       event_category: "Sign Up Wizard",
       event_action: "sign_up",
-      event_label: "Step 2",
+      event_label: `${eventVariant}: Step 2`,
     })
 
     if (savedKey) {

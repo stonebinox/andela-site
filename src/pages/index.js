@@ -38,6 +38,7 @@ import "./skills/style.css"
 
 const tests = [0, 1]
 const selectedTest = tests[Math.floor(Math.random() * tests.length)]
+const eventVariant = selectedTest === 0 ? "A" : "B"
 
 const SignupPage = () => {
   const [loading, setLoading] = useState(false)
@@ -63,7 +64,7 @@ const SignupPage = () => {
           event: "dataLayerEvent",
           event_category: "Sign Up Wizard",
           event_action: "sign_up",
-          event_label: "Success",
+          event_label: `${eventVariant}: Success`,
         })
 
         if (values.Employee_Range__c === "0 - 50") {
@@ -109,6 +110,7 @@ const SignupPage = () => {
           <Step1
             setFormStepAnswer={setFormStepAnswer}
             selectedTest={selectedTest}
+            eventVariant={eventVariant}
             goBack={goBack}
             savedValue={formData?.useCase}
           />
@@ -116,6 +118,7 @@ const SignupPage = () => {
           <Step5
             setFormStepAnswer={setFormStepAnswer}
             selectedTest={selectedTest}
+            eventVariant={eventVariant}
             goBack={goBack}
             savedValue={{
               company: formData?.Company,
@@ -135,6 +138,7 @@ const SignupPage = () => {
             setFormStepAnswer={setFormStepAnswer}
             goBack={goBack}
             savedValue={formData?.Employee_Range__c}
+            eventVariant={eventVariant}
           />
         ) : (
           <Step1
@@ -142,6 +146,7 @@ const SignupPage = () => {
             selectedTest={selectedTest}
             goBack={goBack}
             savedValue={formData?.useCase}
+            eventVariant={eventVariant}
           />
         )
       case 3:
@@ -150,12 +155,14 @@ const SignupPage = () => {
             setFormStepAnswer={setFormStepAnswer}
             goBack={goBack}
             savedValue={formData?.interestedJobRoles}
+            eventVariant={eventVariant}
           />
         ) : (
           <Step2
             setFormStepAnswer={setFormStepAnswer}
             goBack={goBack}
             savedValue={formData?.Employee_Range__c}
+            eventVariant={eventVariant}
           />
         )
       case 4:
@@ -165,12 +172,14 @@ const SignupPage = () => {
             goBack={goBack}
             savedValue={savedSkills}
             setSavedSkills={setSavedSkills}
+            eventVariant={eventVariant}
           />
         ) : (
           <Step3
             setFormStepAnswer={setFormStepAnswer}
             goBack={goBack}
             savedValue={formData?.interestedJobRoles}
+            eventVariant={eventVariant}
           />
         )
       case 5:
@@ -178,6 +187,7 @@ const SignupPage = () => {
           <Step5
             setFormStepAnswer={setFormStepAnswer}
             selectedTest={selectedTest}
+            eventVariant={eventVariant}
             goBack={goBack}
             savedValue={{
               company: formData?.Company,
@@ -196,6 +206,7 @@ const SignupPage = () => {
             goBack={goBack}
             savedValue={savedSkills}
             setSavedSkills={setSavedSkills}
+            eventVariant={eventVariant}
           />
         )
     }
