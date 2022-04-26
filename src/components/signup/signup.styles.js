@@ -388,3 +388,20 @@ export const HeroLogoMobile = styled(HeroLogo)`
     margin-top: ${spacing.BASE_SPACING};
   }
 `
+
+export const ConditionContainer = styled.div`
+  text-align: center;
+  margin: 0 auto;
+  margin-top: ${spacing.BASE_SPACING};
+  margin-bottom: ${spacing.BASE_SPACING};
+  max-width: ${spacing.customSpacing("520px")};
+`
+
+export const ConditionText = styled(InputLabel)`
+  font-size: 12px;
+  text-align: left;
+`
+
+export const Link = styled.a`
+  color: ${black};
+`

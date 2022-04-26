@@ -87,6 +87,7 @@ const Step4 = ({
   savedValue,
   setSavedSkills,
   eventVariant,
+  selectedTest,
 }) => {
   const [selected, setSelected] = useState([])
   const [loading, setLoading] = useState(false)

@@ -17,6 +17,9 @@ import {
   StepContainer,
   StepQuestion,
   ButtonContainer,
+  ConditionContainer,
+  Link,
+  ConditionText,
 } from "./signup.styles"
 import Company from "../../images/company.svg"
 import Envelope from "../../images/envelope.svg"
@@ -236,6 +239,8 @@ const Step5 = ({
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [title, setTitle] = useState("")
+  const [termsAccepted, setTermsAccepted] = useState(false)
+  const [policyAccepted, setPolicyAccepted] = useState(false)
 
   const submitAnswer = () => {
     let valid = true
@@ -252,6 +257,7 @@ const Step5 = ({
     if (phone.trim() === "") valid = false
     if (country.trim() === "" || country.trim() === "Select country ...")
       valid = false
+    if (selectedTest === 0 && (!termsAccepted || !policyAccepted)) valid = false
 
     if (!valid) {
       alert("Please enter valid content in the form.")
@@ -417,11 +423,41 @@ const Step5 = ({
           </InputRow>
         </ProblemsContainer>
       </StepContainer>
-      <ButtonContainer>
+      {selectedTest === 0 && (
+        <ConditionContainer>
+          <ConditionText>
+            <input
+              type="checkbox"
+              onChange={e => setTermsAccepted(e.currentTarget.checked)}
+            />{" "}
+            I agree to {`Andela's`}{" "}
+            <Link
+              href="https://andela.com/andela-terms-conditions/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Terms & Conditions
+            </Link>
+          </ConditionText>
+          <ConditionText>
+            <input
+              type="checkbox"
+              onChange={e => setPolicyAccepted(e.currentTarget.checked)}
+            />{" "}
+            I understand that Andela will process my information in accordance
+            with their{" "}
+            <Link href="https://andela.com/privacy">Privacy Policy</Link>. I may
+            withdraw my consent through unsubscribe links at any time.
+          </ConditionText>
+        </ConditionContainer>
+      )}
+      <ButtonContainer style={selectedTest === 0 ? { marginTop: 0 } : null}>
         {selectedTest === 0 && (
           <SecondaryButton onClick={goBack}>Back</SecondaryButton>
         )}
-        <PrimarySignupButton onClick={submitAnswer}>Next</PrimarySignupButton>
+        <PrimarySignupButton onClick={submitAnswer}>
+          {selectedTest === 0 ? "Submit" : "Next"}
+        </PrimarySignupButton>
       </ButtonContainer>
     </>
   )
