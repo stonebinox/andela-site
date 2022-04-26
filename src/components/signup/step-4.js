@@ -21,6 +21,9 @@ import {
   SkillSearchTitle,
   StepContainer,
   StepQuestion,
+  ConditionContainer,
+  ConditionText,
+  Link,
 } from "./signup.styles"
 import Magnify from "../../images/magnify.svg"
 
@@ -87,6 +90,7 @@ const Step4 = ({
   savedValue,
   setSavedSkills,
   eventVariant,
+  selectedTest,
 }) => {
   const [selected, setSelected] = useState([])
   const [loading, setLoading] = useState(false)
@@ -94,6 +98,8 @@ const Step4 = ({
   const [searchList, setSearchList] = useState([])
   const [selectedSearchSkills, setSelectedSearchSkills] = useState([])
   const [selectedSkillObjects, setSelectedSkillObjects] = useState([])
+  const [termsAccepted, setTermsAccepted] = useState(false)
+  const [policyAccepted, setPolicyAccepted] = useState(false)
 
   const getSkillsData = () => {
     try {
@@ -127,6 +133,18 @@ const Step4 = ({
   const submitAnswer = () => {
     const skillNames = selected.map(skill => skill.skill_name)
     const finalAnswer = skillNames.join("|")
+
+    if (finalAnswer?.trim() === "") {
+      alert("Please select at least one skill.")
+      return
+    }
+
+    if (selectedTest === 1 && (!termsAccepted || !policyAccepted)) {
+      alert(
+        "Please accept our Terms and Conditions and Privacy Policy before proceeding."
+      )
+      return
+    }
 
     setFormStepAnswer(
       {
@@ -211,7 +229,35 @@ const Step4 = ({
           </SearchResultsContainer>
         </SearchBar>
       </StepContainer>
-      <ButtonContainer>
+      {selectedTest === 1 && (
+        <ConditionContainer>
+          <ConditionText>
+            <input
+              type="checkbox"
+              onChange={e => setTermsAccepted(e.currentTarget.checked)}
+            />{" "}
+            I agree to {`Andela's`}{" "}
+            <Link
+              href="https://andela.com/andela-terms-conditions/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Terms & Conditions
+            </Link>
+          </ConditionText>
+          <ConditionText>
+            <input
+              type="checkbox"
+              onChange={e => setPolicyAccepted(e.currentTarget.checked)}
+            />{" "}
+            I understand that Andela will process my information in accordance
+            with their{" "}
+            <Link href="https://andela.com/privacy">Privacy Policy</Link>. I may
+            withdraw my consent through unsubscribe links at any time.
+          </ConditionText>
+        </ConditionContainer>
+      )}
+      <ButtonContainer style={selectedTest === 1 ? { marginTop: 0 } : null}>
         <SecondaryButton onClick={goBack}>Back</SecondaryButton>
         <PrimarySignupButton onClick={submitAnswer}>Next</PrimarySignupButton>
       </ButtonContainer>

@@ -173,6 +173,7 @@ const SignupPage = () => {
             savedValue={savedSkills}
             setSavedSkills={setSavedSkills}
             eventVariant={eventVariant}
+            selectedTest={selectedTest}
           />
         ) : (
           <Step3
@@ -207,6 +208,7 @@ const SignupPage = () => {
             savedValue={savedSkills}
             setSavedSkills={setSavedSkills}
             eventVariant={eventVariant}
+            selectedTest={selectedTest}
           />
         )
     }
