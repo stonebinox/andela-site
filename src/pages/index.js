@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { ReactSVG } from "react-svg"
+import FullStory from "react-fullstory"
 
 import Seo from "../components/seo"
 import { getChiliPiper, getDataLayer, getMarketoForm } from "../utils/api"
@@ -341,6 +342,12 @@ const SignupPage = () => {
             content: "@andela",
           },
         ]}
+      />
+      <FullStory
+        org="o-19G5ER-na1"
+        namespace="FS"
+        debug={false}
+        host="fullstory.com"
       />
       <FormContainer>
         <SignupHero>
