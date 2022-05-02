@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 import { lightEmerald, emarald, blackLight, white } from "../../utils/colors"
 import { spacing } from "../../utils/spacing"
+import { InputWrapper } from "../signup/signup.styles"
 
 export const HeroDescription = styled.div`
   color: ${white};
@@ -39,4 +40,21 @@ export const InputLabel = styled.div`
   text-align: left;
   margin-left: ${spacing.customSpacing("12px")};
   margin-top: ${spacing.BASE_SPACING};
+`
+
+export const SearchBar = styled(InputWrapper)`
+  max-width: ${spacing.customSpacing("520px")};
+  margin: 0 auto;
+  margin-top: ${spacing.BASE_SPACING};
+  margin-bottom: ${spacing.DOUBLE_BASE_SPACING};
+`
+
+export const YearsContainer = styled.div`
+  margin: 0 auto;
+  width: 100%;
+  max-width: ${spacing.customSpacing("600px")};
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: ${spacing.DOUBLE_BASE_SPACING};
 `

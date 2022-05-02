@@ -26,6 +26,7 @@ import {
   HeroTitle,
 } from "../components/talent-signup/talent-signup.styles"
 import Step1 from "../components/talent-signup/step-1"
+import Step2 from "../components/talent-signup/step-2"
 
 const TalentSignupPage = () => {
   const [loading, setLoading] = useState(false)
@@ -47,7 +48,19 @@ const TalentSignupPage = () => {
       default:
       case 1:
         return <Step1 setFormStepAnswer={setFormStepAnswer} />
+      case 2:
+        return <Step2 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
     }
+  }
+
+  const jumpToStep = index => {
+    if (step >= index) {
+      setStep(index)
+    }
+  }
+
+  const goBack = () => {
+    jumpToStep(step - 1)
   }
 
   const setFormStepAnswer = answer => {
