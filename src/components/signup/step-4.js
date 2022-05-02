@@ -219,6 +219,7 @@ const Step4 = ({
               name="skill-search"
               type="search"
               onChange={e => getResults(e.target.value)}
+              placeholder="Search for skills"
             />
           </InputContainer>
           <SelectedSearchSkillsContainer>
