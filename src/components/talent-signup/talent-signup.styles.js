@@ -1,15 +1,10 @@
 import styled from "styled-components"
 
-import {
-  mediumGrey,
-  lightEmerald,
-  emarald,
-  blackLight,
-} from "../../utils/colors"
+import { lightEmerald, emarald, blackLight, white } from "../../utils/colors"
 import { spacing } from "../../utils/spacing"
 
 export const HeroDescription = styled.div`
-  color: ${mediumGrey};
+  color: ${white};
   font-size: 16px;
   font-family: sans-serif;
   max-width: ${spacing.customSpacing("325px")};

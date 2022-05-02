@@ -6,7 +6,12 @@ import PermalinkImage from "../images/andela-social-share-default.png"
 import AndelaWhite from "../images/andela-logo-white.png"
 import AndelaDark from "../images/andela-logo-dark.png"
 import Guy1 from "../images/onboarding/talent-guy-1.png"
+import Guy2 from "../images/onboarding/talent-guy-2.png"
+import Lady3 from "../images/onboarding/talent-lady-3.png"
+import Guy4 from "../images/onboarding/talent-guy-4.png"
 import {
+  FocusDot,
+  FocusDotContainer,
   FormContainer,
   HeroLogo,
   HeroLogoMobile,
@@ -120,6 +125,43 @@ const TalentSignupPage = () => {
               </HeroDescription>
             </div>
           )}
+          {step === 2 && (
+            <div style={{ textAlign: "center" }}>
+              <img src={Guy2} width="70%" style={{ margin: "0 auto" }} />
+              <HeroTitle>Work from anywhere</HeroTitle>
+              <HeroDescription>
+                Fully remote, forever. With remote roles across multiple time
+                zones, you choose where and when you work, creating a healthy,
+                flexible work-life balance.
+              </HeroDescription>
+            </div>
+          )}
+          {step === 3 && (
+            <div style={{ textAlign: "center" }}>
+              <img src={Lady3} width="70%" style={{ margin: "0 auto" }} />
+              <HeroTitle>Fully supported</HeroTitle>
+              <HeroDescription>
+                Wherever you are and whatever issues you may face, we’re here to
+                help solve any challenges, fast!
+              </HeroDescription>
+            </div>
+          )}
+          {step === 4 && (
+            <div style={{ textAlign: "center" }}>
+              <img src={Guy4} width="70%" style={{ margin: "0 auto" }} />
+              <HeroTitle>Your future awaits</HeroTitle>
+              <HeroDescription>
+                {`You're`} one step closer to finding your next role, advancing
+                your career, and connecting with other talented technologists!
+              </HeroDescription>
+            </div>
+          )}
+          <FocusDotContainer>
+            <FocusDot selected={step === 1} />
+            <FocusDot selected={step === 2} />
+            <FocusDot selected={step === 3} />
+            <FocusDot selected={step === 4} />
+          </FocusDotContainer>
         </SignupHero>
         <MainContainer>
           <HeroLogoMobile>
