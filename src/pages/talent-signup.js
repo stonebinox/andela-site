@@ -45,13 +45,50 @@ const TalentSignupPage = () => {
     }
   }
 
+  const getSkillObjectsFromSavedSkills = () => {
+    const skills = []
+
+    formData?.primarySkills?.split("|")?.forEach(skill => {
+      skills.push({
+        skill_label: skill
+          .replace(/-/g, " ")
+          .toLowerCase()
+          .replace(/\b[a-z]/g, function (letter) {
+            return letter.toUpperCase()
+          }),
+        skill_name: skill,
+      })
+    })
+
+    return skills
+  }
+
   const getStep = () => {
     switch (step) {
       default:
       case 1:
-        return <Step1 setFormStepAnswer={setFormStepAnswer} />
+        return (
+          <Step1
+            setFormStepAnswer={setFormStepAnswer}
+            savedValue={{
+              firstName: formData?.FirstName,
+              lastName: formData?.LastName,
+              email: formData?.Email,
+              country: formData?.Country,
+            }}
+          />
+        )
       case 2:
-        return <Step2 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
+        return (
+          <Step2
+            setFormStepAnswer={setFormStepAnswer}
+            goBack={goBack}
+            savedValue={{
+              selected: getSkillObjectsFromSavedSkills(),
+              yearsOfExperience: formData?.yearsOfExperience ?? null,
+            }}
+          />
+        )
       case 3:
         return <Step3 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
       case 4:

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { ReactSVG } from "react-svg"
 import styled from "styled-components"
 
@@ -32,7 +32,7 @@ const PersonSVG = styled(ReactSVG)`
   margin-right: ${spacing.QUARTER_BASE_SPACING};
 `
 
-const Step1 = ({ setFormStepAnswer }) => {
+const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
   const [country, setCountry] = useState("")
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
@@ -65,6 +65,13 @@ const Step1 = ({ setFormStepAnswer }) => {
 
     setFormStepAnswer(finalAnswer)
   }
+
+  useEffect(() => {
+    setFirstName(savedValue?.firstName ?? "")
+    setLastName(savedValue?.lastName ?? "")
+    setEmail(savedValue?.email ?? "")
+    setCountry(savedValue?.country ?? "Select...")
+  }, [])
 
   return (
     <>

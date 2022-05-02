@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { spacing } from "../../utils/spacing"
 import Search from "../search/search"
 import {
@@ -43,7 +43,7 @@ const options = [
   },
 ]
 
-const Step2 = ({ setFormStepAnswer, goBack }) => {
+const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
   const [selected, setSelected] = useState([])
   const [searchList, setSearchList] = useState([])
   const [yearsOfExperience, setYearsOfExperience] = useState(null)
@@ -80,6 +80,11 @@ const Step2 = ({ setFormStepAnswer, goBack }) => {
       yearsOfExperience,
     })
   }
+
+  useEffect(() => {
+    setSelected(savedValue?.selected)
+    setYearsOfExperience(savedValue?.yearsOfExperience ?? null)
+  }, [])
 
   return (
     <>
