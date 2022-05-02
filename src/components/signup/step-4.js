@@ -26,6 +26,7 @@ import {
   Link,
 } from "./signup.styles"
 import Magnify from "../../images/magnify.svg"
+import Search from "../search/search"
 
 const Skill = ({
   skill,
@@ -213,15 +214,7 @@ const Step4 = ({
           Can't find your desired skill above?
         </SkillSearchTitle>
         <SearchBar>
-          <InputContainer>
-            <ReactSVG src={Magnify} width={15} height={15} />
-            <InputField
-              name="skill-search"
-              type="search"
-              onChange={e => getResults(e.target.value)}
-              placeholder="Search for skills"
-            />
-          </InputContainer>
+          <Search selected={selected} setSearchList={setSearchList} />
           <SelectedSearchSkillsContainer>
             {renderSkills(selectedSearchSkills, true)}
           </SelectedSearchSkillsContainer>
