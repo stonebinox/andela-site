@@ -1,6 +1,12 @@
 import styled from "styled-components"
 
-import { lightEmerald, emarald, blackLight, white } from "../../utils/colors"
+import {
+  lightEmerald,
+  emarald,
+  blackLight,
+  white,
+  black,
+} from "../../utils/colors"
 import { spacing } from "../../utils/spacing"
 import { InputWrapper } from "../signup/signup.styles"
 
@@ -23,10 +29,13 @@ export const HeroTitle = styled.div`
 export const StepQuestion = styled.div`
   text-align: center;
   font-family: serif;
-  font-size: 24px;
+  font-size: ${({ large }) => (!large ? "24px" : "52px")};
   font-weight: 400;
-  max-width: ${spacing.customSpacing("420px")};
+  max-width: ${({ large }) =>
+    !large ? spacing.customSpacing("420px") : spacing.customSpacing("520px")};
   margin: 0 auto;
+
+  ${({ large }) => large && `line-height: 60px;`}
 `
 
 export const Highlight = styled.span`
@@ -58,4 +67,13 @@ export const YearsContainer = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   margin-top: ${spacing.DOUBLE_BASE_SPACING};
+`
+
+export const PlainText = styled.div`
+  font-size: 17px;
+  color: ${black};
+  text-align: center;
+  font-family: sans-serif;
+  max-width: 70%;
+  margin: 0 auto;
 `

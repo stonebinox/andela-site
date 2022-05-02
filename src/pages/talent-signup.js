@@ -28,6 +28,7 @@ import {
 import Step1 from "../components/talent-signup/step-1"
 import Step2 from "../components/talent-signup/step-2"
 import Step3 from "../components/talent-signup/step-3"
+import Step4 from "../components/talent-signup/step-4"
 
 const TalentSignupPage = () => {
   const [loading, setLoading] = useState(false)
@@ -53,6 +54,8 @@ const TalentSignupPage = () => {
         return <Step2 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
       case 3:
         return <Step3 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
+      case 4:
+        return <Step4 />
     }
   }
 
@@ -71,6 +74,8 @@ const TalentSignupPage = () => {
       ...formData,
       ...answer,
     })
+
+    // check if step3 complete and submit to marketo
 
     if (step < 4) {
       setStep(step + 1)
