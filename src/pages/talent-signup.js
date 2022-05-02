@@ -4,19 +4,57 @@ import Seo from "../components/seo"
 import { PageContainer } from "../utils/common.styles"
 import PermalinkImage from "../images/andela-social-share-default.png"
 import AndelaWhite from "../images/andela-logo-white.png"
+import AndelaDark from "../images/andela-logo-dark.png"
 import Guy1 from "../images/onboarding/talent-guy-1.png"
 import {
   FormContainer,
   HeroLogo,
-  HeroTitle,
+  HeroLogoMobile,
+  LoadingText,
+  MainContainer,
   SignupHero,
+  StepProgress,
+  StepProgressContainer,
 } from "../components/signup/signup.styles"
-import { HeroDescription } from "../components/talent-signup/talent-signup.styles"
-import { lightEmarald } from "../utils/colors"
+import {
+  HeroDescription,
+  HeroTitle,
+} from "../components/talent-signup/talent-signup.styles"
+import Step1 from "../components/talent-signup/step-1"
 
 const TalentSignupPage = () => {
   const [loading, setLoading] = useState(false)
   const [step, setStep] = useState(1)
+  const [formData, setFormData] = useState(null)
+
+  const confirmPageRefresh = () => {
+    if (
+      confirm(
+        "Are you sure you want to continue? You will lose any unsaved selections."
+      )
+    ) {
+      window.location.reload(true)
+    }
+  }
+
+  const getStep = () => {
+    switch (step) {
+      default:
+      case 1:
+        return <Step1 setFormStepAnswer={setFormStepAnswer} />
+    }
+  }
+
+  const setFormStepAnswer = answer => {
+    setFormData({
+      ...formData,
+      ...answer,
+    })
+
+    if (step < 4) {
+      setStep(step + 1)
+    }
+  }
 
   return (
     <PageContainer>
@@ -68,13 +106,13 @@ const TalentSignupPage = () => {
       />
       <FormContainer>
         <SignupHero>
-          <HeroLogo>
-            <img src={AndelaWhite} />
+          <HeroLogo onClick={confirmPageRefresh}>
+            <img src={AndelaWhite} alt="Logo" />
           </HeroLogo>
           {step === 1 && (
             <div style={{ textAlign: "center" }}>
               <img src={Guy1} width="70%" style={{ margin: "0 auto" }} />
-              <HeroTitle color={lightEmarald}>Reliable jobs</HeroTitle>
+              <HeroTitle>Reliable jobs</HeroTitle>
               <HeroDescription>
                 We only work with trusted, vetted companies. Our team works
                 globally to eliminate fraud or illegal activity, ensuring the
@@ -83,6 +121,18 @@ const TalentSignupPage = () => {
             </div>
           )}
         </SignupHero>
+        <MainContainer>
+          <HeroLogoMobile>
+            <img src={AndelaDark} />
+          </HeroLogoMobile>
+          <StepProgressContainer>
+            <StepProgress selected={step >= 1} />
+            <StepProgress selected={step >= 2} />
+            <StepProgress selected={step >= 3} />
+            <StepProgress selected={step >= 4} />
+          </StepProgressContainer>
+          {!loading ? getStep() : <LoadingText>Loading ...</LoadingText>}
+        </MainContainer>
       </FormContainer>
     </PageContainer>
   )
