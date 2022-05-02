@@ -17,6 +17,7 @@ export const HeroTitle = styled.div`
   font-family: serif;
   font-size: 32px;
   margin-bottom: ${spacing.BASE_SPACING};
+  margin-top: ${spacing.BASE_SPACING};
 `
 
 export const StepQuestion = styled.div`

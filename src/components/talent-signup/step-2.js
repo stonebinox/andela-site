@@ -39,7 +39,7 @@ const options = [
   },
   {
     key: 4,
-    value: "10 years",
+    value: "> 10 years",
   },
 ]
 
@@ -74,8 +74,6 @@ const Step2 = ({ setFormStepAnswer, goBack }) => {
       alert("Please select your years of experience.")
       return
     }
-
-    console.log(finalAnswer)
 
     setFormStepAnswer({
       primarySkills: finalAnswer,

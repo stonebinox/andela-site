@@ -27,6 +27,7 @@ import {
 } from "../components/talent-signup/talent-signup.styles"
 import Step1 from "../components/talent-signup/step-1"
 import Step2 from "../components/talent-signup/step-2"
+import Step3 from "../components/talent-signup/step-3"
 
 const TalentSignupPage = () => {
   const [loading, setLoading] = useState(false)
@@ -50,6 +51,8 @@ const TalentSignupPage = () => {
         return <Step1 setFormStepAnswer={setFormStepAnswer} />
       case 2:
         return <Step2 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
+      case 3:
+        return <Step3 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
     }
   }
 
