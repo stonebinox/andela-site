@@ -15,7 +15,7 @@ import {
   SecondaryButton,
   StepContainer,
 } from "../signup/signup.styles"
-import { StepQuestion } from "./talent-signup.styles"
+import { InputLabel, StepQuestion } from "./talent-signup.styles"
 import Code from "../../images/code.svg"
 import People from "../../images/people.svg"
 
@@ -54,6 +54,7 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
       <StepContainer>
         <StepQuestion>More about you</StepQuestion>
         <ProblemsContainer>
+          <InputLabel>English proficiency</InputLabel>
           <InputContainer>
             <ReactSVG src={Code} />
             <DropdownField
@@ -67,12 +68,12 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
               ))}
             </DropdownField>
           </InputContainer>
+          <InputLabel>Referred by (first and last name)</InputLabel>
           <InputContainer>
             <ReactSVG src={People} />
             <InputField
               type="text"
               name="referrer"
-              placeholder="Referred by (first and last name)"
               value={referrer}
               onChange={e => setReferrer(e.currentTarget.value)}
             />
