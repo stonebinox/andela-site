@@ -66,6 +66,7 @@ export const YearsContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  flex-wrap: wrap;
   margin-top: ${spacing.DOUBLE_BASE_SPACING};
 `
 
