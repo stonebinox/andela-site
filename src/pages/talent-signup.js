@@ -35,6 +35,7 @@ const TalentSignupPage = () => {
   const [loading, setLoading] = useState(false)
   const [step, setStep] = useState(1)
   const [formData, setFormData] = useState(null)
+  const [parentForm, setParentForm] = useState(null)
 
   const getForm = () => {
     setLoading(true)
@@ -48,7 +49,13 @@ const TalentSignupPage = () => {
     form?.loadForm("//hire.andela.com", "449-UCH-555", 1055, finalForm => {
       setLoading(false)
 
-      console.log(finalForm.vals())
+      finalForm.onSuccess(values => {
+        console.log(values)
+        jumpToStep(4)
+        return false
+      })
+
+      setParentForm(finalForm)
     })
   }
 
@@ -117,8 +124,22 @@ const TalentSignupPage = () => {
 
     // check if step3 complete and submit to marketo
 
-    if (step < 4) {
+    if (step < 3) {
       setStep(step + 1)
+    }
+
+    if (step >= 3) {
+      submitAllData(formData)
+    }
+  }
+
+  const submitAllData = formattedForm => {
+    parentForm.vals(formattedForm)
+
+    if (parentForm.validate()) {
+      parentForm.submit()
+    } else {
+      alert("Invalid/incomplete data provided. Please verify and re-try.")
     }
   }
 
