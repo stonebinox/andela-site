@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import Seo from "../components/seo"
 import { PageContainer } from "../utils/common.styles"
@@ -29,11 +29,28 @@ import Step1 from "../components/talent-signup/step-1"
 import Step2 from "../components/talent-signup/step-2"
 import Step3 from "../components/talent-signup/step-3"
 import Step4 from "../components/talent-signup/step-4"
+import { getMarketoForm } from "../utils/api"
 
 const TalentSignupPage = () => {
   const [loading, setLoading] = useState(false)
   const [step, setStep] = useState(1)
   const [formData, setFormData] = useState(null)
+
+  const getForm = () => {
+    setLoading(true)
+    const form = getMarketoForm()
+
+    if (!form) {
+      setTimeout(() => getForm(), 500)
+      return
+    }
+
+    form?.loadForm("//hire.andela.com", "449-UCH-555", 1055, finalForm => {
+      setLoading(false)
+
+      console.log(finalForm.vals())
+    })
+  }
 
   const confirmPageRefresh = () => {
     if (
@@ -66,11 +83,12 @@ const TalentSignupPage = () => {
             setFormStepAnswer={setFormStepAnswer}
             goBack={goBack}
             savedValue={{
-              selected: formData?.primarySkills && {
-                skill_label: formData?.primarySkills,
-                skill_name: formData?.primarySkills,
+              selected: formData?.tLMostProficientAndelaSupportedFramework && {
+                skill_label: formData?.tLMostProficientAndelaSupportedFramework,
+                skill_name: formData?.tLMostProficientAndelaSupportedFramework,
               },
-              yearsOfExperience: formData?.yearsOfExperience ?? null,
+              yearsOfExperience:
+                formData?.tLYearsofExperienceontheFramework ?? null,
             }}
           />
         )
@@ -103,6 +121,10 @@ const TalentSignupPage = () => {
       setStep(step + 1)
     }
   }
+
+  useEffect(() => {
+    getForm()
+  }, [])
 
   return (
     <PageContainer>

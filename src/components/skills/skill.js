@@ -39,7 +39,7 @@ const Skill = ({
 
         if (fromSearch) toggleSearchSelected(skill)
       }}
-      selected={selected.find(skill => skill.skill_name === skill_name)}
+      selected={selected.find(skill => skill?.skill_name === skill_name)}
     >
       {skill_label}
     </SkillContainer>

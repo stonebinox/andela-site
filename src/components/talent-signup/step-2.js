@@ -79,8 +79,8 @@ const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
     }
 
     setFormStepAnswer({
-      primarySkills: skillName,
-      yearsOfExperience,
+      tLMostProficientAndelaSupportedFramework: skillName,
+      tLYearsofExperienceontheFramework: yearsOfExperience,
     })
   }
 

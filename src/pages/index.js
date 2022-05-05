@@ -54,6 +54,7 @@ const SignupPage = () => {
 
     if (!form) {
       setTimeout(() => getForm(), 500)
+      return
     }
 
     form?.loadForm("//hire.andela.com", "449-UCH-555", 1699, finalForm => {
