@@ -61,8 +61,8 @@ export const searchLocalSkills = text => {
     const { skill_label, skill_name } = skill
 
     if (
-      skill_label.toLowerCase().search(text.toLowerCase()) !== -1 ||
-      skill_name.toLowerCase().search(text.toLowerCase()) !== -1
+      skill_label.toLowerCase()?.search(text.toLowerCase()) !== -1 ||
+      skill_name.toLowerCase()?.search(text.toLowerCase()) !== -1
     ) {
       results.push(skill)
     }

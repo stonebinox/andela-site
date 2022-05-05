@@ -49,8 +49,7 @@ const TalentSignupPage = () => {
     form?.loadForm("//hire.andela.com", "449-UCH-555", 1055, finalForm => {
       setLoading(false)
 
-      finalForm.onSuccess(values => {
-        console.log(values)
+      finalForm.onSuccess(() => {
         jumpToStep(4)
         return false
       })
@@ -107,9 +106,7 @@ const TalentSignupPage = () => {
   }
 
   const jumpToStep = index => {
-    if (step >= index) {
-      setStep(index)
-    }
+    setStep(index)
   }
 
   const goBack = () => {
