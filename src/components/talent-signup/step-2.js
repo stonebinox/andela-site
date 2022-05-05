@@ -23,7 +23,7 @@ import {
 const options = [
   {
     key: 0,
-    value: "< 1 year",
+    value: "<1 year",
   },
   {
     key: 1,
@@ -39,7 +39,7 @@ const options = [
   },
   {
     key: 4,
-    value: "> 10 years",
+    value: ">10 years",
   },
 ]
 
