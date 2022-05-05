@@ -44,28 +44,31 @@ const options = [
 ]
 
 const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
-  const [selected, setSelected] = useState([])
+  const [selected, setSelected] = useState(null)
   const [searchList, setSearchList] = useState([])
   const [yearsOfExperience, setYearsOfExperience] = useState(null)
+
+  const onSkillSelect = skill => {
+    setSelected(skill)
+  }
 
   const renderSkills = skillList => {
     return skillList.map((skill, index) => (
       <Skill
         key={index}
         skill={skill}
-        setSelected={setSelected}
-        selected={selected}
+        selected={[selected]}
         fromSearch
-        selectedSearchSkills={selected}
+        selectedSearchSkills={[selected]}
+        onClick={onSkillSelect}
       />
     ))
   }
 
   const submitAnswer = () => {
-    const skillNames = selected.map(skill => skill.skill_name)
-    const finalAnswer = skillNames.join("|")
+    const skillName = selected.skill_name
 
-    if (finalAnswer?.trim() === "") {
+    if (skillName?.trim() === "") {
       alert("Please select at least one skill.")
       return
     }
@@ -76,7 +79,7 @@ const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
     }
 
     setFormStepAnswer({
-      primarySkills: finalAnswer,
+      primarySkills: skillName,
       yearsOfExperience,
     })
   }
@@ -94,9 +97,9 @@ const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
             Select your <Highlight>primary</Highlight> skills
           </StepQuestion>
           <SearchBar style={{ marginTop: spacing.BASE_SPACING }}>
-            <Search selected={selected} setSearchList={setSearchList} local />
+            <Search selected={[selected]} setSearchList={setSearchList} local />
             <SelectedSearchSkillsContainer>
-              {renderSkills(selected)}
+              {renderSkills([selected])}
             </SelectedSearchSkillsContainer>
             <SearchResultsContainer>
               {renderSkills(searchList)}

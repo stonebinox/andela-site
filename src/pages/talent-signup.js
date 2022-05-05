@@ -45,24 +45,6 @@ const TalentSignupPage = () => {
     }
   }
 
-  const getSkillObjectsFromSavedSkills = () => {
-    const skills = []
-
-    formData?.primarySkills?.split("|")?.forEach(skill => {
-      skills.push({
-        skill_label: skill
-          .replace(/-/g, " ")
-          .toLowerCase()
-          .replace(/\b[a-z]/g, function (letter) {
-            return letter.toUpperCase()
-          }),
-        skill_name: skill,
-      })
-    })
-
-    return skills
-  }
-
   const getStep = () => {
     switch (step) {
       default:
@@ -84,7 +66,10 @@ const TalentSignupPage = () => {
             setFormStepAnswer={setFormStepAnswer}
             goBack={goBack}
             savedValue={{
-              selected: getSkillObjectsFromSavedSkills(),
+              selected: formData?.primarySkills && {
+                skill_label: formData?.primarySkills,
+                skill_name: formData?.primarySkills,
+              },
               yearsOfExperience: formData?.yearsOfExperience ?? null,
             }}
           />

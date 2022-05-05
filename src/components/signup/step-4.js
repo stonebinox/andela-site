@@ -61,6 +61,21 @@ const Step4 = ({
     }
   }
 
+  const toggleSelected = skill => {
+    const selectedSkills = selected.slice()
+    const position = selectedSkills.findIndex(
+      selectedSkill => selectedSkill.skill_name === skill.skill_name
+    )
+
+    if (position === -1) {
+      selectedSkills.push(skill)
+    } else {
+      selectedSkills.splice(position, 1)
+    }
+
+    setSelected(selectedSkills)
+  }
+
   const renderSkills = (skillList, fromSearch = false) => {
     return skillList.map((skill, index) => (
       <Skill
@@ -71,6 +86,7 @@ const Step4 = ({
         fromSearch={fromSearch}
         setSelectedSearchSkills={setSelectedSearchSkills}
         selectedSearchSkills={selectedSearchSkills}
+        onClick={toggleSelected}
       />
     ))
   }
