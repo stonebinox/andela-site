@@ -129,14 +129,17 @@ const TalentSignupPage = () => {
     }
 
     if (step >= 3) {
-      submitAllData(formData)
+      submitAllData({
+        ...formData,
+        ...answer,
+      })
     }
   }
 
   const submitAllData = formattedForm => {
     parentForm.vals({
       ...formattedForm,
-      tLTalentNetworkTerms: "true",
+      tLTalentNetworkTerms: true,
     })
 
     if (parentForm.validate()) {

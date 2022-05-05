@@ -18,6 +18,7 @@ import {
 import { InputLabel, StepQuestion } from "./talent-signup.styles"
 import Code from "../../images/code.svg"
 import People from "../../images/people.svg"
+import PersonGear from "../../images/person-gear.svg"
 
 const options = [
   "Native",
@@ -26,16 +27,28 @@ const options = [
   "Beginner A1/A2",
 ]
 
+const yearsOptions = [
+  "Associate (0-3 yrs professional experience)",
+  "Mid Level (3-8 yrs professional experience)",
+  "Senior (8-12 yrs professional experience)",
+  "Principal (12+ yrs professional experience)",
+]
+
 const Step3 = ({ goBack, setFormStepAnswer }) => {
   const [termsAccepted, setTermsAccepted] = useState(false)
   const [policyAccepted, setPolicyAccepted] = useState(false)
   const [englishLevel, setEnglishLevel] = useState("Select...")
   const [referrer, setReferrer] = useState("")
+  const [totalExperience, setTotalExperience] = useState("Select...")
 
   const submitAnswer = () => {
     if (englishLevel === "Select...") {
-      alert("Please select your English prificiency level.")
+      alert("Please select your English proficiency level.")
       return
+    }
+
+    if (totalExperience === "Select...") {
+      alert("Please select your total work experience.")
     }
 
     if (!policyAccepted || !termsAccepted) {
@@ -46,6 +59,7 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
     setFormStepAnswer({
       englishProficiency: englishLevel,
       tLReferredBy: referrer,
+      tLSeniorityLevel: totalExperience,
     })
   }
 
@@ -64,7 +78,25 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
             >
               <option value="Select...">Select...</option>
               {options.map((option, index) => (
-                <option key={index}>{option}</option>
+                <option key={index} value={option}>
+                  {option}
+                </option>
+              ))}
+            </DropdownField>
+          </InputContainer>
+          <InputLabel>Total years of work experience</InputLabel>
+          <InputContainer>
+            <ReactSVG src={PersonGear} />
+            <DropdownField
+              name="totalExperience"
+              onChange={e => setTotalExperience(e.currentTarget.value)}
+              value={totalExperience}
+            >
+              <option value="Select...">Select...</option>
+              {yearsOptions.map(experience => (
+                <option key={experience} value={experience}>
+                  {experience}
+                </option>
               ))}
             </DropdownField>
           </InputContainer>

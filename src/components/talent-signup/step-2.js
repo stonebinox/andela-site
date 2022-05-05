@@ -105,7 +105,7 @@ const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
               {renderSkills(searchList)}
             </SearchResultsContainer>
           </SearchBar>
-          <StepQuestion>Years of Experience</StepQuestion>
+          <StepQuestion>Years of experience with this skill</StepQuestion>
           <YearsContainer>
             {options.map(option => (
               <SkillContainer
