@@ -134,7 +134,10 @@ const TalentSignupPage = () => {
   }
 
   const submitAllData = formattedForm => {
-    parentForm.vals(formattedForm)
+    parentForm.vals({
+      ...formattedForm,
+      tLTalentNetworkTerms: "true",
+    })
 
     if (parentForm.validate()) {
       parentForm.submit()
