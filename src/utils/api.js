@@ -1,3 +1,5 @@
+import { primarySkills } from "../components/skills/primary-skills"
+
 export const getMarketoForm = () => {
   if (typeof window === "undefined" || !window.MktoForms2) return null
 
@@ -51,6 +53,23 @@ export const searchSkills = text =>
       text
     )}`
   )
+
+export const searchLocalSkills = text => {
+  const results = []
+
+  primarySkills.forEach(skill => {
+    const { skill_label, skill_name } = skill
+
+    if (
+      skill_label.toLowerCase()?.search(text.toLowerCase()) !== -1 ||
+      skill_name.toLowerCase()?.search(text.toLowerCase()) !== -1
+    ) {
+      results.push(skill)
+    }
+  })
+
+  return results
+}
 
 // export const setZoomInfo = () => {
 //   if (typeof window === "undefined") return null

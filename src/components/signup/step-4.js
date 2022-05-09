@@ -26,63 +26,8 @@ import {
   Link,
 } from "./signup.styles"
 import Magnify from "../../images/magnify.svg"
-
-const Skill = ({
-  skill,
-  setSelected,
-  selected,
-  fromSearch = false,
-  setSelectedSearchSkills,
-  selectedSearchSkills,
-}) => {
-  const { skill_name, skill_label } = skill
-
-  const toggleSelected = skill => {
-    const selectedSkills = selected.slice()
-    const position = selectedSkills.findIndex(
-      selectedSkill => selectedSkill.skill_name === skill.skill_name
-    )
-
-    if (position === -1) {
-      selectedSkills.push(skill)
-    } else {
-      selectedSkills.splice(position, 1)
-    }
-
-    setSelected(selectedSkills)
-  }
-
-  const toggleSearchSelected = skill => {
-    let selectedSearchSkillsCopy = selectedSearchSkills.slice()
-
-    if (
-      !selectedSearchSkillsCopy.some(
-        skillCopy => skill.skill_name === skillCopy.skill_name
-      )
-    ) {
-      selectedSearchSkillsCopy.push(skill)
-    } else {
-      selectedSearchSkillsCopy = selectedSearchSkillsCopy.filter(
-        skillCopy => skillCopy.skill_name !== skill.skill_name
-      )
-    }
-
-    setSelectedSearchSkills(selectedSearchSkillsCopy)
-  }
-
-  return (
-    <SkillContainer
-      onClick={() => {
-        toggleSelected(skill)
-
-        if (fromSearch) toggleSearchSelected(skill)
-      }}
-      selected={selected.some(s => s.skill_name === skill_name)}
-    >
-      {skill_label}
-    </SkillContainer>
-  )
-}
+import Search from "../search/search"
+import Skill from "../skills/skill"
 
 const Step4 = ({
   setFormStepAnswer,
@@ -116,6 +61,21 @@ const Step4 = ({
     }
   }
 
+  const toggleSelected = skill => {
+    const selectedSkills = selected.slice()
+    const position = selectedSkills.findIndex(
+      selectedSkill => selectedSkill.skill_name === skill.skill_name
+    )
+
+    if (position === -1) {
+      selectedSkills.push(skill)
+    } else {
+      selectedSkills.splice(position, 1)
+    }
+
+    setSelected(selectedSkills)
+  }
+
   const renderSkills = (skillList, fromSearch = false) => {
     return skillList.map((skill, index) => (
       <Skill
@@ -126,6 +86,7 @@ const Step4 = ({
         fromSearch={fromSearch}
         setSelectedSearchSkills={setSelectedSearchSkills}
         selectedSearchSkills={selectedSearchSkills}
+        onClick={toggleSelected}
       />
     ))
   }
@@ -213,14 +174,7 @@ const Step4 = ({
           Can't find your desired skill above?
         </SkillSearchTitle>
         <SearchBar>
-          <InputContainer>
-            <ReactSVG src={Magnify} width={15} height={15} />
-            <InputField
-              name="skill-search"
-              type="search"
-              onChange={e => getResults(e.target.value)}
-            />
-          </InputContainer>
+          <Search selected={selected} setSearchList={setSearchList} />
           <SelectedSearchSkillsContainer>
             {renderSkills(selectedSearchSkills, true)}
           </SelectedSearchSkillsContainer>
@@ -252,8 +206,14 @@ const Step4 = ({
             />{" "}
             I understand that Andela will process my information in accordance
             with their{" "}
-            <Link href="https://andela.com/privacy">Privacy Policy</Link>. I may
-            withdraw my consent through unsubscribe links at any time.
+            <Link
+              href="https://andela.com/privacy"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Privacy Policy
+            </Link>
+            . I may withdraw my consent through unsubscribe links at any time.
           </ConditionText>
         </ConditionContainer>
       )}

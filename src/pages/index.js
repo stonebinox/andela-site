@@ -54,6 +54,7 @@ const SignupPage = () => {
 
     if (!form) {
       setTimeout(() => getForm(), 500)
+      return
     }
 
     form?.loadForm("//hire.andela.com", "449-UCH-555", 1699, finalForm => {
@@ -444,9 +445,7 @@ const SignupPage = () => {
             <StepProgress selected={step >= 5} />
           </StepProgressContainer>
           {!loading ? getStep() : <LoadingText>Loading ...</LoadingText>}
-          <form id="mktoForm_1053">
-            <input type="email" name="WorkEmail" style={{ display: "none" }} />
-          </form>
+          <form id="mktoForm_1053" />
         </MainContainer>
       </FormContainer>
     </PageContainer>
