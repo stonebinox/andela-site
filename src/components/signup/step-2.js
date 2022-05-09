@@ -9,6 +9,10 @@ import {
   PeopleContainer,
   StepContainer,
   StepQuestion,
+  ConditionContainer,
+  ConditionText,
+  Link,
+  PrimarySignupButton,
 } from "./signup.styles"
 
 import Person1 from "../../images/person-1.svg"
@@ -59,6 +63,8 @@ const Step2 = ({
 }) => {
   const [answer, setAnswer] = useState(null)
   const [selectedOption, setSelectedOption] = useState(null)
+  const [termsAccepted, setTermsAccepted] = useState(false)
+  const [policyAccepted, setPolicyAccepted] = useState(false)
 
   const savedKey =
     options.find(option => option.value === savedValue)?.key ?? null
@@ -68,8 +74,19 @@ const Step2 = ({
     setSelectedOption(index)
   }
 
+  const isLastStep = () =>
+    eventVariant === "B" &&
+    (answer === "0 - 50" || answer === "1000 - 4999" || answer === "5,000+")
+
   const submitAnswer = () => {
     if (!answer) return
+
+    if (isLastStep() && (!termsAccepted || !policyAccepted)) {
+      alert(
+        "Please accept the Terms and Conditions and Privacy Policy before proceeding."
+      )
+      return
+    }
 
     const finalAnswer = {
       Employee_Range__c: answer,
@@ -102,7 +119,9 @@ const Step2 = ({
   }, [])
 
   useEffect(() => {
-    submitAnswer()
+    if (!isLastStep()) {
+      submitAnswer()
+    }
   }, [answer])
 
   return (
@@ -122,8 +141,41 @@ const Step2 = ({
           ))}
         </PeopleContainer>
       </StepContainer>
+      {isLastStep() && (
+        <ConditionContainer>
+          <ConditionText>
+            <input
+              type="checkbox"
+              onChange={e => setTermsAccepted(e.currentTarget.checked)}
+            />{" "}
+            I agree to {`Andela's`}{" "}
+            <Link
+              href="https://andela.com/andela-terms-conditions/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Terms & Conditions
+            </Link>
+          </ConditionText>
+          <ConditionText>
+            <input
+              type="checkbox"
+              onChange={e => setPolicyAccepted(e.currentTarget.checked)}
+            />{" "}
+            I understand that Andela will process my information in accordance
+            with their{" "}
+            <Link href="https://andela.com/privacy">Privacy Policy</Link>. I may
+            withdraw my consent through unsubscribe links at any time.
+          </ConditionText>
+        </ConditionContainer>
+      )}
       <ButtonContainer>
         <SecondaryButton onClick={goBack}>Back</SecondaryButton>
+        {isLastStep() && (
+          <PrimarySignupButton onClick={submitAnswer}>
+            Submit
+          </PrimarySignupButton>
+        )}
       </ButtonContainer>
     </>
   )
