@@ -134,8 +134,14 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
           />{" "}
           I understand that Andela will process my information in accordance
           with their{" "}
-          <Link href="https://andela.com/privacy">Privacy Policy</Link>. I may
-          withdraw my consent through unsubscribe links at any time.
+          <Link
+            href="https://andela.com/privacy"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Privacy Policy
+          </Link>
+          . I may withdraw my consent through unsubscribe links at any time.
         </ConditionText>
       </ConditionContainer>
       <ButtonContainer>
