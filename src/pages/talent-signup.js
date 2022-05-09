@@ -31,6 +31,8 @@ import Step3 from "../components/talent-signup/step-3"
 import Step4 from "../components/talent-signup/step-4"
 import { getMarketoForm } from "../utils/api"
 
+import "./skills/style.css"
+
 const TalentSignupPage = () => {
   const [loading, setLoading] = useState(false)
   const [step, setStep] = useState(1)
