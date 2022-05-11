@@ -91,10 +91,8 @@ const TalentSignupPage = () => {
             setFormStepAnswer={setFormStepAnswer}
             goBack={goBack}
             savedValue={{
-              selected: formData?.tLMostProficientAndelaSupportedFramework && {
-                skill_label: formData?.tLMostProficientAndelaSupportedFramework,
-                skill_name: formData?.tLMostProficientAndelaSupportedFramework,
-              },
+              selectedSkill:
+                formData?.tLMostProficientAndelaSupportedFramework ?? "",
               yearsOfExperience:
                 formData?.tLYearsofExperienceontheFramework ?? null,
             }}

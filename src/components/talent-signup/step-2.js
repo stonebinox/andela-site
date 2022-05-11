@@ -1,24 +1,18 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react"
-import { spacing } from "../../utils/spacing"
-import Search from "../search/search"
+
 import {
   ButtonContainer,
+  DropdownField,
+  InputContainer,
   PeopleContainer,
   PrimarySignupButton,
-  SearchResultsContainer,
   SecondaryButton,
-  SelectedSearchSkillsContainer,
   SkillContainer,
   StepContainer,
 } from "../signup/signup.styles"
-import Skill from "../skills/skill"
-import {
-  Highlight,
-  StepQuestion,
-  SearchBar,
-  YearsContainer,
-} from "./talent-signup.styles"
+import { primarySkills } from "../skills/primary-skills"
+import { Highlight, StepQuestion, YearsContainer } from "./talent-signup.styles"
 
 const options = [
   {
@@ -44,31 +38,14 @@ const options = [
 ]
 
 const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
-  const [selected, setSelected] = useState(null)
-  const [searchList, setSearchList] = useState([])
   const [yearsOfExperience, setYearsOfExperience] = useState(null)
-
-  const onSkillSelect = skill => {
-    setSelected(skill)
-  }
-
-  const renderSkills = skillList => {
-    return skillList.map((skill, index) => (
-      <Skill
-        key={index}
-        skill={skill}
-        selected={[selected]}
-        fromSearch
-        selectedSearchSkills={[selected]}
-        onClick={onSkillSelect}
-      />
-    ))
-  }
+  const [selectedSkill, setSelectedSkill] = useState(null)
 
   const submitAnswer = () => {
-    const skillName = selected.skill_name
-
-    if (skillName?.trim() === "") {
+    if (
+      selectedSkill?.trim() === "" ||
+      selectedSkill?.trim() === "Select skill ..."
+    ) {
       alert("Please select at least one skill.")
       return
     }
@@ -79,13 +56,13 @@ const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
     }
 
     setFormStepAnswer({
-      tLMostProficientAndelaSupportedFramework: skillName,
+      tLMostProficientAndelaSupportedFramework: selectedSkill,
       tLYearsofExperienceontheFramework: yearsOfExperience,
     })
   }
 
   useEffect(() => {
-    setSelected(savedValue?.selected)
+    setSelectedSkill(savedValue?.selectedSkill)
     setYearsOfExperience(savedValue?.yearsOfExperience ?? null)
   }, [])
 
@@ -96,15 +73,19 @@ const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
           <StepQuestion>
             Select your <Highlight>primary</Highlight> skill
           </StepQuestion>
-          <SearchBar style={{ marginTop: spacing.BASE_SPACING }}>
-            <Search selected={[selected]} setSearchList={setSearchList} local />
-            <SelectedSearchSkillsContainer>
-              {renderSkills([selected])}
-            </SelectedSearchSkillsContainer>
-            <SearchResultsContainer>
-              {renderSkills(searchList)}
-            </SearchResultsContainer>
-          </SearchBar>
+          <InputContainer>
+            <DropdownField
+              name="skills"
+              onChange={e => setSelectedSkill(e.currentTarget.value)}
+              value={selectedSkill ?? "Select skill ..."}
+            >
+              {primarySkills.map((skill, index) => (
+                <option key={index} value={skill.skill_label}>
+                  {skill.skill_name}
+                </option>
+              ))}
+            </DropdownField>
+          </InputContainer>
           <StepQuestion>Years of experience with this skill</StepQuestion>
           <YearsContainer>
             {options.map(option => (
