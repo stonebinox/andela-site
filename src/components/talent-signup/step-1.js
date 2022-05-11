@@ -70,7 +70,7 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
     setFirstName(savedValue?.firstName ?? "")
     setLastName(savedValue?.lastName ?? "")
     setEmail(savedValue?.email ?? "")
-    setCountry(savedValue?.country ?? "Select...")
+    setCountry(savedValue?.country ?? "Select country ...")
   }, [])
 
   return (
