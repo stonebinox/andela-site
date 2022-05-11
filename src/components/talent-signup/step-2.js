@@ -94,7 +94,7 @@ const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
       <StepContainer>
         <PeopleContainer>
           <StepQuestion>
-            Select your <Highlight>primary</Highlight> skills
+            Select your <Highlight>primary</Highlight> skill
           </StepQuestion>
           <SearchBar style={{ marginTop: spacing.BASE_SPACING }}>
             <Search selected={[selected]} setSearchList={setSearchList} local />
