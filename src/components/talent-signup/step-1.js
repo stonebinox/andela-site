@@ -22,7 +22,7 @@ import {
 import Marker from "../../images/marker.svg"
 import Person1 from "../../images/person-1.svg"
 import Envelope from "../../images/envelope.svg"
-import { countries } from "../../utils/countries"
+import { countries } from "../../utils/countries-alt"
 
 const PersonSVG = styled(ReactSVG)`
   width: ${spacing.customSpacing("20px")};
