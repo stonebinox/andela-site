@@ -34,22 +34,46 @@ const PersonSVG = styled(ReactSVG)`
 
 const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
   const [country, setCountry] = useState("")
+  const [invalidCountry, setInvalidCountry] = useState(false)
+
   const [firstName, setFirstName] = useState("")
+  const [invalidFirstName, setInvalidFirstName] = useState(false)
+
   const [lastName, setLastName] = useState("")
+  const [invalidLastName, setInvalidLastName] = useState(false)
+
   const [email, setEmail] = useState("")
+  const [invalidEmail, setInvalidEmail] = useState(false)
 
   const submitAnswer = () => {
     let valid = true
+    setInvalidFirstName(false)
+    setInvalidLastName(false)
+    setInvalidEmail(false)
+    setInvalidCountry(false)
 
-    if (firstName.trim() === "") valid = false
-    if (lastName.trim() === "") valid = false
+    if (firstName.trim() === "") {
+      valid = false
+      setInvalidFirstName(true)
+    }
+
+    if (lastName.trim() === "") {
+      valid = false
+      setInvalidLastName(true)
+    }
+
     if (
       email.trim() === "" ||
       !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)
-    )
+    ) {
       valid = false
-    if (country.trim() === "" || country.trim() === "Select country ...")
+      setInvalidEmail(true)
+    }
+
+    if (country.trim() === "" || country.trim() === "Select country ...") {
       valid = false
+      setInvalidCountry(true)
+    }
 
     if (!valid) {
       alert("Please enter valid content in the form")
@@ -82,7 +106,7 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
         </StepQuestion>
         <ProblemsContainer>
           <InputLabel>First name</InputLabel>
-          <InputContainer>
+          <InputContainer invalid={invalidFirstName}>
             <PersonSVG src={Person1} />
             <InputField
               type="text"
@@ -93,7 +117,7 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
             />
           </InputContainer>
           <InputLabel>Last name</InputLabel>
-          <InputContainer>
+          <InputContainer invalid={invalidLastName}>
             <PersonSVG src={Person1} />
             <InputField
               type="text"
@@ -104,7 +128,7 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
             />
           </InputContainer>
           <InputLabel>Email</InputLabel>
-          <InputContainer>
+          <InputContainer invalid={invalidEmail}>
             <ReactSVG src={Envelope} />
             <InputField
               type="email"
@@ -116,7 +140,7 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
           </InputContainer>
           <InputWrapper>
             <InputLabel>Country</InputLabel>
-            <InputContainer>
+            <InputContainer invalid={invalidCountry}>
               <ReactSVG src={Marker} />
               <DropdownField
                 name="country"
