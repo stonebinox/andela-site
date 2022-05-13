@@ -38,17 +38,26 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
   const [termsAccepted, setTermsAccepted] = useState(false)
   const [policyAccepted, setPolicyAccepted] = useState(false)
   const [englishLevel, setEnglishLevel] = useState("Select...")
+  const [invalidEnglishLevel, setInvalidEnglishLevel] = useState(false)
+
   const [referrer, setReferrer] = useState("")
   const [totalExperience, setTotalExperience] = useState("Select...")
+  const [invalidExperience, setInvalidExperience] = useState(false)
 
   const submitAnswer = () => {
+    setInvalidEnglishLevel(false)
+    setInvalidExperience(false)
+
     if (englishLevel === "Select...") {
       alert("Please select your English proficiency level.")
+      setInvalidEnglishLevel(true)
       return
     }
 
     if (totalExperience === "Select...") {
       alert("Please select your total work experience.")
+      setInvalidExperience(true)
+      return
     }
 
     if (!policyAccepted || !termsAccepted) {
@@ -69,7 +78,7 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
         <StepQuestion>More about you</StepQuestion>
         <ProblemsContainer>
           <InputLabel>English proficiency</InputLabel>
-          <InputContainer>
+          <InputContainer invalid={invalidEnglishLevel}>
             <ReactSVG src={Code} />
             <DropdownField
               name="english"
@@ -85,7 +94,7 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
             </DropdownField>
           </InputContainer>
           <InputLabel>Total years of work experience</InputLabel>
-          <InputContainer>
+          <InputContainer invalid={invalidExperience}>
             <ReactSVG src={PersonGear} />
             <DropdownField
               name="totalExperience"
