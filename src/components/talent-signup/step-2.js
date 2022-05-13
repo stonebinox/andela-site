@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react"
+import { spacing } from "../../utils/spacing"
 
 import {
   ButtonContainer,
@@ -73,7 +74,7 @@ const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
           <StepQuestion>
             Select your <Highlight>primary</Highlight> skill
           </StepQuestion>
-          <InputContainer>
+          <InputContainer style={{ marginBottom: spacing.DOUBLE_BASE_SPACING }}>
             <DropdownField
               name="skills"
               onChange={e => setSelectedSkill(e.currentTarget.value)}
