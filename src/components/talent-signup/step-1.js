@@ -70,7 +70,11 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
       setInvalidEmail(true)
     }
 
-    if (country.trim() === "" || country.trim() === "Select country ...") {
+    if (
+      country.trim() === "" ||
+      country.trim() === "Select country ..." ||
+      !countries.some(countryEntry => countryEntry === country)
+    ) {
       valid = false
       setInvalidCountry(true)
     }
