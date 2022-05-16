@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react"
+import { getDataLayer } from "../../utils/api"
 import { spacing } from "../../utils/spacing"
 
 import {
@@ -42,6 +43,8 @@ const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
   const [yearsOfExperience, setYearsOfExperience] = useState(null)
   const [selectedSkill, setSelectedSkill] = useState(null)
 
+  const dataLayer = getDataLayer()
+
   const submitAnswer = () => {
     if (
       selectedSkill?.trim() === "" ||
@@ -55,6 +58,21 @@ const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
       alert("Please select your years of experience.")
       return
     }
+
+    dataLayer?.push(
+      {
+        event: "dataLayerEvent",
+        event_category: "Sign Up Wizard",
+        event_action: "sign_up",
+        event_label: `Step 2 - Skill "${selectedSkill}"`,
+      },
+      {
+        event: "dataLayerEvent",
+        event_category: "Sign Up Wizard",
+        event_action: "sign_up",
+        event_label: `Step 2 - Sk Exp ${yearsOfExperience}`,
+      }
+    )
 
     setFormStepAnswer({
       tLMostProficientAndelaSupportedFramework: selectedSkill,

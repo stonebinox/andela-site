@@ -19,6 +19,7 @@ import { InputLabel, StepQuestion } from "./talent-signup.styles"
 import Code from "../../images/code.svg"
 import People from "../../images/people.svg"
 import PersonGear from "../../images/person-gear.svg"
+import { getDataLayer } from "../../utils/api"
 
 const options = [
   "Native",
@@ -44,6 +45,8 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
   const [totalExperience, setTotalExperience] = useState("Select...")
   const [invalidExperience, setInvalidExperience] = useState(false)
 
+  const dataLayer = getDataLayer()
+
   const submitAnswer = () => {
     setInvalidEnglishLevel(false)
     setInvalidExperience(false)
@@ -64,6 +67,21 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
       alert("Please check the policy and terms checkboxes.")
       return
     }
+
+    dataLayer?.push(
+      {
+        event: "dataLayerEvent",
+        event_category: "Sign Up Wizard",
+        event_action: "sign_up",
+        event_label: `Step 3 - Eng ${englishLevel}`,
+      },
+      {
+        event: "dataLayerEvent",
+        event_category: "Sign Up Wizard",
+        event_action: "sign_up",
+        event_label: `Step 3 - Exp ${totalExperience}`,
+      }
+    )
 
     setFormStepAnswer({
       englishProficiency: englishLevel,

@@ -23,6 +23,7 @@ import Marker from "../../images/marker.svg"
 import Person1 from "../../images/person-1.svg"
 import Envelope from "../../images/envelope.svg"
 import { countries } from "../../utils/countries-alt"
+import { getDataLayer } from "../../utils/api"
 
 const PersonSVG = styled(ReactSVG)`
   width: ${spacing.customSpacing("20px")};
@@ -44,6 +45,8 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
 
   const [email, setEmail] = useState("")
   const [invalidEmail, setInvalidEmail] = useState(false)
+
+  const dataLayer = getDataLayer()
 
   const submitAnswer = () => {
     let valid = true
@@ -83,6 +86,13 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
       alert("Please enter valid content in the form")
       return
     }
+
+    dataLayer?.push({
+      event: "dataLayerEvent",
+      event_category: "Sign Up Wizard",
+      event_action: "sign_up",
+      event_label: "Step 1: Get started",
+    })
 
     const finalAnswer = {
       FirstName: firstName,
