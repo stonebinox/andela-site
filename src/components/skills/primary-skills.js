@@ -1,5 +1,9 @@
 export const primarySkills = [
   {
+    skill_label: "Select ...",
+    skill_name: "Select ...",
+  },
+  {
     skill_label: "[Javascript] React",
     skill_name: "[Javascript] React",
   },

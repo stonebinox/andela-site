@@ -48,7 +48,7 @@ const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
   const submitAnswer = () => {
     if (
       selectedSkill?.trim() === "" ||
-      selectedSkill?.trim() === "Select skill ..."
+      selectedSkill?.trim() === "Select ..."
     ) {
       alert("Please select at least one skill.")
       return
@@ -96,7 +96,7 @@ const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
             <DropdownField
               name="skills"
               onChange={e => setSelectedSkill(e.currentTarget.value)}
-              value={selectedSkill ?? "Select skill ..."}
+              value={selectedSkill ?? "Select ..."}
             >
               {primarySkills.map((skill, index) => (
                 <option key={index} value={skill.skill_label}>
