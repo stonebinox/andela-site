@@ -72,6 +72,8 @@ function Seo({ description, lang, meta, title }) {
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-K4NJ25N');
       `}</script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="//app.sendsafely.com/js/external/SendSafelyDropzone.min.js"></script>
     </Helmet>
   )
 }

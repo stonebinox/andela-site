@@ -169,6 +169,8 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
               </DropdownField>
             </InputContainer>
           </InputWrapper>
+          <InputLabel>Upload your resume</InputLabel>
+          <div id="dropzone" />
         </ProblemsContainer>
       </StepContainer>
       <ButtonContainer>

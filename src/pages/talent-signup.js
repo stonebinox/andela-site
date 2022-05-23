@@ -29,7 +29,7 @@ import Step1 from "../components/talent-signup/step-1"
 import Step2 from "../components/talent-signup/step-2"
 import Step3 from "../components/talent-signup/step-3"
 import Step4 from "../components/talent-signup/step-4"
-import { getDataLayer, getMarketoForm } from "../utils/api"
+import { getDataLayer, getMarketoForm, getSendSafely } from "../utils/api"
 
 import "./skills/style.css"
 
@@ -43,6 +43,7 @@ const TalentSignupPage = () => {
   const getForm = () => {
     setLoading(true)
     const form = getMarketoForm()
+    const sendSafely = getSendSafely()
 
     if (!form) {
       setTimeout(() => getForm(), 500)
@@ -57,7 +58,21 @@ const TalentSignupPage = () => {
         return false
       })
 
+      finalForm.onValidate(success => {
+        if (success) {
+          console.log("here")
+        }
+      })
+
       setParentForm(finalForm)
+
+      const widget = new sendSafely(
+        "Bk7y8vV8NhXyfKkvEfjClo9dqC4ABHjKTKVaztGXf8k",
+        window?.jQuery("#dropzone")
+      )
+
+      widget.disableAutoSubmit = true
+      widget.initialize()
     })
   }
 
