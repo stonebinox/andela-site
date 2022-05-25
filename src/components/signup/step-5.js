@@ -37,6 +37,7 @@ const PersonSVG = styled(ReactSVG)`
   margin-top: -${spacing.customSpacing("6px")};
   margin-left: -${spacing.customSpacing("10px")};
 `
+const invalidEmailDomains = ["gmail", "yahoo", "hotmail", "outlook", "icloud"]
 
 const Step5 = ({
   setFormStepAnswer,
@@ -75,6 +76,18 @@ const Step5 = ({
 
     if (!valid) {
       alert("Please enter valid content in the form.")
+      return
+    }
+
+    const emailFragments = email.split("@")
+    const domainSection = emailFragments[1]
+    const domainFragments = domainSection.split(".")
+    const emailDomain = domainFragments[0].toLowerCase()
+
+    if (invalidEmailDomains.includes(emailDomain)) {
+      alert(
+        "Please ensure the email address entered is a company email address."
+      )
       return
     }
 
