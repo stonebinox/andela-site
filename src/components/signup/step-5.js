@@ -47,31 +47,85 @@ const Step5 = ({
   eventVariant,
 }) => {
   const [company, setCompany] = useState("")
+  const [companyInvalid, setCompanyInvalid] = useState(false)
+
   const [email, setEmail] = useState("")
+  const [emailInvalid, setEmailInvalid] = useState(false)
+
   const [phone, setPhone] = useState("")
+  const [phoneInvalid, setPhoneInvalid] = useState(false)
+
   const [companyURL, setCompanyURL] = useState("")
   const [country, setCountry] = useState("")
+  const [countryInvalid, setCountryInvalid] = useState(false)
+
   const [firstName, setFirstName] = useState("")
+  const [firstNameInvalid, setFirstNameInvalid] = useState(false)
+
   const [lastName, setLastName] = useState("")
+  const [lastNameInvalid, setLastNameInvalid] = useState(false)
+
   const [title, setTitle] = useState("")
+  const [titleInvalid, setTitleInvalid] = useState(false)
+
   const [termsAccepted, setTermsAccepted] = useState(false)
   const [policyAccepted, setPolicyAccepted] = useState(false)
 
   const submitAnswer = () => {
     let valid = true
 
-    if (firstName.trim() === "") valid = false
-    if (lastName.trim() === "") valid = false
-    if (title.trim() === "") valid = false
-    if (company.trim() === "") valid = false
+    if (firstName.trim() === "") {
+      setFirstNameInvalid(true)
+      valid = false
+    } else {
+      setFirstNameInvalid(false)
+    }
+
+    if (lastName.trim() === "") {
+      valid = false
+      setLastNameInvalid(true)
+    } else {
+      setLastNameInvalid(false)
+    }
+
+    if (title.trim() === "") {
+      valid = false
+      setTitleInvalid(true)
+    } else {
+      setTitleInvalid(false)
+    }
+
+    if (company.trim() === "") {
+      valid = false
+      setCompanyInvalid(true)
+    } else {
+      setCompanyInvalid(false)
+    }
+
     if (
       email.trim() === "" ||
       !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)
-    )
+    ) {
       valid = false
-    if (phone.trim() === "") valid = false
-    if (country.trim() === "" || country.trim() === "Select country ...")
+      setEmailInvalid(true)
+    } else {
+      setEmailInvalid(false)
+    }
+
+    if (phone.trim() === "") {
       valid = false
+      setPhoneInvalid(true)
+    } else {
+      setPhoneInvalid(false)
+    }
+
+    if (country.trim() === "" || country.trim() === "Select country ...") {
+      valid = false
+      setCountryInvalid(true)
+    } else {
+      setCountryInvalid(false)
+    }
+
     if (selectedTest === 0 && (!termsAccepted || !policyAccepted)) valid = false
 
     if (!valid) {
@@ -88,8 +142,11 @@ const Step5 = ({
       alert(
         "Please ensure the email address entered is a company email address."
       )
+      setEmailInvalid(true)
       return
     }
+
+    setEmailInvalid(false)
 
     const finalAnswer = {
       Company: company,
@@ -135,7 +192,7 @@ const Step5 = ({
               style={{ marginRight: spacing.customSpacing("12px") }}
             >
               <InputLabel>First name</InputLabel>
-              <InputContainer>
+              <InputContainer invalid={firstNameInvalid}>
                 <PersonSVG src={Person1} />
                 <InputField
                   type="text"
@@ -148,7 +205,7 @@ const Step5 = ({
             </InputWrapper>
             <InputWrapper style={{ marginLeft: spacing.customSpacing("12px") }}>
               <InputLabel>Last name</InputLabel>
-              <InputContainer>
+              <InputContainer invalid={lastNameInvalid}>
                 <PersonSVG src={Person1} />
                 <InputField
                   type="text"
@@ -161,7 +218,7 @@ const Step5 = ({
             </InputWrapper>
           </InputRow>
           <InputLabel>Your job title</InputLabel>
-          <InputContainer>
+          <InputContainer invalid={titleInvalid}>
             <ReactSVG src={Code} />
             <InputField
               type="text"
@@ -173,7 +230,7 @@ const Step5 = ({
           <InputLabel style={{ marginTop: spacing.BASE_SPACING }}>
             Company name
           </InputLabel>
-          <InputContainer>
+          <InputContainer invalid={companyInvalid}>
             <ReactSVG src={Company} />
             <InputField
               type="text"
@@ -188,7 +245,7 @@ const Step5 = ({
               style={{ marginRight: spacing.customSpacing("12px") }}
             >
               <InputLabel>Email Address</InputLabel>
-              <InputContainer>
+              <InputContainer invalid={emailInvalid}>
                 <ReactSVG src={Envelope} />
                 <InputField
                   type="email"
@@ -201,7 +258,7 @@ const Step5 = ({
             </InputWrapper>
             <InputWrapper style={{ marginLeft: spacing.customSpacing("12px") }}>
               <InputLabel>Phone</InputLabel>
-              <InputContainer>
+              <InputContainer invalid={phoneInvalid}>
                 <ReactSVG src={Phone} />
                 <InputField
                   type="tel"
@@ -232,7 +289,7 @@ const Step5 = ({
             </InputWrapper>
             <InputWrapper style={{ marginLeft: spacing.customSpacing("12px") }}>
               <InputLabel>Country</InputLabel>
-              <InputContainer>
+              <InputContainer invalid={countryInvalid}>
                 <ReactSVG src={Marker} />
                 <DropdownField
                   name="country"
