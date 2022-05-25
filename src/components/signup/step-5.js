@@ -72,31 +72,25 @@ const Step5 = ({
   const [policyAccepted, setPolicyAccepted] = useState(false)
 
   const submitAnswer = () => {
-    let valid = true
-
     if (firstName.trim() === "") {
       setFirstNameInvalid(true)
-      valid = false
     } else {
       setFirstNameInvalid(false)
     }
 
     if (lastName.trim() === "") {
-      valid = false
       setLastNameInvalid(true)
     } else {
       setLastNameInvalid(false)
     }
 
     if (title.trim() === "") {
-      valid = false
       setTitleInvalid(true)
     } else {
       setTitleInvalid(false)
     }
 
     if (company.trim() === "") {
-      valid = false
       setCompanyInvalid(true)
     } else {
       setCompanyInvalid(false)
@@ -106,32 +100,23 @@ const Step5 = ({
       email.trim() === "" ||
       !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)
     ) {
-      valid = false
       setEmailInvalid(true)
     } else {
       setEmailInvalid(false)
     }
 
     if (phone.trim() === "") {
-      valid = false
       setPhoneInvalid(true)
     } else {
       setPhoneInvalid(false)
     }
 
     if (country.trim() === "" || country.trim() === "Select country ...") {
-      valid = false
       setCountryInvalid(true)
-    } else {
-      setCountryInvalid(false)
-    }
-
-    if (selectedTest === 0 && (!termsAccepted || !policyAccepted)) valid = false
-
-    if (!valid) {
-      alert("Please enter valid content in the form.")
       return
     }
+
+    setCountryInvalid(false)
 
     const emailFragments = email.split("@")
     const domainSection = emailFragments[1]
@@ -143,10 +128,32 @@ const Step5 = ({
         "Please ensure the email address entered is a company email address."
       )
       setEmailInvalid(true)
+    } else {
+      setEmailInvalid(false)
+    }
+
+    if (
+      firstNameInvalid ||
+      lastNameInvalid ||
+      titleInvalid ||
+      companyInvalid ||
+      emailInvalid ||
+      phoneInvalid ||
+      countryInvalid
+    ) {
       return
     }
 
-    setEmailInvalid(false)
+    let valid = true
+
+    if (selectedTest === 0 && (!termsAccepted || !policyAccepted)) valid = false
+
+    if (!valid) {
+      alert(
+        "Please check the checkboxes for the Privacy Policy and Terms and Conditions."
+      )
+      return
+    }
 
     const finalAnswer = {
       Company: company,
