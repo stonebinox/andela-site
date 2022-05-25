@@ -71,26 +71,8 @@ export const searchLocalSkills = text => {
   return results
 }
 
-// export const setZoomInfo = () => {
-//   if (typeof window === "undefined") return null
+export const getGA = () => {
+  if (typeof window === "undefined" || !window.ga) return null
 
-//   window._zi = {
-//     formId: "bf1bffd3-512e-4f22-a1f9-232871a47631",
-//     formLoadTimeout: 4000,
-//     callbacks: {
-//       onReady: data => {
-//         console.log("ready", data)
-//       },
-//       onMatch: data => {
-//         console.log("match", data)
-//       },
-//     },
-//   }
-
-//   var zi = document.createElement("script")
-//   zi.type = "text/javascript"
-//   zi.async = true
-//   zi.src = "//ws-assets.zoominfo.com/formcomplete.js"
-//   var s = document.getElementsByTagName("script")[0]
-//   s.parentNode.insertBefore(zi, s)
-// }
+  return window.ga
+}

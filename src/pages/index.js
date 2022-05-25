@@ -3,7 +3,12 @@ import { ReactSVG } from "react-svg"
 import FullStory from "react-fullstory"
 
 import Seo from "../components/seo"
-import { getChiliPiper, getDataLayer, getMarketoForm } from "../utils/api"
+import {
+  getChiliPiper,
+  getDataLayer,
+  getGA,
+  getMarketoForm,
+} from "../utils/api"
 import { PageContainer } from "../utils/common.styles"
 import {
   FocusDot,
@@ -70,7 +75,9 @@ const SignupPage = () => {
         })
 
         if (values.Employee_Range__c === "0 - 50") {
-          window.location = "https://andela.app/"
+          const ga = getGA()
+          const linkerParam = ga?.getAll()[0]?.get("linkerParam") ?? ""
+          window.location = `https://andela.app/?_ga=${linkerParam}`
 
           return false
         }
