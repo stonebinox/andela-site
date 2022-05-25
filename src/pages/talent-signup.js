@@ -66,13 +66,15 @@ const TalentSignupPage = () => {
 
       setParentForm(finalForm)
 
-      const widget = new sendSafely(
-        "Bk7y8vV8NhXyfKkvEfjClo9dqC4ABHjKTKVaztGXf8k",
-        window?.jQuery("#dropzone")
-      )
+      if (sendSafely) {
+        const widget = new sendSafely(
+          "Bk7y8vV8NhXyfKkvEfjClo9dqC4ABHjKTKVaztGXf8k",
+          window?.jQuery("#dropzone")
+        )
 
-      widget.disableAutoSubmit = true
-      widget.initialize()
+        widget.disableAutoSubmit = true
+        widget.initialize()
+      }
     })
   }
 
