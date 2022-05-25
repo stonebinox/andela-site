@@ -259,7 +259,21 @@ const SignupPage = () => {
     const finalForm = {
       ...formattedForm,
       Role_Details__c: "Other",
+      UTM_Campaign__c: document.mktoForm_1053?.UTM_Campaign__c?.value ?? "",
+      UTM_Content__c: document.mktoForm_1053?.UTM_Content__c?.value ?? "",
+      UTM_Medium__c: document.mktoForm_1053?.UTM_Medium__c?.value ?? "",
+      UTM_Source__c: document.mktoForm_1053?.UTM_Source__c?.value ?? "",
+      UTM_Campaign_Most_Recent__c:
+        document.mktoForm_1053?.UTM_Campaign_Most_Recent__c?.value ?? "",
+      UTM_Content_Most_Recent__c:
+        document.mktoForm_1053?.UTM_Content_Most_Recent__c?.value ?? "",
+      UTM_Medium_Most_Recent__c:
+        document.mktoForm_1053?.UTM_Medium_Most_Recent__c?.value ?? "",
+      UTM_Source_Most_Recent__c:
+        document.mktoForm_1053?.UTM_Source_Most_Recent__c?.value ?? "",
     }
+
+    console.log(finalForm)
 
     parentForm.vals(finalForm)
 
@@ -445,7 +459,16 @@ const SignupPage = () => {
             <StepProgress selected={step >= 5} />
           </StepProgressContainer>
           {!loading ? getStep() : <LoadingText>Loading ...</LoadingText>}
-          <form id="mktoForm_1053" />
+          <form id="mktoForm_1053" name="mktoForm_1053">
+            <input type="hidden" name="UTM_Campaign__c" value="" />
+            <input type="hidden" name="UTM_Content__c" value="" />
+            <input type="hidden" name="UTM_Medium__c" value="" />
+            <input type="hidden" name="UTM_Source__c" value="" />
+            <input type="hidden" name="UTM_Campaign_Most_Recent__c" value="" />
+            <input type="hidden" name="UTM_Content_Most_Recent__c" value="" />
+            <input type="hidden" name="UTM_Medium_Most_Recent__c" value="" />
+            <input type="hidden" name="UTM_Source_Most_Recent__c" value="" />
+          </form>
         </MainContainer>
       </FormContainer>
     </PageContainer>
