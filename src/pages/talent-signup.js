@@ -58,14 +58,6 @@ const TalentSignupPage = () => {
         return false
       })
 
-      finalForm.onValidate(success => {
-        if (success) {
-          console.log("here")
-        }
-      })
-
-      setParentForm(finalForm)
-
       if (sendSafely) {
         const widget = new sendSafely(
           "Bk7y8vV8NhXyfKkvEfjClo9dqC4ABHjKTKVaztGXf8k",
@@ -74,7 +66,29 @@ const TalentSignupPage = () => {
 
         widget.disableAutoSubmit = true
         widget.initialize()
+
+        finalForm.onValidate(success => {
+          if (success && widget.nbrOfFilesAttached > 0) {
+            try {
+              widget.finalizePackage(url => {
+                console.log(url)
+              })
+            } catch (e) {
+              alert(
+                "Something went wrong with uploading youe file. Please try again later."
+              )
+
+              console.log(e)
+            }
+          } else {
+            alert(
+              "No valid resume attached. Please verify the attached file and proceed."
+            ) // typically we'll never run into this
+          }
+        })
       }
+
+      setParentForm(finalForm)
     })
   }
 
@@ -164,6 +178,7 @@ const TalentSignupPage = () => {
         event_action: "sign_up",
         event_label: "Step 3 - Submit",
       })
+
       parentForm.submit()
     } else {
       alert("Invalid/incomplete data provided. Please verify and re-try.")
