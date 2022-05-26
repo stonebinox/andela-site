@@ -43,8 +43,6 @@ const Step4 = ({
   const [searchList, setSearchList] = useState([])
   const [selectedSearchSkills, setSelectedSearchSkills] = useState([])
   const [selectedSkillObjects, setSelectedSkillObjects] = useState([])
-  const [termsAccepted, setTermsAccepted] = useState(false)
-  const [policyAccepted, setPolicyAccepted] = useState(false)
 
   const getSkillsData = () => {
     try {
@@ -100,13 +98,6 @@ const Step4 = ({
       return
     }
 
-    if (selectedTest === 1 && (!termsAccepted || !policyAccepted)) {
-      alert(
-        "Please accept our Terms and Conditions and Privacy Policy before proceeding."
-      )
-      return
-    }
-
     setFormStepAnswer(
       {
         interestedSkillSets: finalAnswer,
@@ -147,7 +138,7 @@ const Step4 = ({
 
     const dataLayer = getDataLayer()
 
-    dataLayer.push({
+    dataLayer?.push({
       event: "dataLayerEvent",
       event_category: "Sign Up Wizard",
       event_action: "sign_up",
@@ -183,41 +174,7 @@ const Step4 = ({
           </SearchResultsContainer>
         </SearchBar>
       </StepContainer>
-      {selectedTest === 1 && (
-        <ConditionContainer>
-          <ConditionText>
-            <input
-              type="checkbox"
-              onChange={e => setTermsAccepted(e.currentTarget.checked)}
-            />{" "}
-            I agree to {`Andela's`}{" "}
-            <Link
-              href="https://andela.com/andela-terms-conditions/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Terms & Conditions
-            </Link>
-          </ConditionText>
-          <ConditionText>
-            <input
-              type="checkbox"
-              onChange={e => setPolicyAccepted(e.currentTarget.checked)}
-            />{" "}
-            I understand that Andela will process my information in accordance
-            with their{" "}
-            <Link
-              href="https://andela.com/privacy"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Privacy Policy
-            </Link>
-            . I may withdraw my consent through unsubscribe links at any time.
-          </ConditionText>
-        </ConditionContainer>
-      )}
-      <ButtonContainer style={selectedTest === 1 ? { marginTop: 0 } : null}>
+      <ButtonContainer>
         <SecondaryButton onClick={goBack}>Back</SecondaryButton>
         <PrimarySignupButton onClick={submitAnswer}>Next</PrimarySignupButton>
       </ButtonContainer>
