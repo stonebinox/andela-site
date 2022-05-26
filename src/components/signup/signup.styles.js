@@ -11,6 +11,7 @@ import {
   sunset,
   sand,
   emarald,
+  deepRed,
 } from "../../utils/colors"
 import { ReactSVG } from "react-svg"
 
@@ -260,7 +261,7 @@ export const InputLabel = styled.div`
 
 export const InputContainer = styled.div`
   width: 100%;
-  border: 1px solid ${greyWhite};
+  border: 1px solid ${({ invalid }) => (!invalid ? greyWhite : deepRed)};
   border-radius: ${spacing.QUARTER_BASE_SPACING};
   display: flex;
   flex-direction: row;
