@@ -67,7 +67,7 @@ const SignupPage = () => {
 
       finalForm.onSuccess(values => {
         const dataLayer = getDataLayer()
-        dataLayer.push({
+        dataLayer?.push({
           event: "dataLayerEvent",
           event_category: "Sign Up Wizard",
           event_action: "sign_up",
