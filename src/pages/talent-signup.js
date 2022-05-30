@@ -38,6 +38,7 @@ const TalentSignupPage = () => {
   const [step, setStep] = useState(1)
   const [formData, setFormData] = useState(null)
   const [parentForm, setParentForm] = useState(null)
+  let sendSafelyWidget
   const dataLayer = getDataLayer()
 
   const getForm = () => {
@@ -65,7 +66,7 @@ const TalentSignupPage = () => {
         )
 
         widget.disableAutoSubmit = true
-        widget.initialize()
+        // widget.initialize()
 
         finalForm.onValidate(success => {
           if (success && widget.nbrOfFilesAttached > 0) {
@@ -75,7 +76,7 @@ const TalentSignupPage = () => {
               })
             } catch (e) {
               alert(
-                "Something went wrong with uploading youe file. Please try again later."
+                "Something went wrong with uploading your file. Please try again later."
               )
 
               console.log(e)
@@ -86,6 +87,8 @@ const TalentSignupPage = () => {
             ) // typically we'll never run into this
           }
         })
+
+        sendSafelyWidget = widget
       }
 
       setParentForm(finalForm)
@@ -131,7 +134,13 @@ const TalentSignupPage = () => {
           />
         )
       case 3:
-        return <Step3 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
+        return (
+          <Step3
+            setFormStepAnswer={setFormStepAnswer}
+            goBack={goBack}
+            sendSafelyWidget={sendSafelyWidget}
+          />
+        )
       case 4:
         return <Step4 />
     }

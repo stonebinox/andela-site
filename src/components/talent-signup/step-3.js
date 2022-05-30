@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { ReactSVG } from "react-svg"
 
 import {
@@ -35,7 +35,7 @@ const yearsOptions = [
   "Principal (12+ yrs professional experience)",
 ]
 
-const Step3 = ({ goBack, setFormStepAnswer }) => {
+const Step3 = ({ goBack, setFormStepAnswer, sendSafelyWidget = null }) => {
   const [termsAccepted, setTermsAccepted] = useState(false)
   const [policyAccepted, setPolicyAccepted] = useState(false)
   const [englishLevel, setEnglishLevel] = useState("Select...")
@@ -90,6 +90,10 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
     })
   }
 
+  useEffect(() => {
+    sendSafelyWidget?.initialise()
+  }, [])
+
   return (
     <>
       <StepContainer>
@@ -137,6 +141,8 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
               onChange={e => setReferrer(e.currentTarget.value)}
             />
           </InputContainer>
+          <InputLabel>Upload your resume</InputLabel>
+          <div id="dropzone" />
         </ProblemsContainer>
       </StepContainer>
       <ConditionContainer>
