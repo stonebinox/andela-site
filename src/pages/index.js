@@ -278,6 +278,14 @@ const SignupPage = () => {
         document.mktoForm_1053?.UTM_Medium_Most_Recent__c?.value ?? "",
       UTM_Source_Most_Recent__c:
         document.mktoForm_1053?.UTM_Source_Most_Recent__c?.value ?? "",
+      UTM_Term__c: document.mktoForm_1053?.UTM_Term__c?.value ?? "",
+      UTM_Term_Most_Recent__c:
+        document.mktoForm_1053?.UTM_Term_Most_Recent__c?.value ?? "",
+      client_id: document.mktoForm_1053?.client_id?.value ?? "",
+      fbclid: document.mktoForm_1053?.fbclid?.value ?? "",
+      gclid: document.mktoForm_1053?.gclid?.value ?? "",
+      fbp: document.mktoForm_1053?.fbp?.value ?? "",
+      user_agent: document.mktoForm_1053?.user_agent?.value ?? "",
     }
 
     console.log(finalForm)
@@ -475,6 +483,13 @@ const SignupPage = () => {
             <input type="hidden" name="UTM_Content_Most_Recent__c" value="" />
             <input type="hidden" name="UTM_Medium_Most_Recent__c" value="" />
             <input type="hidden" name="UTM_Source_Most_Recent__c" value="" />
+            <input type="hidden" name="UTM_Term__c" value="" />
+            <input type="hidden" name="UTM_Term_Most_Recent__c" value="" />
+            <input type="hidden" name="client_id" value="" />
+            <input type="hidden" name="fbclid" value="" />
+            <input type="hidden" name="gclid" value="" />
+            <input type="hidden" name="fbp" value="" />
+            <input type="hidden" name="user_agent" value="" />
           </form>
         </MainContainer>
       </FormContainer>
