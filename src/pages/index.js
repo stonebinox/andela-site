@@ -76,7 +76,7 @@ const SignupPage = () => {
 
         if (values.Employee_Range__c === "0 - 50") {
           const ga = getGA()
-          const linkerParam = ga?.getAll()[0]?.get("linkerParam") ?? ""
+          const linkerParam = ga?.getAll?.()[0]?.get("linkerParam") ?? ""
           window.location = `https://andela.app/?_ga=${linkerParam}`
 
           return false
