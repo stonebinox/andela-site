@@ -47,7 +47,7 @@ const selectedTest = tests[Math.floor(Math.random() * tests.length)]
 const eventVariant = selectedTest === 0 ? "A" : "B"
 
 const SignupPage = () => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [formData, setFormData] = useState(null)
   const [step, setStep] = useState(1)
   const [parentForm, setParentForm] = useState(null)
