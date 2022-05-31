@@ -8,17 +8,19 @@ import React from "react"
 
 export const onRenderBody = ({ setHeadComponents }) => {
   setHeadComponents([
-    <script
-      key={1}
-      src="//hire.andela.com/js/forms2/js/forms2.min.js"
-    ></script>,
+    <script key={1} src="//hire.andela.com/js/forms2/js/forms2.min.js" />,
     <script
       key={2}
       src="//js.chilipiper.com/marketing.js"
       type="text/javascript"
       async
-    ></script>,
-    <script key={3}>{`window.dataLayer = window.dataLayer || [];`}</script>,
+    />,
+    <script
+      key={3}
+      dangerouslySetInnerHTML={{
+        __html: `window.dataLayer = window.dataLayer || [];`,
+      }}
+    />,
     <script
       key={4}
       dangerouslySetInnerHTML={{
@@ -30,6 +32,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-K4NJ25N');
   `,
       }}
-    ></script>,
+    />,
   ])
 }
