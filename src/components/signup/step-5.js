@@ -146,7 +146,7 @@ const Step5 = ({
 
     let valid = true
 
-    if (selectedTest === 0 && (!termsAccepted || !policyAccepted)) valid = false
+    if (!termsAccepted || !policyAccepted) valid = false
 
     if (!valid) {
       alert(
@@ -314,41 +314,39 @@ const Step5 = ({
           </InputRow>
         </ProblemsContainer>
       </StepContainer>
-      {selectedTest === 0 && (
-        <ConditionContainer>
-          <ConditionText>
-            <input
-              type="checkbox"
-              onChange={e => setTermsAccepted(e.currentTarget.checked)}
-            />{" "}
-            I agree to {`Andela's`}{" "}
-            <Link
-              href="https://andela.com/andela-terms-conditions/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Terms & Conditions
-            </Link>
-          </ConditionText>
-          <ConditionText>
-            <input
-              type="checkbox"
-              onChange={e => setPolicyAccepted(e.currentTarget.checked)}
-            />{" "}
-            I understand that Andela will process my information in accordance
-            with their{" "}
-            <Link
-              href="https://andela.com/privacy"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Privacy Policy
-            </Link>
-            . I may withdraw my consent through unsubscribe links at any time.
-          </ConditionText>
-        </ConditionContainer>
-      )}
-      <ButtonContainer style={selectedTest === 0 ? { marginTop: 0 } : null}>
+      <ConditionContainer>
+        <ConditionText>
+          <input
+            type="checkbox"
+            onChange={e => setTermsAccepted(e.currentTarget.checked)}
+          />{" "}
+          I agree to {`Andela's`}{" "}
+          <Link
+            href="https://andela.com/andela-terms-conditions/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Terms & Conditions
+          </Link>
+        </ConditionText>
+        <ConditionText>
+          <input
+            type="checkbox"
+            onChange={e => setPolicyAccepted(e.currentTarget.checked)}
+          />{" "}
+          I understand that Andela will process my information in accordance
+          with their{" "}
+          <Link
+            href="https://andela.com/privacy"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Privacy Policy
+          </Link>
+          . I may withdraw my consent through unsubscribe links at any time.
+        </ConditionText>
+      </ConditionContainer>
+      <ButtonContainer style={{ marginTop: 0 }}>
         {selectedTest === 0 && (
           <SecondaryButton onClick={goBack}>Back</SecondaryButton>
         )}
