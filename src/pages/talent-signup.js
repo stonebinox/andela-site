@@ -29,7 +29,7 @@ import Step1 from "../components/talent-signup/step-1"
 import Step2 from "../components/talent-signup/step-2"
 import Step3 from "../components/talent-signup/step-3"
 import Step4 from "../components/talent-signup/step-4"
-import { getDataLayer, getMarketoForm, getSendSafely } from "../utils/api"
+import { getDataLayer, getMarketoForm } from "../utils/api"
 
 import "./skills/style.css"
 
@@ -38,13 +38,11 @@ const TalentSignupPage = () => {
   const [step, setStep] = useState(1)
   const [formData, setFormData] = useState(null)
   const [parentForm, setParentForm] = useState(null)
-  let sendSafelyWidget
   const dataLayer = getDataLayer()
 
   const getForm = () => {
     setLoading(true)
     const form = getMarketoForm()
-    const sendSafely = getSendSafely()
 
     if (!form) {
       setTimeout(() => getForm(), 500)
@@ -58,38 +56,6 @@ const TalentSignupPage = () => {
         jumpToStep(4)
         return false
       })
-
-      if (sendSafely) {
-        const widget = new sendSafely(
-          "Bk7y8vV8NhXyfKkvEfjClo9dqC4ABHjKTKVaztGXf8k",
-          window?.jQuery("#dropzone")
-        )
-
-        widget.disableAutoSubmit = true
-        // widget.initialize()
-
-        finalForm.onValidate(success => {
-          if (success && widget.nbrOfFilesAttached > 0) {
-            try {
-              widget.finalizePackage(url => {
-                console.log(url)
-              })
-            } catch (e) {
-              alert(
-                "Something went wrong with uploading your file. Please try again later."
-              )
-
-              console.log(e)
-            }
-          } else {
-            alert(
-              "No valid resume attached. Please verify the attached file and proceed."
-            ) // typically we'll never run into this
-          }
-        })
-
-        sendSafelyWidget = widget
-      }
 
       setParentForm(finalForm)
     })
@@ -134,13 +100,7 @@ const TalentSignupPage = () => {
           />
         )
       case 3:
-        return (
-          <Step3
-            setFormStepAnswer={setFormStepAnswer}
-            goBack={goBack}
-            sendSafelyWidget={sendSafelyWidget}
-          />
-        )
+        return <Step3 setFormStepAnswer={setFormStepAnswer} goBack={goBack} />
       case 4:
         return <Step4 />
     }

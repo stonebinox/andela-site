@@ -19,7 +19,7 @@ import { InputLabel, StepQuestion } from "./talent-signup.styles"
 import Code from "../../images/code.svg"
 import People from "../../images/people.svg"
 import PersonGear from "../../images/person-gear.svg"
-import { getDataLayer } from "../../utils/api"
+import { getDataLayer, getSendSafely } from "../../utils/api"
 
 const options = [
   "Native",
@@ -35,7 +35,7 @@ const yearsOptions = [
   "Principal (12+ yrs professional experience)",
 ]
 
-const Step3 = ({ goBack, setFormStepAnswer, sendSafelyWidget = null }) => {
+const Step3 = ({ goBack, setFormStepAnswer }) => {
   const [termsAccepted, setTermsAccepted] = useState(false)
   const [policyAccepted, setPolicyAccepted] = useState(false)
   const [englishLevel, setEnglishLevel] = useState("Select...")
@@ -44,8 +44,24 @@ const Step3 = ({ goBack, setFormStepAnswer, sendSafelyWidget = null }) => {
   const [referrer, setReferrer] = useState("")
   const [totalExperience, setTotalExperience] = useState("Select...")
   const [invalidExperience, setInvalidExperience] = useState(false)
+  const [sendSafelyWidget, setSendSafelyWidget] = useState(null)
+  const [resumeUrl, setResumeUrl] = useState("")
 
   const dataLayer = getDataLayer()
+
+  const isFileAttached = () =>
+    sendSafelyWidget?.nbrOfFilesAttached > 0 && resumeUrl !== ""
+
+  const finalizeUpload = () => {
+    if (sendSafelyWidget?.nbrOfFilesAttached <= 0) {
+      alert("Please attach your resume before submitting.")
+      return
+    }
+
+    sendSafelyWidget?.finalizePackage(url => {
+      setResumeUrl(url)
+    })
+  }
 
   const submitAnswer = () => {
     setInvalidEnglishLevel(false)
@@ -87,11 +103,37 @@ const Step3 = ({ goBack, setFormStepAnswer, sendSafelyWidget = null }) => {
       englishProficiency: englishLevel,
       tLReferredBy: referrer,
       tLSeniorityLevel: totalExperience,
+      tLDropzoneLink: resumeUrl,
     })
   }
 
+  const loadUploader = () => {
+    const sendSafely = getSendSafely()
+
+    if (!sendSafely) {
+      setTimeout(() => loadUploader(), 500)
+      return
+    }
+
+    const widget = new sendSafely(
+      "Bk7y8vV8NhXyfKkvEfjClo9dqC4ABHjKTKVaztGXf8k",
+      window?.jQuery("#dropzone")
+    )
+
+    widget.disableAutoSubmit = true
+    widget.initialize()
+
+    setSendSafelyWidget(widget)
+  }
+
   useEffect(() => {
-    sendSafelyWidget?.initialise()
+    if (isFileAttached()) {
+      submitAnswer()
+    }
+  }, [resumeUrl])
+
+  useEffect(() => {
+    loadUploader()
   }, [])
 
   return (
@@ -179,7 +221,9 @@ const Step3 = ({ goBack, setFormStepAnswer, sendSafelyWidget = null }) => {
       </ConditionContainer>
       <ButtonContainer>
         <SecondaryButton onClick={goBack}>Back</SecondaryButton>
-        <PrimarySignupButton onClick={submitAnswer}>Submit</PrimarySignupButton>
+        <PrimarySignupButton onClick={finalizeUpload}>
+          Submit
+        </PrimarySignupButton>
       </ButtonContainer>
     </>
   )
