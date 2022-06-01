@@ -128,6 +128,7 @@ const Step5 = ({
         "Please ensure the email address entered is a company email address."
       )
       setEmailInvalid(true)
+      return
     } else {
       setEmailInvalid(false)
     }
