@@ -69,7 +69,11 @@ const SignupPage = () => {
           event_label: `${eventVariant}: Success`,
         })
 
-        if (values.Employee_Range__c === "0 - 50") {
+        if (
+          values.Employee_Range__c === "0 - 50" ||
+          values.Employee_Range__c === "51 - 499" ||
+          values.Employee_Range__c === "500 - 999"
+        ) {
           window.location = "https://andela.app/"
 
           return false
