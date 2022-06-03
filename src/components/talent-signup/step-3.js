@@ -20,6 +20,8 @@ import Code from "../../images/code.svg"
 import People from "../../images/people.svg"
 import PersonGear from "../../images/person-gear.svg"
 import { getDataLayer, getSendSafely } from "../../utils/api"
+import { greenBlack, greyWhite } from "../../utils/colors"
+import { spacing } from "../../utils/spacing"
 
 const options = [
   "Native",
@@ -131,6 +133,16 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
     )
 
     widget.disableAutoSubmit = true
+    widget.DROP_TEXT_COLOR = greenBlack
+    widget.logoPath =
+      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+    widget.DROPZONE_STYLE = `
+      border: 1px solid ${greyWhite};
+      border-radius: ${spacing.QUARTER_BASE_SPACING};
+      margin-top: ${spacing.customSpacing("12px")};
+      font-family: sans-serif;
+      font-size: 16px;`
+
     widget.initialize()
 
     setSendSafelyWidget(widget)
