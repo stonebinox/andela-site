@@ -48,6 +48,7 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
   const [invalidExperience, setInvalidExperience] = useState(false)
   const [sendSafelyWidget, setSendSafelyWidget] = useState(null)
   const [resumeUrl, setResumeUrl] = useState("")
+  const [disableButton, setDisableButton] = useState(false)
 
   const dataLayer = getDataLayer()
 
@@ -55,6 +56,8 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
     sendSafelyWidget?.nbrOfFilesAttached > 0 && resumeUrl !== ""
 
   const finalizeUpload = () => {
+    if (disableButton) return
+
     if (sendSafelyWidget?.nbrOfFilesAttached <= 0) {
       alert("Please attach your resume before submitting.")
       return
@@ -78,6 +81,7 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
   const submitAnswer = () => {
     setInvalidEnglishLevel(false)
     setInvalidExperience(false)
+    setDisableButton(true)
 
     if (englishLevel === "Select...") {
       alert("Please select your English proficiency level.")
