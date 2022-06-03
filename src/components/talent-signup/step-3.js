@@ -63,6 +63,16 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
     })
   }
 
+  const handleGoBack = () => {
+    if (
+      confirm(
+        "You will lose information selected on this screen if you go back. Do you wish to proceed?"
+      )
+    ) {
+      goBack()
+    }
+  }
+
   const submitAnswer = () => {
     setInvalidEnglishLevel(false)
     setInvalidExperience(false)
@@ -220,7 +230,7 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
         </ConditionText>
       </ConditionContainer>
       <ButtonContainer>
-        <SecondaryButton onClick={goBack}>Back</SecondaryButton>
+        <SecondaryButton onClick={handleGoBack}>Back</SecondaryButton>
         <PrimarySignupButton onClick={finalizeUpload}>
           Submit
         </PrimarySignupButton>
