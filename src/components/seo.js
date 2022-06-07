@@ -57,24 +57,7 @@ function Seo({ description, lang, meta, title }) {
           content: metaDescription,
         },
       ].concat(meta)}
-    >
-      <script src="//hire.andela.com/js/forms2/js/forms2.min.js"></script>
-      <script
-        src="//js.chilipiper.com/marketing.js"
-        type="text/javascript"
-        async
-      ></script>
-      <script>{`window.dataLayer = window.dataLayer || [];`}</script>
-      <script>{`
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-K4NJ25N');
-      `}</script>
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-      <script src="//app.sendsafely.com/js/external/SendSafelyDropzone.min.js"></script>
-    </Helmet>
+    />
   )
 }
 

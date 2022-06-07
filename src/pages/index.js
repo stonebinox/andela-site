@@ -3,7 +3,12 @@ import { ReactSVG } from "react-svg"
 import FullStory from "react-fullstory"
 
 import Seo from "../components/seo"
-import { getChiliPiper, getDataLayer, getMarketoForm } from "../utils/api"
+import {
+  getChiliPiper,
+  getDataLayer,
+  getGA,
+  getMarketoForm,
+} from "../utils/api"
 import { PageContainer } from "../utils/common.styles"
 import {
   FocusDot,
@@ -42,7 +47,7 @@ const selectedTest = tests[Math.floor(Math.random() * tests.length)]
 const eventVariant = selectedTest === 0 ? "A" : "B"
 
 const SignupPage = () => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [formData, setFormData] = useState(null)
   const [step, setStep] = useState(1)
   const [parentForm, setParentForm] = useState(null)
@@ -74,7 +79,9 @@ const SignupPage = () => {
           values.Employee_Range__c === "51 - 499" ||
           values.Employee_Range__c === "500 - 999"
         ) {
-          window.location = "https://andela.app/"
+          const ga = getGA()
+          const linkerParam = ga?.getAll?.()[0]?.get("linkerParam") ?? ""
+          window.location = `https://andela.app/?_ga=${linkerParam}`
 
           return false
         }
@@ -263,7 +270,29 @@ const SignupPage = () => {
     const finalForm = {
       ...formattedForm,
       Role_Details__c: "Other",
+      UTM_Campaign__c: document.mktoForm_1053?.UTM_Campaign__c?.value ?? "",
+      UTM_Content__c: document.mktoForm_1053?.UTM_Content__c?.value ?? "",
+      UTM_Medium__c: document.mktoForm_1053?.UTM_Medium__c?.value ?? "",
+      UTM_Source__c: document.mktoForm_1053?.UTM_Source__c?.value ?? "",
+      UTM_Campaign_Most_Recent__c:
+        document.mktoForm_1053?.UTM_Campaign_Most_Recent__c?.value ?? "",
+      UTM_Content_Most_Recent__c:
+        document.mktoForm_1053?.UTM_Content_Most_Recent__c?.value ?? "",
+      UTM_Medium_Most_Recent__c:
+        document.mktoForm_1053?.UTM_Medium_Most_Recent__c?.value ?? "",
+      UTM_Source_Most_Recent__c:
+        document.mktoForm_1053?.UTM_Source_Most_Recent__c?.value ?? "",
+      UTM_Term__c: document.mktoForm_1053?.UTM_Term__c?.value ?? "",
+      UTM_Term_Most_Recent__c:
+        document.mktoForm_1053?.UTM_Term_Most_Recent__c?.value ?? "",
+      client_id: document.mktoForm_1053?.client_id?.value ?? "",
+      fbclid: document.mktoForm_1053?.fbclid?.value ?? "",
+      gclid: document.mktoForm_1053?.gclid?.value ?? "",
+      fbp: document.mktoForm_1053?.fbp?.value ?? "",
+      user_agent: document.mktoForm_1053?.user_agent?.value ?? "",
     }
+
+    console.log(finalForm)
 
     parentForm.vals(finalForm)
 
@@ -449,7 +478,23 @@ const SignupPage = () => {
             <StepProgress selected={step >= 5} />
           </StepProgressContainer>
           {!loading ? getStep() : <LoadingText>Loading ...</LoadingText>}
-          <form id="mktoForm_1053" />
+          <form id="mktoForm_1053" name="mktoForm_1053">
+            <input type="hidden" name="UTM_Campaign__c" value="" />
+            <input type="hidden" name="UTM_Content__c" value="" />
+            <input type="hidden" name="UTM_Medium__c" value="" />
+            <input type="hidden" name="UTM_Source__c" value="" />
+            <input type="hidden" name="UTM_Campaign_Most_Recent__c" value="" />
+            <input type="hidden" name="UTM_Content_Most_Recent__c" value="" />
+            <input type="hidden" name="UTM_Medium_Most_Recent__c" value="" />
+            <input type="hidden" name="UTM_Source_Most_Recent__c" value="" />
+            <input type="hidden" name="UTM_Term__c" value="" />
+            <input type="hidden" name="UTM_Term_Most_Recent__c" value="" />
+            <input type="hidden" name="client_id" value="" />
+            <input type="hidden" name="fbclid" value="" />
+            <input type="hidden" name="gclid" value="" />
+            <input type="hidden" name="fbp" value="" />
+            <input type="hidden" name="user_agent" value="" />
+          </form>
         </MainContainer>
       </FormContainer>
     </PageContainer>

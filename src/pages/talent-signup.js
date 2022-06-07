@@ -34,7 +34,7 @@ import { getDataLayer, getMarketoForm } from "../utils/api"
 import "./skills/style.css"
 
 const TalentSignupPage = () => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [step, setStep] = useState(1)
   const [formData, setFormData] = useState(null)
   const [parentForm, setParentForm] = useState(null)
