@@ -215,7 +215,7 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
               onChange={e => setReferrer(e.currentTarget.value)}
             />
           </InputContainer>
-          <InputLabel>Upload your resume</InputLabel>
+          <InputLabel>Upload your resume (PDF only)</InputLabel>
           <div id="dropzone" />
         </ProblemsContainer>
       </StepContainer>
