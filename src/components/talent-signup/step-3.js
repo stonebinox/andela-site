@@ -103,13 +103,13 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
     dataLayer?.push(
       {
         event: "dataLayerEvent",
-        event_category: "Sign Up Wizard",
+        event_category: "Sign Up Talent Wizard",
         event_action: "sign_up",
         event_label: `Step 3 - Eng ${englishLevel}`,
       },
       {
         event: "dataLayerEvent",
-        event_category: "Sign Up Wizard",
+        event_category: "Sign Up Talent Wizard",
         event_action: "sign_up",
         event_label: `Step 3 - Exp ${totalExperience}`,
       }

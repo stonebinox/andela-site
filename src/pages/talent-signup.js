@@ -143,7 +143,7 @@ const TalentSignupPage = () => {
     if (parentForm.validate()) {
       dataLayer?.push({
         event: "dataLayerEvent",
-        event_category: "Sign Up Wizard",
+        event_category: "Sign Up Talent Wizard",
         event_action: "sign_up",
         event_label: "Step 3 - Submit",
       })

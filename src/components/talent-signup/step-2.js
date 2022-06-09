@@ -62,13 +62,13 @@ const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
     dataLayer?.push(
       {
         event: "dataLayerEvent",
-        event_category: "Sign Up Wizard",
+        event_category: "Sign Up Talent Wizard",
         event_action: "sign_up",
         event_label: `Step 2 - Skill "${selectedSkill}"`,
       },
       {
         event: "dataLayerEvent",
-        event_category: "Sign Up Wizard",
+        event_category: "Sign Up Talent Wizard",
         event_action: "sign_up",
         event_label: `Step 2 - Sk Exp ${yearsOfExperience}`,
       }
