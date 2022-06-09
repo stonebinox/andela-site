@@ -63,6 +63,11 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
       return
     }
 
+    if (sendSafelyWidget?.nbrOfFilesAttached > 1) {
+      alert("Please attach only one file to submit.")
+      return
+    }
+
     sendSafelyWidget?.finalizePackage(url => {
       setResumeUrl(url)
     })
@@ -146,6 +151,7 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
       margin-top: ${spacing.customSpacing("12px")};
       font-family: sans-serif;
       font-size: 16px;`
+    widget.DROPZONE_TEXT = "Click to add file"
 
     widget.initialize()
 
