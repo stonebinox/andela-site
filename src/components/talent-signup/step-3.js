@@ -4,12 +4,9 @@ import { ReactSVG } from "react-svg"
 
 import {
   ButtonContainer,
-  ConditionContainer,
-  ConditionText,
   DropdownField,
   InputContainer,
   InputField,
-  Link,
   PrimarySignupButton,
   ProblemsContainer,
   SecondaryButton,
@@ -38,8 +35,6 @@ const yearsOptions = [
 ]
 
 const Step3 = ({ goBack, setFormStepAnswer }) => {
-  const [termsAccepted, setTermsAccepted] = useState(false)
-  const [policyAccepted, setPolicyAccepted] = useState(false)
   const [englishLevel, setEnglishLevel] = useState("Select...")
   const [invalidEnglishLevel, setInvalidEnglishLevel] = useState(false)
 
@@ -97,11 +92,6 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
     if (totalExperience === "Select...") {
       alert("Please select your total work experience.")
       setInvalidExperience(true)
-      return
-    }
-
-    if (!policyAccepted || !termsAccepted) {
-      alert("Please check the policy and terms checkboxes.")
       return
     }
 
@@ -220,38 +210,6 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
           <div id="dropzone" />
         </ProblemsContainer>
       </StepContainer>
-      <ConditionContainer>
-        <ConditionText>
-          <input
-            type="checkbox"
-            onChange={e => setTermsAccepted(e.currentTarget.checked)}
-          />{" "}
-          I agree to {`Andela's`}{" "}
-          <Link
-            href="https://andela.com/andela-terms-conditions/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Terms & Conditions
-          </Link>
-        </ConditionText>
-        <ConditionText>
-          <input
-            type="checkbox"
-            onChange={e => setPolicyAccepted(e.currentTarget.checked)}
-          />{" "}
-          I understand that Andela will process my information in accordance
-          with their{" "}
-          <Link
-            href="https://andela.com/privacy"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Privacy Policy
-          </Link>
-          . I may withdraw my consent through unsubscribe links at any time.
-        </ConditionText>
-      </ConditionContainer>
       <ButtonContainer>
         <SecondaryButton onClick={handleGoBack}>Back</SecondaryButton>
         <PrimarySignupButton onClick={finalizeUpload}>

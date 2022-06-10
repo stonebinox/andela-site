@@ -12,6 +12,9 @@ import {
   DropdownField,
   ButtonContainer,
   PrimarySignupButton,
+  ConditionContainer,
+  ConditionText,
+  Link,
 } from "../signup/signup.styles"
 import { spacing } from "../../utils/spacing"
 import {
@@ -46,6 +49,9 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
   const [email, setEmail] = useState("")
   const [invalidEmail, setInvalidEmail] = useState(false)
 
+  const [termsAccepted, setTermsAccepted] = useState(false)
+  const [policyAccepted, setPolicyAccepted] = useState(false)
+
   const dataLayer = getDataLayer()
 
   const submitAnswer = () => {
@@ -54,6 +60,11 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
     setInvalidLastName(false)
     setInvalidEmail(false)
     setInvalidCountry(false)
+
+    if (!policyAccepted || !termsAccepted) {
+      alert("Please check the policy and terms checkboxes.")
+      return
+    }
 
     if (firstName.trim() === "") {
       valid = false
@@ -171,6 +182,38 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
           </InputWrapper>
         </ProblemsContainer>
       </StepContainer>
+      <ConditionContainer>
+        <ConditionText>
+          <input
+            type="checkbox"
+            onChange={e => setTermsAccepted(e.currentTarget.checked)}
+          />{" "}
+          I agree to {`Andela's`}{" "}
+          <Link
+            href="https://andela.com/andela-terms-conditions/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Terms & Conditions
+          </Link>
+        </ConditionText>
+        <ConditionText>
+          <input
+            type="checkbox"
+            onChange={e => setPolicyAccepted(e.currentTarget.checked)}
+          />{" "}
+          I understand that Andela will process my information in accordance
+          with their{" "}
+          <Link
+            href="https://andela.com/privacy"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Privacy Policy
+          </Link>
+          . I may withdraw my consent through unsubscribe links at any time.
+        </ConditionText>
+      </ConditionContainer>
       <ButtonContainer>
         <PrimarySignupButton onClick={submitAnswer}>
           Get started
