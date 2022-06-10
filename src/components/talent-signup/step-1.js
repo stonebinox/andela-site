@@ -12,6 +12,9 @@ import {
   DropdownField,
   ButtonContainer,
   PrimarySignupButton,
+  ConditionContainer,
+  ConditionText,
+  Link,
 } from "../signup/signup.styles"
 import { spacing } from "../../utils/spacing"
 import {
@@ -22,7 +25,8 @@ import {
 import Marker from "../../images/marker.svg"
 import Person1 from "../../images/person-1.svg"
 import Envelope from "../../images/envelope.svg"
-import { countries } from "../../utils/countries"
+import { countries } from "../../utils/countries-alt"
+import { getDataLayer } from "../../utils/api"
 
 const PersonSVG = styled(ReactSVG)`
   width: ${spacing.customSpacing("20px")};
@@ -34,27 +38,72 @@ const PersonSVG = styled(ReactSVG)`
 
 const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
   const [country, setCountry] = useState("")
+  const [invalidCountry, setInvalidCountry] = useState(false)
+
   const [firstName, setFirstName] = useState("")
+  const [invalidFirstName, setInvalidFirstName] = useState(false)
+
   const [lastName, setLastName] = useState("")
+  const [invalidLastName, setInvalidLastName] = useState(false)
+
   const [email, setEmail] = useState("")
+  const [invalidEmail, setInvalidEmail] = useState(false)
+
+  const [termsAccepted, setTermsAccepted] = useState(false)
+  const [policyAccepted, setPolicyAccepted] = useState(false)
+
+  const dataLayer = getDataLayer()
 
   const submitAnswer = () => {
     let valid = true
+    setInvalidFirstName(false)
+    setInvalidLastName(false)
+    setInvalidEmail(false)
+    setInvalidCountry(false)
 
-    if (firstName.trim() === "") valid = false
-    if (lastName.trim() === "") valid = false
+    if (!policyAccepted || !termsAccepted) {
+      alert("Please check the policy and terms checkboxes.")
+      return
+    }
+
+    if (firstName.trim() === "") {
+      valid = false
+      setInvalidFirstName(true)
+    }
+
+    if (lastName.trim() === "") {
+      valid = false
+      setInvalidLastName(true)
+    }
+
     if (
       email.trim() === "" ||
       !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)
-    )
+    ) {
       valid = false
-    if (country.trim() === "" || country.trim() === "Select country ...")
+      setInvalidEmail(true)
+    }
+
+    if (
+      country.trim() === "" ||
+      country.trim() === "Select country ..." ||
+      !countries.some(countryEntry => countryEntry === country)
+    ) {
       valid = false
+      setInvalidCountry(true)
+    }
 
     if (!valid) {
       alert("Please enter valid content in the form")
       return
     }
+
+    dataLayer?.push({
+      event: "dataLayerEvent",
+      event_category: "Sign Up Talent Wizard",
+      event_action: "sign_up",
+      event_label: "Step 1: Get started",
+    })
 
     const finalAnswer = {
       FirstName: firstName,
@@ -70,7 +119,7 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
     setFirstName(savedValue?.firstName ?? "")
     setLastName(savedValue?.lastName ?? "")
     setEmail(savedValue?.email ?? "")
-    setCountry(savedValue?.country ?? "Select...")
+    setCountry(savedValue?.country ?? "Select country ...")
   }, [])
 
   return (
@@ -82,7 +131,7 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
         </StepQuestion>
         <ProblemsContainer>
           <InputLabel>First name</InputLabel>
-          <InputContainer>
+          <InputContainer invalid={invalidFirstName}>
             <PersonSVG src={Person1} />
             <InputField
               type="text"
@@ -93,7 +142,7 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
             />
           </InputContainer>
           <InputLabel>Last name</InputLabel>
-          <InputContainer>
+          <InputContainer invalid={invalidLastName}>
             <PersonSVG src={Person1} />
             <InputField
               type="text"
@@ -104,7 +153,7 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
             />
           </InputContainer>
           <InputLabel>Email</InputLabel>
-          <InputContainer>
+          <InputContainer invalid={invalidEmail}>
             <ReactSVG src={Envelope} />
             <InputField
               type="email"
@@ -116,7 +165,7 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
           </InputContainer>
           <InputWrapper>
             <InputLabel>Country</InputLabel>
-            <InputContainer>
+            <InputContainer invalid={invalidCountry}>
               <ReactSVG src={Marker} />
               <DropdownField
                 name="country"
@@ -133,6 +182,38 @@ const Step1 = ({ setFormStepAnswer, savedValue = null }) => {
           </InputWrapper>
         </ProblemsContainer>
       </StepContainer>
+      <ConditionContainer>
+        <ConditionText>
+          <input
+            type="checkbox"
+            onChange={e => setTermsAccepted(e.currentTarget.checked)}
+          />{" "}
+          I agree to {`Andela's`}{" "}
+          <Link
+            href="https://andela.com/andela-terms-conditions/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Terms & Conditions
+          </Link>
+        </ConditionText>
+        <ConditionText>
+          <input
+            type="checkbox"
+            onChange={e => setPolicyAccepted(e.currentTarget.checked)}
+          />{" "}
+          I understand that Andela will process my information in accordance
+          with their{" "}
+          <Link
+            href="https://andela.com/privacy"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Privacy Policy
+          </Link>
+          . I may withdraw my consent through unsubscribe links at any time.
+        </ConditionText>
+      </ConditionContainer>
       <ButtonContainer>
         <PrimarySignupButton onClick={submitAnswer}>
           Get started

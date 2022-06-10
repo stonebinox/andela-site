@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useEffect } from "react"
+import { getDataLayer } from "../../utils/api"
 import {
   ButtonContainer,
   PrimarySignupButton,
@@ -8,6 +9,17 @@ import {
 import { Highlight, PlainText, StepQuestion } from "./talent-signup.styles"
 
 const Step4 = () => {
+  const dataLayer = getDataLayer()
+
+  useEffect(() => {
+    dataLayer?.push({
+      event: "dataLayerEvent",
+      event_category: "Sign Up Talent Wizard",
+      event_action: "sign_up",
+      event_label: "Success",
+    })
+  }, [])
+
   return (
     <>
       <StepContainer>
@@ -24,7 +36,16 @@ const Step4 = () => {
       </StepContainer>
       <ButtonContainer>
         <PrimarySignupButton
-          onClick={() => (window.location = "https://andela.com/insights/")}
+          onClick={() => {
+            dataLayer?.push({
+              event: "dataLayerEvent",
+              event_category: "Sign Up Talent Wizard",
+              event_action: "sign_up",
+              event_label: "Success - Blog",
+            })
+
+            window.location = "https://andela.com/insights/"
+          }}
         >
           Check out our blogs
         </PrimarySignupButton>

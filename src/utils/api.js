@@ -71,6 +71,12 @@ export const searchLocalSkills = text => {
   return results
 }
 
+export const getSendSafely = () => {
+  if (typeof window === "undefined" || !window.SendSafelyDropzone) return null
+
+  return window.SendSafelyDropzone
+}
+
 export const getGA = () => {
   if (typeof window === "undefined" || !window.ga) return null
 

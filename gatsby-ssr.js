@@ -33,5 +33,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   `,
       }}
     />,
+    <script
+      key={5}
+      src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    />,
+    <script
+      key={6}
+      src="//app.sendsafely.com/js/external/SendSafelyDropzone.min.js"
+    />,
   ])
 }

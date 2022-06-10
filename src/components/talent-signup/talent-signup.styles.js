@@ -6,6 +6,7 @@ import {
   blackLight,
   white,
   black,
+  sunset,
 } from "../../utils/colors"
 import { spacing } from "../../utils/spacing"
 import { InputWrapper } from "../signup/signup.styles"
@@ -77,4 +78,12 @@ export const PlainText = styled.div`
   font-family: sans-serif;
   max-width: 70%;
   margin: 0 auto;
+`
+
+export const LabelSubtext = styled.div`
+  font-size: 10px;
+  color: ${sunset};
+  font-family: sans-serif;
+  margin-left: ${spacing.customSpacing("12px")};
+  margin-top: -${spacing.customSpacing("6px")};
 `

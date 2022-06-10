@@ -1,24 +1,20 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react"
+import { getDataLayer } from "../../utils/api"
 import { spacing } from "../../utils/spacing"
-import Search from "../search/search"
+
 import {
   ButtonContainer,
+  DropdownField,
+  InputContainer,
   PeopleContainer,
   PrimarySignupButton,
-  SearchResultsContainer,
   SecondaryButton,
-  SelectedSearchSkillsContainer,
   SkillContainer,
   StepContainer,
 } from "../signup/signup.styles"
-import Skill from "../skills/skill"
-import {
-  Highlight,
-  StepQuestion,
-  SearchBar,
-  YearsContainer,
-} from "./talent-signup.styles"
+import { primarySkills } from "../skills/primary-skills"
+import { Highlight, StepQuestion, YearsContainer } from "./talent-signup.styles"
 
 const options = [
   {
@@ -44,31 +40,16 @@ const options = [
 ]
 
 const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
-  const [selected, setSelected] = useState(null)
-  const [searchList, setSearchList] = useState([])
   const [yearsOfExperience, setYearsOfExperience] = useState(null)
+  const [selectedSkill, setSelectedSkill] = useState(null)
 
-  const onSkillSelect = skill => {
-    setSelected(skill)
-  }
-
-  const renderSkills = skillList => {
-    return skillList.map((skill, index) => (
-      <Skill
-        key={index}
-        skill={skill}
-        selected={[selected]}
-        fromSearch
-        selectedSearchSkills={[selected]}
-        onClick={onSkillSelect}
-      />
-    ))
-  }
+  const dataLayer = getDataLayer()
 
   const submitAnswer = () => {
-    const skillName = selected.skill_name
-
-    if (skillName?.trim() === "") {
+    if (
+      selectedSkill?.trim() === "" ||
+      selectedSkill?.trim() === "Select ..."
+    ) {
       alert("Please select at least one skill.")
       return
     }
@@ -78,14 +59,29 @@ const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
       return
     }
 
+    dataLayer?.push(
+      {
+        event: "dataLayerEvent",
+        event_category: "Sign Up Talent Wizard",
+        event_action: "sign_up",
+        event_label: `Step 2 - Skill "${selectedSkill}"`,
+      },
+      {
+        event: "dataLayerEvent",
+        event_category: "Sign Up Talent Wizard",
+        event_action: "sign_up",
+        event_label: `Step 2 - Sk Exp ${yearsOfExperience}`,
+      }
+    )
+
     setFormStepAnswer({
-      tLMostProficientAndelaSupportedFramework: skillName,
+      tLMostProficientAndelaSupportedFramework: selectedSkill,
       tLYearsofExperienceontheFramework: yearsOfExperience,
     })
   }
 
   useEffect(() => {
-    setSelected(savedValue?.selected)
+    setSelectedSkill(savedValue?.selectedSkill)
     setYearsOfExperience(savedValue?.yearsOfExperience ?? null)
   }, [])
 
@@ -94,17 +90,21 @@ const Step2 = ({ setFormStepAnswer, goBack, savedValue = null }) => {
       <StepContainer>
         <PeopleContainer>
           <StepQuestion>
-            Select your <Highlight>primary</Highlight> skills
+            Select your <Highlight>primary</Highlight> skill
           </StepQuestion>
-          <SearchBar style={{ marginTop: spacing.BASE_SPACING }}>
-            <Search selected={[selected]} setSearchList={setSearchList} local />
-            <SelectedSearchSkillsContainer>
-              {renderSkills([selected])}
-            </SelectedSearchSkillsContainer>
-            <SearchResultsContainer>
-              {renderSkills(searchList)}
-            </SearchResultsContainer>
-          </SearchBar>
+          <InputContainer style={{ marginBottom: spacing.DOUBLE_BASE_SPACING }}>
+            <DropdownField
+              name="skills"
+              onChange={e => setSelectedSkill(e.currentTarget.value)}
+              value={selectedSkill ?? "Select ..."}
+            >
+              {primarySkills.map((skill, index) => (
+                <option key={index} value={skill.skill_label}>
+                  {skill.skill_name}
+                </option>
+              ))}
+            </DropdownField>
+          </InputContainer>
           <StepQuestion>Years of experience with this skill</StepQuestion>
           <YearsContainer>
             {options.map(option => (

@@ -29,7 +29,7 @@ import Step1 from "../components/talent-signup/step-1"
 import Step2 from "../components/talent-signup/step-2"
 import Step3 from "../components/talent-signup/step-3"
 import Step4 from "../components/talent-signup/step-4"
-import { getMarketoForm } from "../utils/api"
+import { getDataLayer, getMarketoForm } from "../utils/api"
 
 import "./skills/style.css"
 
@@ -38,6 +38,7 @@ const TalentSignupPage = () => {
   const [step, setStep] = useState(1)
   const [formData, setFormData] = useState(null)
   const [parentForm, setParentForm] = useState(null)
+  const dataLayer = getDataLayer()
 
   const getForm = () => {
     setLoading(true)
@@ -91,10 +92,8 @@ const TalentSignupPage = () => {
             setFormStepAnswer={setFormStepAnswer}
             goBack={goBack}
             savedValue={{
-              selected: formData?.tLMostProficientAndelaSupportedFramework && {
-                skill_label: formData?.tLMostProficientAndelaSupportedFramework,
-                skill_name: formData?.tLMostProficientAndelaSupportedFramework,
-              },
+              selectedSkill:
+                formData?.tLMostProficientAndelaSupportedFramework ?? "",
               yearsOfExperience:
                 formData?.tLYearsofExperienceontheFramework ?? null,
             }}
@@ -142,6 +141,13 @@ const TalentSignupPage = () => {
     })
 
     if (parentForm.validate()) {
+      dataLayer?.push({
+        event: "dataLayerEvent",
+        event_category: "Sign Up Talent Wizard",
+        event_action: "sign_up",
+        event_label: "Step 3 - Submit",
+      })
+
       parentForm.submit()
     } else {
       alert("Invalid/incomplete data provided. Please verify and re-try.")
