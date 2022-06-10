@@ -15,7 +15,7 @@ import {
   SecondaryButton,
   StepContainer,
 } from "../signup/signup.styles"
-import { InputLabel, StepQuestion } from "./talent-signup.styles"
+import { InputLabel, LabelSubtext, StepQuestion } from "./talent-signup.styles"
 import Code from "../../images/code.svg"
 import People from "../../images/people.svg"
 import PersonGear from "../../images/person-gear.svg"
@@ -215,7 +215,8 @@ const Step3 = ({ goBack, setFormStepAnswer }) => {
               onChange={e => setReferrer(e.currentTarget.value)}
             />
           </InputContainer>
-          <InputLabel>Upload your resume (PDF only)</InputLabel>
+          <InputLabel>Upload your resume</InputLabel>
+          <LabelSubtext>Only PDF files are accepted</LabelSubtext>
           <div id="dropzone" />
         </ProblemsContainer>
       </StepContainer>
